@@ -1,0 +1,171 @@
+//   _____     __
+//  / ___/__  / /__  _______
+// / /__/ _ \/ / _ \/ __(_-<
+// \___/\___/_/\___/_/ /___/
+
+
+// Gruvbox 5ever
+:root {
+    --dark0-hard: #1d2021;
+    --dark0: #282828;
+    --dark0-soft: #32302f;
+    --dark1: #3c3836;
+    --dark2: #504945;
+    --dark3: #665c54;
+    --dark4: #7c6f64;
+    --light0-hard: #f9f5d7;
+    --light0: #fbf1c7;
+    --light0-soft: #f2e5bc;
+    --light1: #ebdbb2;
+    --light2: #d5c4a1;
+    --light3: #bdae93;
+    --light4: #a89984;
+
+    --bright-red: #fb4934;
+    --bright-green: #b8bb26;
+    --bright-yellow: #fabd2f;
+    --bright-blue: #83a598;
+    --bright-purple: #d3869b;
+    --bright-aqua: #8ec07c;
+    --bright-orange: #fe8019;
+
+    --neutral-red: #cc241d;
+    --neutral-green: #98971a;
+    --neutral-yellow: #d79921;
+    --neutral-blue: #458588;
+    --neutral-purple: #b16286;
+    --neutral-aqua: #689d6a;
+    --neutral-orange: #d65d0e;
+
+    --faded-red: #9d0006;
+    --faded-green: #79740e;
+    --faded-yellow: #b57614;
+    --faded-blue: #076678;
+    --faded-purple: #8f3f71;
+    --faded-aqua: #427b58;
+    --faded-orange: #af3a03;
+
+    --dark-red-hard: #792329;
+    --dark-red: #722529;
+    --dark-red-soft: #7b2c2f;
+    --light-red-hard: #fc9690;
+    --light-red: #fc9487;
+    --light-red-soft: #f78b7f;
+    --dark-green-hard: #5a633a;
+    --dark-green: #62693e;
+    --dark-green-soft: #686d43;
+    --light-green-hard: #d3d6a5;
+    --light-green: #d5d39b;
+    --light-green-soft: #cecb94;
+    --dark-aqua-hard: #3e4934;
+    --dark-aqua: #49503b;
+    --dark-aqua-soft: #525742;
+    --light-aqua-hard: #e6e9c1;
+    --light-aqua: #e8e5b5;
+    --light-aqua-soft: #e1dbac;
+    --gray: #928374;
+}
+
+[data-theme="light"] {
+    --color-text: var(--dark1);
+    --color-fg-darken: color-mix(in srgb, var(--dark1) 13%, transparent);
+    --color-code-inline-bg: var(--light3);
+
+    --color-text-for-darkbg: var(--light0-hard);
+
+    --color-border-generic: var(--gray);
+
+    --color-boxshadow: var(--dark4);
+    --color-quote-border: var(--neutral-blue);
+
+    /* These two copied from chroma theme (syntax.css) */
+    --color-pre-text: #f8f8f2;
+    --color-pre-bg: #272822;
+
+    --color-sheet-bg: var(--light0-hard);
+    --color-desktop-bg: var(--light0);
+
+    --color-meta-text: #6a6a6a;
+
+    --color-kbd-bg: #333;
+    --color-hr: var(--faded-aqua);
+    --color-caption-text: var(--dark3);
+    --color-btn-border: var(--dark4);
+    --color-btn-hover-bg: var(--bright-purple);
+
+    --color-draft-bg-stripe: var(--neutral-yellow);
+
+    /*
+    keep in sync with theme color in:
+      - layouts/partials/meta.html
+      - main.js
+  */
+    --color-header-brand-primary: var(--neutral-aqua);
+    --color-header-brand-secondary-ddopacity: color-mix(in srgb,
+            var(--neutral-aqua) 87%,
+            transparent);
+    --color-header-brand-secondary: var(--bright-purple);
+
+    /* this color comes from reboot.css */
+    --color-link-text: #4c754d;
+    --color-link-hover: var(--neutral-purple);
+
+    --color-nav-text: var(--dark0);
+    --color-timestamp-bkg-primary: var(--color-link-text);
+    --color-timestamp-bkg-secondary: var(--color-link-hover);
+    --color-timestamp-text: var(--color-text-for-darkbg);
+}
+
+[data-theme="dark"] {
+    --color-text: var(--light1);
+    --color-fg-darken: color-mix(in srgb, var(--light1) 13%, transparent);
+    --color-code-inline-bg: var(--dark2);
+
+    --color-text-for-darkbg: var(--light0);
+    --color-border-generic: var(--dark1);
+
+    --color-boxshadow: var(--dark0-hard);
+    --color-quote-border: var(--bright-blue);
+
+    /* I modified these but the lightmode ones come from chroma CSS */
+    --color-pre-text: #e6e6e0;
+    --color-pre-bg: #272822;
+
+    --color-sheet-bg: var(--dark0);
+    --color-desktop-bg: var(--dark0);
+
+    --color-meta-text: var(--light4);
+    --color-caption-text: var(--gray);
+
+    --color-kbd-bg: var(--dark1);
+    --color-hr: var(--bright-aqua);
+
+    --color-btn-border: #777;
+    --color-btn-hover-bg: var(--bright-purple);
+
+    --color-draft-bg-stripe: #403629;
+
+    /*
+      keep in sync with theme color in:
+        - layouts/partials/meta.html
+        - main.js
+    */
+    --color-header-brand-primary: var(--bright-aqua);
+    --color-header-brand-secondary-ddopacity: color-mix(in srgb,
+            var(--bright-aqua) 87%,
+            transparent);
+    --color-header-brand-secondary: var(--bright-purple);
+
+    --color-link-text: var(--bright-blue);
+    --color-link-hover: var(--neutral-blue);
+
+    --color-nav-text: var(--dark0);
+
+    --color-timestamp-bkg-primary: var(--neutral-purple);
+    --color-timestamp-bkg-secondary: var(--color-link-text);
+    --color-timestamp-text: var(--color-text-for-darkbg);
+
+    html {
+        color-scheme: dark;
+    }
+}

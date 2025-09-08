@@ -4,6 +4,7 @@
 // /_/  /_/_//_\_\/_/_//_/___/
 
 @use 'variables' as *;
+@use 'colors' as *;
 
 // Card/Panel styling (used throughout for borders + shadows)
 @mixin card-style($border-color: var(--color-border-generic)) {
