@@ -72,22 +72,18 @@ docReady(() => {
     });
 
     // Light/Dark mode slider toggle logic
+    const themeTransitions = new ColorModeTransition({
+        duration: 700,
+        easing: "ease",
+        respectReducedMotion: true,
+    });
     const toggle = document.getElementById("theme-toggle");
-    const currentTheme = localStorage.getItem("theme");
-    if (currentTheme === "light") {
-        document.documentElement.setAttribute("data-theme", "light");
-        toggle.checked = false;
-    } else {
-        document.documentElement.setAttribute("data-theme", "dark");
-        toggle.checked = true;
-    }
+
+    const currentTheme = themeTransitions.initTheme();
+    toggle.checked = currentTheme === "dark";
+
     toggle.addEventListener("change", function () {
-        if (toggle.checked) {
-            document.documentElement.setAttribute("data-theme", "dark");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.documentElement.setAttribute("data-theme", "light");
-            localStorage.setItem("theme", "light");
-        }
+        const newTheme = toggle.checked ? "dark" : "light";
+        themeTransitions.changeTheme(newTheme);
     });
 });
