@@ -61,12 +61,14 @@
             {{ partial "theme-toggle-button" . }}
         </div>
         {{ block "content" . }}{{ end }}
-        <span
-            class="iconify"
-            data-icon="mdi-arrow-up-bold"
+        <iconify-icon
+            icon="bxs-to-top"
             title="Go to top"
             id="scroll-button"
-            onclick="window.scrollToTop()"></span>
+            height="46"
+            width="46"
+            role="button"
+            onclick="window.scrollToTop()"></iconify-icon>
         {{ if not .Params.hide_footer }}
             {{ block "footer" . }}{{ end }}
         {{ end }}

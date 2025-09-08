@@ -52,6 +52,88 @@ a.no-underline:hover {
     }
 }
 
+#scroll-button {
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    width: fit-content;
+    background-color: var(--bright-yellow);
+    color: var(--dark0-hard);
+    border-radius: 100%;
+    padding: 0.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    @media (max-width: $bp-mobile) {
+        bottom: 16px;
+        right: 16px;
+        padding: 0.75em;
+        transform: scale(0.9);
+    }
+
+    @media (min-width: $bp-tablet) {
+        bottom: 30px;
+        right: 30px;
+        padding: 1em;
+
+        &:hover {
+            animation: bounce-up 1.2s infinite;
+        }
+    }
+
+    // Ensure button doesn't overlap with footer content
+    @media (max-height: 600px) {
+        bottom: 10px;
+        transform: scale(0.8);
+    }
+
+    transition: opacity 0.4s ease,
+    transform 0.2s ease;
+
+    &:focus-visible {
+        outline: 2px solid var(--color-text);
+        outline-offset: 2px;
+    }
+
+    @media (max-height: 500px) and (max-width: 380px) {
+        display: none;
+    }
+}
+
+// Ensure content doesn't get occluded by scroll button
+.content-container,
+.article-body,
+footer {
+
+    // Add safe area for scroll button on mobile
+    @media (max-width: $bp-mobile) {
+        padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
+    }
+
+    // Larger safe area on tablets/desktop due to larger button
+    @media (min-width: $bp-tablet) {
+        padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 60px);
+    }
+}
+
+@keyframes bounce-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 // Lists
 .list-unstyled {
     padding-left: 0;
