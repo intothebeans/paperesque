@@ -11,7 +11,9 @@
     "@juggle/resize-observer": "3.x"
   },
   "devDependencies": {
-    "parcel": "2.12.0"
+    "parcel": "2.12.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-go-template": "^0.0.15"
   },
   "targets": {
     "default": {
