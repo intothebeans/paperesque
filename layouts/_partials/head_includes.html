@@ -21,11 +21,13 @@
     integrity="{{ $styles.Data.Integrity }}"
     crossorigin="anonymous" />
 
-{{- $js := resources.Get "js/main.js" | fingerprint }}
-<script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 <link
     href="https://fonts.googleapis.com/css?family=Lora&display=swap"
     rel="stylesheet" />
 <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/within.min.css" />
+
+{{- $js := resources.Get "js/main.js" | fingerprint }}
+<script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>

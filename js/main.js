@@ -3,12 +3,14 @@ import enableFloatingFootnotes from "./floatingFootnotes.js";
 import { docReady } from "./utils.js";
 import ColorModeTransition from "./colorModeTransition.js";
 import { drawMusic, musicWithPlayback } from "./music.js";
+import { initCollapsibleAlerts } from "./blockquoteAlertsAnimations.js";
 
 // Make music functions globally available
 window.drawMusic = drawMusic;
 window.musicWithPlayback = musicWithPlayback;
 enableFloatingFootnotes();
 anchorizeHeadings();
+initCollapsibleAlerts();
 
 // automatically close dropdown links if the user scrolls
 docReady(() => {

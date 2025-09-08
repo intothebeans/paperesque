@@ -1,0 +1,46 @@
+{{ $emojis := dict
+    "caution" "mdi-sign-caution"
+    "important" "mdi-exclamation-thick"
+    "note" "mdi-pencil"
+    "tip" "mdi-lightbulb-variant"
+    "warning" "mdi-alert-octagon"
+    "tldr" "mdi-run-fast"
+}}
+
+{{ if ne .AlertSign "" }}
+    <details
+        class="alert alert-{{ .AlertType }} alert-collapsible"
+        {{ if ne .AlertSign "-" }}open{{ end }}>
+        <summary class="alert-heading">
+            <span
+                class="iconify"
+                data-icon="{{ index $emojis .AlertType }}"
+                height="1.5em"
+                width="1.5em"></span>
+            {{ with .AlertTitle }}
+                {{ . }}
+            {{ else }}
+                {{ or (i18n .AlertType) (title .AlertType) }}
+            {{ end }}
+        </summary>
+        <div class="alert-content">
+            {{ .Text }}
+        </div>
+    </details>
+{{ else }}
+    <blockquote class="alert alert-{{ .AlertType }}">
+        <p class="alert-heading">
+            <span
+                class="iconify"
+                data-icon="{{ index $emojis .AlertType }}"
+                height="1.5em"
+                width="1.5em"></span>
+            {{ with .AlertTitle }}
+                {{ . }}
+            {{ else }}
+                {{ or (i18n .AlertType) (title .AlertType) }}
+            {{ end }}
+        </p>
+        {{ .Text }}
+    </blockquote>
+{{ end }}
