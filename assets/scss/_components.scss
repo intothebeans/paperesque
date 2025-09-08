@@ -178,7 +178,6 @@ h4 {
 
 // alerts
 
-/* Alert styles */
 $alerts: (
     note: "green",
     tip: "blue",
@@ -198,6 +197,7 @@ $alerts: (
     font-weight: 600;
     margin: 0 0 0.5rem 0;
     display: flex;
+    align-items: center;
     gap: 0.5rem;
 }
 

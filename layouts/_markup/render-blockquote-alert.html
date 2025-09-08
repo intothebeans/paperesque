@@ -1,7 +1,7 @@
 {{ $emojis := dict
     "caution" "mdi-sign-caution"
     "important" "mdi-exclamation-thick"
-    "note" "mdi-pencil"
+    "note" "mdi-information-outline"
     "tip" "mdi-lightbulb-variant"
     "warning" "mdi-alert-octagon"
     "tldr" "mdi-run-fast"
@@ -12,11 +12,10 @@
         class="alert alert-{{ .AlertType }} alert-collapsible"
         {{ if ne .AlertSign "-" }}open{{ end }}>
         <summary class="alert-heading">
-            <span
-                class="iconify"
-                data-icon="{{ index $emojis .AlertType }}"
-                height="1.5em"
-                width="1.5em"></span>
+            <iconify-icon
+                icon="{{ index $emojis .AlertType }}"
+                height="24"
+                width="24"></iconify-icon>
             {{ with .AlertTitle }}
                 {{ . }}
             {{ else }}
@@ -30,17 +29,17 @@
 {{ else }}
     <blockquote class="alert alert-{{ .AlertType }}">
         <p class="alert-heading">
-            <span
-                class="iconify"
-                data-icon="{{ index $emojis .AlertType }}"
-                height="1.5em"
-                width="1.5em"></span>
+            <iconify-icon
+                icon="{{ index $emojis .AlertType }}"
+                height="24"
+                width="24"></iconify-icon>
             {{ with .AlertTitle }}
                 {{ . }}
             {{ else }}
                 {{ or (i18n .AlertType) (title .AlertType) }}
             {{ end }}
         </p>
+
         {{ .Text }}
     </blockquote>
 {{ end }}
