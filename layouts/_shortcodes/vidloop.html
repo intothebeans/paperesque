@@ -11,7 +11,11 @@
         {{- with .Get "width" }} width="{{ . }}"{{ end -}}
         {{- with .Get "height" }} height="{{ . }}"{{ end -}}
 
-    ></video>
+    >
+        {{- if .Get "captions"}}
+            <track kind="captions" src='{{ .Get "captions" }}' srclang="en" label="English" default>
+        {{end -}}
+    </video>
     {{- if .Get "link" }}</a>{{ end -}}
     {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") }}
         <figcaption>

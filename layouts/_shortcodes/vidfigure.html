@@ -1,6 +1,4 @@
-{{- /* Below is a copy paste of https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/shortcodes/figure.html from Hugo commit aba2647c152ffff927f42523b77ee6651630cd67, with the img tag replaced with a video */ -}}
-{{- /* Note that it presently uses `markdownify` instead of $.Page.RenderString for consistency with Hugo's `figure` shortcode.  */ -}}
-<figure{{ with .Get "class" }} class="{{ . }}" {{ end }}{{with .Get "id"}} id="{{ . }}" {{end}}>
+<figure {{ with .Get "class" }} class="{{ . }}" {{ end }}{{with .Get "id"}} id="{{ . }}" {{end}}>
     {{- if .Get "link" -}}
         <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
     {{- end }}
@@ -8,10 +6,17 @@
         {{- if or (.Get "alt") (.Get "caption") }}
             alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
         {{- end -}}
-        {{- with .Get "width" }} width="{{ . }}"{{ end -}}
-        {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+        {{- with .Get "width" }}
+          width="{{ . }}"
+        {{ end -}}
+        {{- with .Get "height" }}
+          height="{{ . }}"
+        {{ end -}}>
+    {{- if .Get "captions"}}
+      <track kind="captions" src='{{ .Get "captions" }}' srclang="en" label="English" default>
+    {{end -}}
 
-    ></video>
+  </video>
     {{- if .Get "link" }}</a>{{ end -}}
     {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") }}
         <figcaption>
