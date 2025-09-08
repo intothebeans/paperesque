@@ -70,4 +70,24 @@ docReady(() => {
     floatingSheetBreakpoint.addEventListener("change", () => {
         updateThemeColors();
     });
+
+    // Light/Dark mode slider toggle logic
+    const toggle = document.getElementById("theme-toggle");
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+        toggle.checked = false;
+    } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        toggle.checked = true;
+    }
+    toggle.addEventListener("change", function () {
+        if (toggle.checked) {
+            document.documentElement.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.documentElement.setAttribute("data-theme", "light");
+            localStorage.setItem("theme", "light");
+        }
+    });
 });

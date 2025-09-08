@@ -25,6 +25,7 @@
 // Drop shadow for nav
 .drop-shadow {
     @include drop-shadow;
+    position: relative;
 }
 
 // Page-wide bar styling
@@ -86,11 +87,21 @@ details.right-links {
 ul.right-links {
     display: none;
     float: right;
+    margin-right: $spacing-md;
 
     li {
         display: inline-block;
         margin-right: $spacing-md;
     }
+}
+
+.theme-toggle {
+    display: inline-block;
+    position: absolute;
+    top: 0.15em;
+    right: 3em;
+    z-index: 1000;
+    font-size: 1.25em;
 }
 
 // Responsive navigation
@@ -101,5 +112,14 @@ ul.right-links {
 
     ul.right-links {
         display: block;
+    }
+
+    .theme-toggle {
+        display: inline-block;
+        position: absolute;
+        top: 0.4em;
+        right: 0.5em;
+        z-index: 1000;
+        font-size: 1em;
     }
 }

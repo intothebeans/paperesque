@@ -4,20 +4,22 @@
     "transpiler" "dartsass"
 }}
 {{ $scss := resources.Get "scss/main.scss" | toCSS $opts }}
-{{ $css := resources.GetMatch "css/*.css" }}
-{{ $styles := slice $scss $css | resources.Concat "css/paperesque.css" | fingerprint }}
+{{ $rebootCSS := resources.Get "css/reboot.css" }}
+{{ $syntaxCSS := resources.Get "css/syntax.css" }}
+{{ $styles := slice $rebootCSS $syntaxCSS $scss | resources.Concat "css/styles.css" | minify | fingerprint }}
+
+
+<link
+    rel="stylesheet"
+    href="{{ $styles.RelPermalink }}"
+    integrity="{{ $styles.Data.Integrity }}"
+    crossorigin="anonymous" />
+
 {{- $js := resources.Get "js/main.js" | fingerprint }}
-{{ if hugo.IsDevelopment }}
-    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
-{{ else }}
-    {{ $styles | minify }}
-    <link
-        rel="stylesheet"
-        href="{{ $styles.RelPermalink }}"
-        integrity="{{ $styles.Data.Integrity }}"
-        crossorigin="anonymous" />
-{{ end }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 <link
     href="https://fonts.googleapis.com/css?family=Lora&display=swap"
     rel="stylesheet" />
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/within.min.css" />
