@@ -3,9 +3,9 @@
 //  / __ |/ / -_) __/ __(_-<
 // /_/ |_/_/\__/_/  \__/___/
 
-@use 'variables' as *;
-@use 'colors' as *;
-@use 'mixins' as *;
+@use '../variables' as *;
+@use '../colors' as *;
+@use '../mixins' as *;
 
 $alerts: (
     note: "green",
@@ -73,9 +73,11 @@ $alerts: (
         @include collapsible-alert-base($color);
         margin: 0;
     }
+}
 
-    // Dark theme overrides
-    [data-theme="dark"] & {
+// Dark theme overrides
+[data-theme="dark"] {
+    @each $name, $color in $alerts {
         blockquote.alert-#{$name} {
             @include alert-style($color, true);
         }

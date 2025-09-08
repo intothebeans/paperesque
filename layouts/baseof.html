@@ -39,8 +39,13 @@
         class="{{ block "body-classes" . }}{{ end }}"
         lang="{{ .Site.LanguageCode }}">
         <div class="navbar nav-bkg drop-shadow">
-            <nav class="content-container pagewide-bar-padding">
-                <span class="divider">/ </span>
+            <nav class="pagewide-bar-padding">
+                <iconify-icon
+                    icon="{{ .Site.Params.nav_icon | default "bx-home" }}"
+                    height="24"
+                    width="24"
+                    inline></iconify-icon>
+
                 <a href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a>
                 {{ block "breadcrumbs" . }}
                     {{- with .Parent -}}

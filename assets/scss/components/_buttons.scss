@@ -1,9 +1,12 @@
-// Buttons
+//    ___       __  __
+//   / _ )__ __/ /_/ /____  ___  ___
+//  / _  / // / __/ __/ _ \/ _ \(_-<
+// /____/\_,_/\__/\__/\___/_//_/___/
 
-@use 'variabes' as *;
-@use 'colors' as *;
-@use 'mixins' as *;
-@use 'animations' as *;
+@use '../variables' as *;
+@use '../colors' as *;
+@use '../mixins' as *;
+@use '../animations' as *;
 
 a.btn-dashed {
     @include btn-dashed;

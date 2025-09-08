@@ -3,9 +3,9 @@
 //  / /__/ (_-</ __(_-<
 // /____/_/___/\__/___/
 
-@use 'variables' as *;
-@use 'colors' as *;
-@use 'mixins' as *;
+@use '../variables' as *;
+@use '../colors' as *;
+@use '../mixins' as *;
 
 // Lists
 .list-unstyled {

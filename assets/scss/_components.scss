@@ -57,7 +57,6 @@ a.timestamp {
 
 
 // Ensure content doesn't get occluded by scroll button
-.content-container,
 .article-body,
 footer {
 
@@ -65,7 +64,7 @@ footer {
         padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
     }
 
-    @media (min-width: $bp-tablet) {
+    @include breakpoint('tablet') {
         padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 60px);
     }
 }
@@ -89,6 +88,14 @@ footer {
 twitter-widget {
     // Important needed because twitter oembed puts styles in style attribute
     margin: $spacing-lg auto !important;
+}
+
+blockquote.twitter-tweet {
+    color: var(--color-meta-text);
+
+    p {
+        color: var(--color-text) !important;
+    }
 }
 
 

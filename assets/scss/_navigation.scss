@@ -40,14 +40,22 @@ nav {
     a,
     a:hover,
     a:visited {
+        @include breakpoint('tablet') {
+            font-size: $font-size-lg;
+
+        }
+
         color: var(--color-nav-text);
     }
+
+
 }
 
 // Right-side navigation links
 details.right-links {
     float: right;
     text-align: right;
+    margin-top: 0.2em;
 
     summary {
         list-style: none;
@@ -88,7 +96,7 @@ details.right-links {
 ul.right-links {
     display: none;
     float: right;
-    margin-right: $spacing-md;
+    margin-right: $spacing-lg;
 
     li {
         display: inline-block;
@@ -99,11 +107,12 @@ ul.right-links {
 .theme-toggle {
     display: inline-block;
     position: absolute;
-    top: 0.15em;
+    top: 0.3em;
     right: 3em;
     z-index: 1000;
     font-size: 1.25em;
 }
+
 
 // Responsive navigation
 @include breakpoint('mobile') {
@@ -118,9 +127,16 @@ ul.right-links {
     .theme-toggle {
         display: inline-block;
         position: absolute;
-        top: 0.4em;
+        top: 0.5em;
         right: 0.5em;
         z-index: 1000;
-        font-size: 1em;
+        font-size: $font-size-md;
+    }
+}
+
+@include breakpoint('tablet') {
+    .theme-toggle {
+        font-size: $font-size-lg;
+        top: 0.25em;
     }
 }
