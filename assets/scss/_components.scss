@@ -1,0 +1,176 @@
+//   __  ______  _____                                   __
+//  / / / /  _/ / ___/__  __ _  ___  ___  ___  ___ ___  / /____
+// / /_/ // /  / /__/ _ \/  ' \/ _ \/ _ \/ _ \/ -_) _ \/ __(_-<
+// \____/___/  \___/\___/_/_/_/ .__/\___/_//_/\__/_//_/\__/___/
+//                           /_/
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Figures and media
+figure {
+    margin: $spacing-lg auto;
+    display: table;
+    text-align: center;
+
+    @include media-border;
+
+    &.smaller {
+        max-width: 67%;
+    }
+
+    figcaption {
+        margin-top: 0.75em;
+        font-style: italic;
+        text-align: center;
+        font-size: $font-size-xs;
+        color: var(--color-caption-text);
+
+        :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    audio {
+        // Hardcoded based on page width - Chrome/Firefox do weird things with 100%
+        width: 580px;
+        max-width: 100%;
+    }
+}
+
+// Buttons
+a.btn-dashed {
+    @include btn-dashed;
+}
+
+a.no-underline:hover {
+    text-decoration: none;
+
+    .re-underline {
+        text-decoration: underline;
+    }
+}
+
+// Lists
+.list-unstyled {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+// List of titles/posts
+.list-of-titles {
+    .post-title {
+        color: var(--color-text);
+        font-size: $font-size-lg;
+    }
+
+    .post-meta {
+        font-size: $font-size-sm;
+        color: var(--color-meta-text);
+
+        &.draft {
+            font-weight: bold;
+        }
+    }
+
+    li {
+        a {
+            text-decoration: none;
+            display: block;
+            padding: $spacing-md;
+            border-bottom: 1px solid var(--color-border-generic);
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+
+            &:hover {
+                background-color: var(--color-sheet-bg);
+                @include card-style;
+
+                .post-title {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        &:first-child a {
+            border-top: 1px solid var(--color-border-generic);
+        }
+
+        &.draft {
+            @include draft-stripes(var(--color-desktop-bg));
+
+            a:hover {
+                @include draft-stripes(var(--color-sheet-bg));
+            }
+        }
+    }
+}
+
+// Footnotes
+.footnotes {
+    margin-top: $spacing-xxl;
+    font-size: 85%;
+
+    hr {
+        margin-bottom: $spacing-md;
+    }
+
+    li {
+        margin: 0 0 12px;
+    }
+}
+
+// Twitter widgets
+twitter-widget {
+    // Important needed because twitter oembed puts styles in style attribute
+    margin: $spacing-lg auto !important;
+}
+
+// Timestamps
+a.timestamp {
+    border: solid 1px var(--color-timestamp-bkg-primary);
+    background: var(--color-timestamp-bkg-primary);
+    background: linear-gradient(145deg, var(--color-timestamp-bkg-primary) 60%, var(--color-timestamp-bkg-secondary) 100%);
+    color: var(--color-timestamp-text);
+    border-radius: $border-radius;
+    padding: 2px;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+// Header links (anchor links in content)
+.header-link {
+    text-decoration: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: linear-gradient(90deg, #00000000 0%, var(--color-sheet-bg) 20%);
+    color: var(--color-meta-text);
+    fill: var(--color-meta-text);
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    svg {
+        height: 0.65em;
+        margin-bottom: 0.225em;
+        margin-left: 0.6em;
+        margin-right: 0.6em;
+    }
+}
+
+aside .header-link {
+    background: linear-gradient(90deg, #00000000 0%, var(--color-desktop-bg) 20%);
+}
+
+// Keep selectors in sync with site.js
+h2,
+h3,
+h4 {
+    position: relative;
+
+    &:not(:hover) .header-link {
+        display: none;
+    }
+}

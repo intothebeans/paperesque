@@ -1,0 +1,102 @@
+//   _____          __           __
+//  / ___/__  ___  / /____ ___  / /_
+// / /__/ _ \/ _ \/ __/ -_) _ \/ __/
+// \___/\___/_//_/\__/\__/_//_/\__/
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Post metadata
+.post-date {
+    color: var(--color-meta-text);
+}
+
+.post-tags,
+.post-tags a,
+.post-tags a:hover,
+.post-tags a:visited {
+    color: var(--color-meta-text);
+}
+
+// Article asides
+aside.article-aside {
+    background-color: var(--color-desktop-bg);
+    padding: 0 $spacing-md;
+    margin-top: $spacing-xl;
+
+    >p:first-child {
+        margin-top: 1rem;
+    }
+}
+
+// Content warnings
+aside.content-warning {
+    font-style: italic;
+    margin-bottom: $spacing-lg;
+    color: var(--color-meta-text);
+    border-top: solid 1px var(--color-quote-border);
+    border-bottom: solid 1px var(--color-quote-border);
+    padding: $spacing-xs $spacing-md;
+    display: inline-block;
+
+    >p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Aside spacing after headings
+h2,
+h3,
+h4,
+h5 {
+    +aside.article-aside {
+        margin-top: $spacing-sm;
+    }
+}
+
+// Tables
+article table {
+    margin: 2.5em auto;
+    border-bottom: 1px solid var(--color-header-brand-primary);
+
+    thead {
+        tr {
+            border-bottom: 1px solid var(--color-header-brand-primary);
+        }
+
+        th {
+            padding-bottom: $spacing-sm;
+            font-family: 'Lora', serif;
+        }
+    }
+
+    tbody {
+        tr:first-child td {
+            padding-top: 0.75em;
+        }
+
+        tr:last-child td {
+            padding-bottom: 0.75em;
+        }
+    }
+
+    td,
+    th {
+        padding: $spacing-xs $spacing-sm;
+        vertical-align: top;
+
+        &:not(:first-child) {
+            padding-left: $spacing-lg;
+        }
+    }
+}
+
+// Draft content styling
+.look-sheet-bkg.draft {
+    @include draft-stripes(var(--color-sheet-bg));
+}
+
+// Footnote backref fix for Firefox emoji bug
+a.footnote-backref::before {
+    content: ' ';
+}

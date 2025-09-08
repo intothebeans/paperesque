@@ -1,9 +1,23 @@
-{{- $rebootCSS := resources.Get "css/reboot.css" }}
-{{- $styleCSS := resources.Get "css/style.css" }}
-{{- $syntaxCSS := resources.Get "css/syntax.css" }}
-{{- $css := slice $rebootCSS $styleCSS $syntaxCSS | resources.Concat "css/paperesque.css" | minify | fingerprint }}
+{{ $opts := dict
+    "enableSourceMap" hugo.IsDevelopment
+    "outputStyle" (cond hugo.IsDevelopment "expanded" "compressed")
+    "transpiler" "dartsass"
+}}
+{{ $scss := resources.Get "scss/main.scss" | toCSS $opts }}
+{{ $css := resources.GetMatch "css/*.css" }}
+{{ $styles := slice $scss $css | resources.Concat "css/paperesque.css" | fingerprint }}
 {{- $js := resources.Get "js/main.js" | fingerprint }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+{{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
+{{ else }}
+    {{ $styles | minify }}
+    <link
+        rel="stylesheet"
+        href="{{ $styles.RelPermalink }}"
+        integrity="{{ $styles.Data.Integrity }}"
+        crossorigin="anonymous" />
+{{ end }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-<link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css?family=Lora&display=swap"
+    rel="stylesheet" />

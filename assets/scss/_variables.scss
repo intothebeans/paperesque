@@ -1,0 +1,141 @@
+//   _   __         _      __   __      
+//  | | / /__ _____(_)__ _/ /  / /__ ___
+//  | |/ / _ `/ __/ / _ `/ _ \/ / -_|_-<
+//  |___/\_,_/_/ /_/\_,_/_.__/_/\__/___/
+
+
+// Spacing scale
+$spacing-xs: 0.25em;
+$spacing-sm: 0.5em;
+$spacing-md: 1em;
+$spacing-lg: 2em;
+$spacing-xl: 3em;
+$spacing-xxl: 4em;
+
+// Font sizes
+$font-size-xs: 0.75em;
+$font-size-sm: 0.875em;
+$font-size-md: 1em;
+$font-size-lg: 1.5em;
+$font-size-xl: 2em;
+
+// Content widths
+$content-width: 45rem;
+$content-padding-mobile: 1em;
+$content-padding-desktop: 2em;
+
+// Border radius
+$border-radius: 4px;
+
+// Breakpoints
+$bp-mobile: 440px;
+$bp-tablet: 720px;
+$bp-desktop: 1170px;
+
+//   _____________  _____         __               ___                        __  _       
+//  / ___/ __/ __/ / ___/_ _____ / /____  __ _    / _ \_______  ___  ___ ____/ /_(_)__ ___
+// / /___\ \_\ \  / /__/ // (_-</ __/ _ \/  ' \  / ___/ __/ _ \/ _ \/ -_) __/ __/ / -_|_-<
+// \___/___/___/  \___/\_,_/___/\__/\___/_/_/_/ /_/  /_/  \___/ .__/\__/_/  \__/_/\__/___/
+//                                                           /_/                          
+
+:root {
+    --color-text: #212529;
+    --color-fg-darken: #21252922;
+    --color-code-inline-bg: #eeeeee;
+
+    --color-text-for-darkbg: white;
+
+    --color-border-generic: #ccc;
+
+    --color-boxshadow: #777777;
+    --color-quote-border: #777;
+
+    /* These two copied from chroma theme (syntax.css) */
+    --color-pre-text: #f8f8f2;
+    --color-pre-bg: #272822;
+
+    --color-sheet-bg: white;
+    --color-desktop-bg: #fffdf7;
+
+    --color-meta-text: #777;
+
+    --color-kbd-bg: #333;
+    --color-hr: #AAA;
+    --color-caption-text: #5e5e5e;
+    --color-btn-border: #777;
+    --color-btn-hover-bg: #EDEDED;
+
+    --color-draft-bg-stripe: #ffd4a3;
+
+    /*
+    keep in sync with theme color in:
+      - layouts/partials/meta.html
+      - main.js
+  */
+    --color-header-brand-primary: #00223E;
+    --color-header-brand-secondary-ddopacity: #00223EDD;
+    --color-header-brand-secondary: #FFA17F;
+
+    /* this color comes from reboot.css */
+    --color-link-text: #007bff;
+    --color-link-hover: #0056B3;
+
+    --color-nav-text: var(--color-text-for-darkbg);
+    --color-timestamp-bkg-primary: var(--color-link-text);
+    --color-timestamp-bkg-secondary: var(--color-link-hover);
+    --color-timestamp-text: var(--color-text-for-darkbg);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: #B1AFA7;
+        --color-fg-darken: #B1AFA722;
+        --color-code-inline-bg: #060A0D;
+
+        --color-text-for-darkbg: #CDC9B9;
+        --color-border-generic: #53524E;
+
+        --color-boxshadow: #222222;
+        --color-quote-border: #53524E;
+
+        /* I modified these but the lightmode ones come from chroma CSS */
+        --color-pre-text: #E6E6E0;
+        --color-pre-bg: #272822;
+
+        --color-sheet-bg: #17232D;
+        --color-desktop-bg: #17232D;
+
+        --color-meta-text: #807E78;
+        --color-caption-text: #807E78;
+
+        --color-kbd-bg: #333;
+        --color-hr: var(--color-text);
+
+        --color-btn-border: #777;
+        --color-btn-hover-bg: #082D4D;
+
+        --color-draft-bg-stripe: #403629;
+
+        /*
+      keep in sync with theme color in:
+        - layouts/partials/meta.html
+        - main.js
+    */
+        --color-header-brand-primary: #08151E;
+        --color-header-brand-secondary-ddopacity: #08151EDD;
+        --color-header-brand-secondary: #754A3A;
+
+        --color-link-text: #2381E5;
+        --color-link-hover: #268FFF;
+
+        --color-nav-text: #CDC9B9;
+
+        --color-timestamp-bkg-primary: #1D6BBF;
+        --color-timestamp-bkg-secondary: var(--color-link-text);
+        --color-timestamp-text: var(--color-text-for-darkbg);
+    }
+
+    html {
+        color-scheme: dark;
+    }
+}

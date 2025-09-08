@@ -1,0 +1,142 @@
+//    __                       __
+//   / /  ___ ___ _____  __ __/ /_
+//  / /__/ _ `/ // / _ \/ // / __/
+// /____/\_,_/\_, /\___/\_,_/\__/
+//           /___/
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Main content containers
+.content-container {
+    @include content-container;
+}
+
+.content-container-narrow-pad {
+    @include content-container('narrow');
+}
+
+// Vertical alignment
+.v-center {
+    align-items: center;
+}
+
+// Desktop-specific layout adjustments
+@include breakpoint('tablet') {
+    .bottom-links {
+        @include card-style;
+        border-bottom: 0px;
+    }
+
+    .look-sheet {
+        @include sheet-style;
+    }
+}
+
+// Sheet-like appearance
+.look-sheet-border {
+    @include sheet-style;
+}
+
+// Spacing utilities
+.article-pad-v {
+    @include article-spacing;
+}
+
+.margin-top-2em {
+    margin-top: $spacing-lg;
+}
+
+.vertical-margins {
+    @include vertical-margins;
+}
+
+.squash-bottom {
+    @include squash('bottom');
+}
+
+.squash-top {
+    @include squash('top');
+}
+
+// Flexbox utilities
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+
+    &.flex-center {
+        justify-content: center;
+    }
+}
+
+// Two-up layout for figures
+.twoup {
+    display: flex;
+
+    figure {
+        max-width: 48%;
+        display: inline-block;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &.squash-bottom figure {
+        @include squash('bottom');
+    }
+
+    &.squash-top figure {
+        @include squash('top');
+    }
+}
+
+// Sidebar pull layout for larger screens
+@include breakpoint('desktop') {
+    .sidepull-container {
+        position: relative;
+
+        .sidepull-side {
+            position: absolute;
+            position: sticky;
+            width: 16em;
+            top: 3em;
+            margin-left: -18em; // width + margin
+            float: left;
+        }
+
+        .sidepull-not-when-sidebar-shown {
+            display: none;
+        }
+    }
+}
+
+.sidepull-side {
+    margin-bottom: $spacing-xxl;
+}
+
+// Content positioning
+#content {
+    position: relative;
+}
+
+// Floating footnotes positioning
+.floating-footnotes {
+    width: 25em;
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 2em); // entire main article content + margins
+
+    hr {
+        display: none;
+    }
+
+    li[role=doc-endnote] p:last-child {
+        margin-bottom: 0;
+    }
+}

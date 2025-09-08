@@ -1,0 +1,162 @@
+//    __  ____       _
+//   /  |/  (_)_ __ (_)__  ___
+//  / /|_/ / /\ \ // / _ \(_-<
+// /_/  /_/_//_\_\/_/_//_/___/
+
+@use 'variables' as *;
+
+// Card/Panel styling (used throughout for borders + shadows)
+@mixin card-style($border-color: var(--color-border-generic)) {
+    border: 1px solid $border-color;
+    box-shadow: 0 5px 5px -5px var(--color-boxshadow);
+}
+
+// Drop shadow only
+@mixin drop-shadow {
+    box-shadow: 0 5px 5px -5px var(--color-boxshadow);
+}
+
+// Brand gradient backgrounds
+@mixin brand-gradient($split: 80%) {
+    background: linear-gradient(135deg, var(--color-header-brand-primary) $split, var(--color-header-brand-secondary) $split);
+}
+
+// Content container patterns
+@mixin content-container($type: 'normal') {
+    @if $type =='narrow' {
+        padding: $spacing-sm;
+    }
+
+    @else {
+        padding-left: $spacing-md;
+        padding-right: $spacing-md;
+    }
+
+    @media (min-width: $bp-tablet) {
+        width: $content-width;
+        margin: 0 auto;
+
+        @if $type =='narrow' {
+            padding-left: $spacing-sm;
+            padding-right: $spacing-sm;
+        }
+
+        @else {
+            padding-left: $content-padding-desktop;
+            padding-right: $content-padding-desktop;
+        }
+    }
+}
+
+// Sheet styling (paper-like appearance)
+@mixin sheet-style {
+    @include card-style;
+    margin-top: $spacing-md;
+    margin-bottom: $spacing-md;
+    min-height: 0px;
+    background-color: var(--color-sheet-bg);
+}
+
+// Button base styling
+@mixin btn-base {
+    border-radius: $border-radius;
+    padding: $spacing-sm;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s;
+}
+
+// Dashed button style
+@mixin btn-dashed {
+    @include btn-base;
+    border: dashed 1px var(--color-btn-border);
+
+    &:hover {
+        @include drop-shadow;
+        border-style: solid;
+        background-color: var(--color-btn-hover-bg);
+    }
+}
+
+// Vertical spacing utilities
+@mixin vertical-margins($size: $spacing-md) {
+    margin-top: $size;
+    margin-bottom: $size;
+}
+
+// Article spacing
+@mixin article-spacing {
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+}
+
+// Reset margins/padding (squash utilities)
+@mixin squash($direction: 'both') {
+    @if $direction =='top' or $direction =='both' {
+        margin-top: 0;
+    }
+
+    @if $direction =='bottom' or $direction =='both' {
+        margin-bottom: 0;
+    }
+}
+
+// Responsive breakpoint mixin
+@mixin breakpoint($size) {
+    @if $size =='mobile' {
+        @media (min-width: $bp-mobile) {
+            @content;
+        }
+    }
+
+    @else if $size =='tablet' {
+        @media (min-width: $bp-tablet) {
+            @content;
+        }
+    }
+
+    @else if $size =='desktop' {
+        @media (min-width: $bp-desktop) {
+            @content;
+        }
+    }
+}
+
+// Nav/header link styling
+@mixin nav-link {
+    color: var(--color-nav-text);
+    text-decoration: underline;
+
+    &:hover,
+    &:visited {
+        color: var(--color-nav-text);
+    }
+}
+
+// Figure/media styling
+@mixin media-border {
+    &:not(.no-border) {
+
+        video,
+        img,
+        object {
+            @include card-style;
+            max-width: 100%;
+            background-color: var(--color-sheet-bg);
+            max-height: 85vh;
+        }
+
+        &.style-tables table {
+            @include card-style;
+        }
+    }
+}
+
+// Draft styling pattern
+@mixin draft-stripes($bg-color) {
+    background: repeating-linear-gradient(135deg,
+            $bg-color,
+            $bg-color 10px,
+            var(--color-draft-bg-stripe) 12px,
+            var(--color-draft-bg-stripe) 12px);
+}

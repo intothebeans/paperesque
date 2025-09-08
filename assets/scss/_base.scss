@@ -1,0 +1,154 @@
+//    ___                 ______       __
+//   / _ )___ ____ ___   / __/ /___ __/ /__ ___
+//  / _  / _ `(_-</ -_) _\ \/ __/ // / / -_|_-<
+// /____/\_,_/___/\__/ /___/\__/\_, /_/\__/___/
+//                             /___/
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+    background-color: var(--color-desktop-bg);
+
+    &.look-sheet-bkg {
+        background-color: var(--color-sheet-bg);
+
+        @include breakpoint('tablet') {
+            background-color: var(--color-desktop-bg);
+        }
+    }
+
+    &.sticky-nav .navbar {
+        position: sticky;
+        z-index: 1000;
+        top: 0;
+    }
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Lora', serif;
+}
+
+h1#title {
+    // Reset UA stylesheets that put h1 to 1.5em when in an article
+    font-size: 2em;
+}
+
+// Article headings spacing
+.article-body {
+
+    h2,
+    h3 {
+        margin-top: $spacing-lg;
+        margin-bottom: $spacing-sm;
+    }
+}
+
+// Reset first child heading margins when nested
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+    margin-top: $spacing-sm;
+}
+
+// Code styling
+code {
+    padding: 2px 4px;
+    font-size: 90%;
+    background-color: var(--color-code-inline-bg);
+    hyphens: none;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    word-wrap: break-word;
+}
+
+pre {
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    @include card-style;
+    max-width: 100%;
+    color: var(--color-pre-text);
+    background-color: var(--color-pre-bg);
+
+    code {
+        background-color: transparent;
+        padding: 0;
+    }
+}
+
+pre,
+code {
+    font-family: monocode, monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Links
+a {
+    color: var(--color-link-text);
+
+    &:hover {
+        color: var(--color-link-hover);
+    }
+}
+
+// Blockquotes
+blockquote {
+    border-left: var(--color-quote-border) 0.25em solid;
+    padding: 0 1.25em;
+    margin: 2em 0 2em 1em;
+}
+
+// Keyboard keys
+kbd {
+    background-color: var(--color-kbd-bg);
+    color: var(--color-text-for-darkbg);
+    padding: 2px 4px;
+    border-radius: $border-radius;
+    font-size: 95%;
+    white-space: nowrap;
+}
+
+// Horizontal rules
+hr {
+    padding: 0;
+    border: none;
+    border-top: 1px solid var(--color-hr);
+    margin: 2.5em 3em;
+}
+
+// Paragraph settings
+p {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+// Responsive font sizing
+@include breakpoint('tablet') {
+    html {
+        font-size: 14.4px; // Make everything 10% smaller
+    }
+}
+
+// Media elements
+.embed.rich,
+img {
+    max-width: 100%;
+}

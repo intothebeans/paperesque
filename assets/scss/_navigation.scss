@@ -1,0 +1,105 @@
+//    _  __          _           __  _
+//   / |/ /__ __  __(_)__ ____ _/ /_(_)__  ___
+//  /    / _ `/ |/ / / _ `/ _ `/ __/ / _ \/ _ \
+// /_/|_/\_,_/|___/_/\_, /\_,_/\__/_/\___/_//_/
+//                  /___/
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Navigation background
+.nav-bkg {
+    color: var(--color-nav-text);
+    @include brand-gradient(80%);
+
+    a {
+        @include nav-link;
+    }
+}
+
+.nav-bkg-50 {
+    color: var(--color-nav-text);
+    @include brand-gradient(50%);
+}
+
+// Drop shadow for nav
+.drop-shadow {
+    @include drop-shadow;
+}
+
+// Page-wide bar styling
+.pagewide-bar-padding {
+    padding: $spacing-sm $spacing-md;
+}
+
+// Nav links
+nav {
+
+    a,
+    a:hover,
+    a:visited {
+        color: var(--color-nav-text);
+    }
+}
+
+// Right-side navigation links
+details.right-links {
+    float: right;
+    text-align: right;
+
+    summary {
+        list-style: none;
+
+        &::after {
+            content: '…';
+            color: var(--color-text);
+            border-radius: 0.25rem;
+            border: 1px solid var(--color-text);
+            font-weight: bold;
+            padding: 2px 4px;
+        }
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+    }
+
+    [open] & summary::after {
+        background-color: var(--color-fg-darken);
+    }
+
+    ul {
+        background: var(--color-header-brand-secondary-ddopacity);
+        margin-top: 8px;
+        padding: 8px 16px;
+        width: 100vw;
+        position: absolute;
+        right: 0;
+    }
+
+    li {
+        list-style: none;
+        padding: 4px;
+    }
+}
+
+ul.right-links {
+    display: none;
+    float: right;
+
+    li {
+        display: inline-block;
+        margin-right: $spacing-md;
+    }
+}
+
+// Responsive navigation
+@include breakpoint('mobile') {
+    details.right-links {
+        display: none;
+    }
+
+    ul.right-links {
+        display: block;
+    }
+}
