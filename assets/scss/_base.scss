@@ -144,7 +144,7 @@ p {
 // Responsive font sizing
 @include breakpoint('tablet') {
     html {
-        font-size: 14.4px; // Make everything 10% smaller
+        font-size: $font-size-md; // Make everything 10% smaller
     }
 }
 

@@ -1,0 +1,70 @@
+// Buttons
+
+@use 'variabes' as *;
+@use 'colors' as *;
+@use 'mixins' as *;
+@use 'animations' as *;
+
+a.btn-dashed {
+    @include btn-dashed;
+}
+
+a.no-underline:hover {
+    text-decoration: none;
+
+    .re-underline {
+        text-decoration: underline;
+    }
+}
+
+#scroll-button {
+    background-color: var(--bright-yellow);
+    border-radius: 100%;
+    bottom: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--dark0-hard);
+    cursor: pointer;
+    opacity: 0;
+    padding: 0.75em;
+    pointer-events: none;
+    position: fixed;
+    right: 16px;
+    transform: 0.2s ease;
+    transform: scale(0.9);
+    transition: opacity 0.4s ease;
+    transition: opacity 0.4s;
+    width: fit-content;
+    z-index: 99;
+
+    &:focus-visible {
+        outline: 2px solid var(--color-text);
+        outline-offset: 2px;
+    }
+
+    @include breakpoint('mobile') {
+        bottom: 20px;
+        right: 20px;
+        padding: 0.5em;
+    }
+
+    @include breakpoint('tablet') {
+        bottom: 30px;
+        right: 30px;
+        padding: 1em;
+
+        &:hover {
+            animation: bounce-up 1.2s infinite;
+        }
+    }
+
+    // Ensure button doesn't overlap with footer content
+    @media (max-height: 600px) {
+        bottom: 10px;
+        transform: scale(0.8);
+    }
+
+
+    @media (max-height: 500px) and (max-width: 380px) {
+        display: none;
+    }
+}
