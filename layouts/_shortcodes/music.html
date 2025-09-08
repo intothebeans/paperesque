@@ -1,0 +1,31 @@
+{{ $id := .Get "id" | default "score" }}
+{{ $enablePlayback := .Get "audio" | default false }}
+{{ $instrument := .Get "instrument" | default "0" }}
+{{ $includeDownload := .Get "download" | default false }}
+{{ $abcOptions := .Get "abcoptions" | default "null" }}
+
+
+<div class="music-container">
+    <div id="{{ $id }}" class="music"></div>
+    {{ if $enablePlayback }}
+        <div class="audio-controls">
+            <div id="audio" class="audio"></div>
+        <script type="text/javascript">
+            window.addEventListener("DOMContentLoaded", function() {
+                window.musicWithPlayback(
+                "{{ $id }}",
+                `{{ .Inner | safeJS }}`,
+                {{ $abcOptions | safeJS }}
+                )});
+        </script> {{ if $includeDownload }}
+                <div class="midi">MIDI</div>
+            {{ end }}
+        </div>
+    {{ else }}
+        <script type="text/javascript">
+          window.addEventListener("DOMContentLoaded", function() {
+            window.drawMusic("{{ $id }}", `{{ .Inner | safeJS }}`, {{ $abcOptions | safeJS }});
+          });
+        </script>
+    {{ end }}
+</div>

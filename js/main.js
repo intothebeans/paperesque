@@ -1,7 +1,12 @@
 import anchorizeHeadings from "./anchorizeHeadings.js";
 import enableFloatingFootnotes from "./floatingFootnotes.js";
 import { docReady } from "./utils.js";
+import ColorModeTransition from "./colorModeTransition.js";
+import { drawMusic, musicWithPlayback } from "./music.js";
 
+// Make music functions globally available
+window.drawMusic = drawMusic;
+window.musicWithPlayback = musicWithPlayback;
 enableFloatingFootnotes();
 anchorizeHeadings();
 

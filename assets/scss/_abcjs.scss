@@ -1,0 +1,117 @@
+//    ___   ___  _____   ______
+//   / _ | / _ )/ ___/_ / / __/
+//  / __ |/ _  / /__/ // /\ \
+// /_/ |_/____/\___/\___/___/
+
+.music-container>.abcjs-container {
+    color: var(--dark0);
+    background-color: var(--light0-hard);
+    border: 1px solid var(--gray);
+}
+
+.audio-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.abcjs-download-midi {
+    margin-left: auto;
+
+    a {
+        font-weight: bold;
+    }
+}
+
+.abcjs-inline-audio {
+    background: none;
+    margin: 10px 0;
+    --hover-bg: color-mix(in srgb, var(--color-header-brand-primary) 75%, transparent);
+    --main: var(--color-header-brand-primary);
+    --pushed-bg: color-mix(in srgb, var(--color-header-brand-primary) 75%, transparent);
+
+    button.abcjs-btn {
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+
+        g {
+            fill: var(--main);
+            stroke: var(--main);
+
+            polygon,
+            rect,
+            path,
+            circle,
+            line {
+                fill: inherit;
+                stroke: inherit;
+            }
+        }
+
+        &:hover g {
+            fill: var(--hover-bg);
+            stroke: var(--hover-bg);
+
+            polygon,
+            rect,
+            path,
+            circle,
+            line {
+                fill: inherit;
+                stroke: inherit;
+            }
+        }
+    }
+
+    .abcjs-midi-loop.abcjs-pushed {
+        g {
+            fill: var(--neutral-green);
+            stroke: var(--neutral-green);
+
+            polygon,
+            rect,
+            path,
+            circle,
+            line {
+                fill: inherit;
+                stroke: inherit;
+            }
+
+        }
+
+        &:hover g {
+            fill: var(--faded-green);
+            stroke: var(--faded-green);
+
+            polygon,
+            rect,
+            path,
+            circle,
+            line {
+                fill: inherit;
+                stroke: inherit;
+            }
+        }
+
+        border: none;
+    }
+
+    .abcjs-midi-play,
+    .abcjs-midi-reset {
+        .abcjs-pushed {
+            border: none;
+            background-color: var(--pushed-bg);
+            box-sizing: border-box;
+        }
+    }
+}
+
+[data-theme="dark"] {
+    div.music-container>div.abcjs-container {
+        background-color: var(--light0);
+        border: none;
+    }
+}

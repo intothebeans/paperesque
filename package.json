@@ -8,7 +8,8 @@
   "private": true,
   "browserslist": "> 0.5%, not dead",
   "dependencies": {
-    "@juggle/resize-observer": "3.x"
+    "@juggle/resize-observer": "3.x",
+    "abcjs": "^6.5.2"
   },
   "devDependencies": {
     "parcel": "2.12.0",

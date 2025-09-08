@@ -4,10 +4,16 @@
     "transpiler" "dartsass"
 }}
 {{ $scss := resources.Get "scss/main.scss" | toCSS $opts }}
-{{ $rebootCSS := resources.Get "css/reboot.css" }}
-{{ $syntaxCSS := resources.Get "css/syntax.css" }}
-{{ $styles := slice $rebootCSS $syntaxCSS $scss | resources.Concat "css/styles.css" | minify | fingerprint }}
+{{ $reboot := resources.Get "css/reboot.css" }}
+{{ $syntax := resources.Get "css/syntax.css" }}
+{{ $styles := slice $reboot $syntax $scss | resources.Concat "css/styles.css" | minify | fingerprint }}
 
+{{ $abcjs := resources.Get "css/abcjs-audio.css" | minify | fingerprint }}
+<link
+    rel="stylesheet"
+    href="{{ $abcjs.RelPermalink }}"
+    integrity="{{ $abcjs.Data.Integrity }}"
+    crossorigin="anonymous" />
 
 <link
     rel="stylesheet"
