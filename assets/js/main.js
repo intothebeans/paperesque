@@ -54275,6 +54275,45 @@ if (document.readyState === "loading") document.addEventListener("DOMContentLoad
 else $6951829771ceb5d6$export$d158f80c13a7cde5();
 
 
+var $525e892283047b90$var$scrollDirection = "up";
+var $525e892283047b90$var$lastScrollTop = 0;
+var $525e892283047b90$var$button;
+var $525e892283047b90$var$buttonMobile;
+function $525e892283047b90$var$scrollToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+function $525e892283047b90$export$353567b7e7ed9d0d() {
+    $525e892283047b90$var$button = document.getElementById("scroll-button");
+    $525e892283047b90$var$buttonMobile = document.getElementById("scroll-button-mobile");
+    if (!$525e892283047b90$var$button || !$525e892283047b90$var$buttonMobile) {
+        console.warn("No scroll button found, cannot initialize scroll button functionality.");
+        return;
+    }
+    $525e892283047b90$var$button.addEventListener("click", $525e892283047b90$var$scrollToTop);
+    $525e892283047b90$var$buttonMobile.addEventListener("click", $525e892283047b90$var$scrollToTop);
+    document.addEventListener("scroll", $525e892283047b90$var$showScrollButton);
+}
+function $525e892283047b90$var$showScrollButton() {
+    const currentScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    $525e892283047b90$var$scrollDirection = currentScroll > $525e892283047b90$var$lastScrollTop ? "down" : "up";
+    $525e892283047b90$var$lastScrollTop = currentScroll;
+    const atBottom = window.innerHeight + currentScroll >= document.body.offsetHeight - 100;
+    const shouldShow = currentScroll > 20 && ($525e892283047b90$var$scrollDirection === "up" || atBottom);
+    if (window.innerWidth <= 720) $525e892283047b90$var$buttonMobile.style.display = "flex";
+    else {
+        $525e892283047b90$var$buttonMobile.style.display = "none";
+        if (shouldShow) {
+            $525e892283047b90$var$button.style.opacity = "1";
+            $525e892283047b90$var$button.style.pointerEvents = "auto";
+        } else {
+            $525e892283047b90$var$button.style.opacity = "0";
+            $525e892283047b90$var$button.style.pointerEvents = "none";
+        }
+    }
+}
+
+
 /**
 * (c) Iconify
 *
@@ -56138,19 +56177,12 @@ function $99bb8ef399fc4c31$var$cleanUpInnerHTML(html) {
  */ const { iconLoaded: $99bb8ef399fc4c31$export$6728fff2d370396a, getIcon: $99bb8ef399fc4c31$export$16b26cd5e98d9100, listIcons: $99bb8ef399fc4c31$export$a598a3910899291f, addIcon: $99bb8ef399fc4c31$export$3488242433cbedb, addCollection: $99bb8ef399fc4c31$export$933f273b2a11730f, calculateSize: $99bb8ef399fc4c31$export$907c7b8171f13ef1, buildIcon: $99bb8ef399fc4c31$export$78c1051fc6863a0b, iconToHTML: $99bb8ef399fc4c31$export$35b4e725dfd7120a, svgToURL: $99bb8ef399fc4c31$export$5f2addf4eac8b0bb, loadIcons: $99bb8ef399fc4c31$export$2527eb85cb3fa9f, loadIcon: $99bb8ef399fc4c31$export$8e757e0542ac47f6, setCustomIconLoader: $99bb8ef399fc4c31$export$605d11454a711a89, setCustomIconsLoader: $99bb8ef399fc4c31$export$e4c6e88f1f5eeacc, addAPIProvider: $99bb8ef399fc4c31$export$ddfda4eca64d59f6, _api: $99bb8ef399fc4c31$export$14dadc205e26d636 } = $99bb8ef399fc4c31$export$f2c95696e1f78175;
 
 
-// Make music functions globally available
+// Make functions globally available
 window.drawMusic = (0, $911822b688f155b3$export$399040a10d34fc4b);
 window.musicWithPlayback = (0, $911822b688f155b3$export$59efa96c68bfea69);
 (0, $d11cf5442779c37f$export$2e2bcd8739ae039)();
 (0, $d74e5379212ee2da$export$2e2bcd8739ae039)();
-(0, $6951829771ceb5d6$export$d158f80c13a7cde5)();
-function $e17e491bfc439aa2$var$scrollToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-window.scrollToTop = $e17e491bfc439aa2$var$scrollToTop;
-// automatically close dropdown links if the user scrolls
-(0, $4e81c08971ef2b6d$export$4b1c754fc92202eb)(()=>{
+function $e17e491bfc439aa2$var$initCloseDropdownOnScroll() {
     const menu = document.getElementById("right-links-details");
     // if 'menu' is null it will fail noisily
     menu.addEventListener("toggle", (_event)=>{
@@ -56160,31 +56192,10 @@ window.scrollToTop = $e17e491bfc439aa2$var$scrollToTop;
             once: true
         });
     });
-    // show the scroll-to-top button when the user scrolls down 20px from the top
-    // and auto-hide when scrolling down to reduce occlusion
-    let button = document.getElementById("scroll-button");
-    let lastScrollTop = 0;
-    let scrollDirection = "up";
-    document.addEventListener("scroll", showScrollButton);
-    function showScrollButton() {
-        const currentScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        // Determine scroll direction
-        scrollDirection = currentScroll > lastScrollTop ? "down" : "up";
-        lastScrollTop = currentScroll;
-        const atBottom = window.innerHeight + currentScroll >= document.body.offsetHeight - 100;
-        const shouldShow = currentScroll > 20 && (scrollDirection === "up" || atBottom);
-        if (shouldShow) {
-            button.style.opacity = "1";
-            button.style.pointerEvents = "auto";
-        } else {
-            button.style.opacity = "0";
-            button.style.pointerEvents = "none";
-        }
-    }
-});
+}
 // change the theme color based on whether the navbar is visible or not
 // (and therefore the fill around the dynamic island on iOS)
-(0, $4e81c08971ef2b6d$export$4b1c754fc92202eb)(()=>{
+function $e17e491bfc439aa2$var$initChangeThemeColorWithNav() {
     const nav = document.querySelector(".navbar nav");
     const metaTagLight = document.querySelector('meta[name="theme-color"][data-tag=light]');
     const metaTagDark = document.querySelector('meta[name="theme-color"][data-tag=dark]');
@@ -56217,6 +56228,8 @@ window.scrollToTop = $e17e491bfc439aa2$var$scrollToTop;
     floatingSheetBreakpoint.addEventListener("change", ()=>{
         updateThemeColors();
     });
+}
+function $e17e491bfc439aa2$var$initDarkmodeLightmodeToggle() {
     // Light/Dark mode slider toggle logic
     const themeTransitions = new (0, $f8915264a09bae9a$export$2e2bcd8739ae039)({
         duration: 700,
@@ -56230,6 +56243,13 @@ window.scrollToTop = $e17e491bfc439aa2$var$scrollToTop;
         const newTheme = toggle.checked ? "dark" : "light";
         themeTransitions.changeTheme(newTheme);
     });
+}
+(0, $4e81c08971ef2b6d$export$4b1c754fc92202eb)(()=>{
+    (0, $6951829771ceb5d6$export$d158f80c13a7cde5)();
+    $e17e491bfc439aa2$var$initDarkmodeLightmodeToggle();
+    $e17e491bfc439aa2$var$initChangeThemeColorWithNav();
+    $e17e491bfc439aa2$var$initCloseDropdownOnScroll();
+    (0, $525e892283047b90$export$353567b7e7ed9d0d)();
 });
 
 })();

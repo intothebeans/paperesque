@@ -3,8 +3,8 @@
 //  / /|_/ / /\ \ // / _ \(_-<
 // /_/  /_/_//_\_\/_/_//_/___/
 
-@use 'variables' as *;
-@use 'colors' as *;
+@use "variables" as *;
+@use "colors" as *;
 
 // Card/Panel styling (used throughout for borders + shadows)
 @mixin card-style($border-color: var(--color-border-generic)) {
@@ -19,16 +19,18 @@
 
 // Brand gradient backgrounds
 @mixin brand-gradient($split: 80%) {
-    background: linear-gradient(135deg, var(--color-header-brand-primary) $split, var(--color-header-brand-secondary) $split);
+    background: linear-gradient(
+        135deg,
+        var(--color-header-brand-primary) $split,
+        var(--color-header-brand-secondary) $split
+    );
 }
 
 // Content container patterns
-@mixin content-container($type: 'normal') {
-    @if $type =='narrow' {
+@mixin content-container($type: "normal") {
+    @if $type == "narrow" {
         padding: $spacing-sm;
-    }
-
-    @else {
+    } @else {
         padding-left: $spacing-md;
         padding-right: $spacing-md;
     }
@@ -37,12 +39,10 @@
         width: $content-width;
         margin: 0 auto;
 
-        @if $type =='narrow' {
+        @if $type == "narrow" {
             padding-left: $spacing-sm;
             padding-right: $spacing-sm;
-        }
-
-        @else {
+        } @else {
             padding-left: $content-padding-desktop;
             padding-right: $content-padding-desktop;
         }
@@ -60,80 +60,95 @@
 
 @mixin btn-base {
     border-radius: $border-radius;
-    padding: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    background-color: var(--color-link-text);
+    color: var(--color-desktop-bg);
     text-decoration: none;
     display: inline-block;
     transition: all 0.1s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--color-link-hover);
+        color: var(--color-text);
+        text-decoration: none;
+        @include drop-shadow;
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+        background-color: color-mix(
+            in srgb,
+            var(--color-link-text),
+            var(--color-desktop-bg) 20%
+        );
+    }
+    .touch-screen {
+        transition: all 0.2s;
+        transition-delay: 300ms;
+
+        &:active {
+            transition: none;
+        }
+    }
 }
 
-
-
 // Reset margins/padding (squash utilities)
-@mixin squash($direction: 'both') {
-    @if $direction =='top' or $direction =='both' {
+@mixin squash($direction: "both") {
+    @if $direction == "top" or $direction == "both" {
         margin-top: 0;
     }
 
-    @if $direction =='bottom' or $direction =='both' {
+    @if $direction == "bottom" or $direction == "both" {
         margin-bottom: 0;
     }
 }
 
 // Responsive breakpoint mixin
 @mixin breakpoint($size) {
-
     // Mobile-first (min-width) breakpoints - for progressive enhancement
-    @if $size =='mobile-up' {
+    @if $size == "mobile-up" {
         @media (min-width: $bp-mobile) {
             @content;
         }
-    }
-
-    @else if $size =='tablet-up' {
+    } @else if $size == "tablet-up" {
         @media (min-width: $bp-tablet) {
             @content;
         }
-    }
-
-    @else if $size =='desktop-up' {
+    } @else if $size == "desktop-up" {
         @media (min-width: $bp-desktop) {
             @content;
         }
     }
 
     // Desktop-first (max-width) breakpoints - for graceful degradation
-    @else if $size =='mobile-only' {
+    @else if $size == "mobile-only" {
         @media (max-width: #{$bp-mobile - 1px}) {
             @content;
         }
-    }
-
-    @else if $size =='tablet-only' {
+    } @else if $size == "tablet-only" {
         @media (min-width: $bp-mobile) and (max-width: #{$bp-tablet - 1px}) {
             @content;
         }
-    }
-
-    @else if $size =='tablet-down' {
+    } @else if $size == "tablet-down" {
         @media (max-width: #{$bp-tablet - 1px}) {
             @content;
         }
-    }
-
-    @else if $size =='desktop-down' {
+    } @else if $size == "desktop-down" {
         @media (max-width: #{$bp-desktop - 1px}) {
             @content;
         }
     }
-
 }
-
 
 // Draft styling pattern
 @mixin draft-stripes($bg-color) {
-    background: repeating-linear-gradient(135deg,
-            $bg-color,
-            $bg-color 10px,
-            var(--color-draft-bg-stripe) 12px,
-            var(--color-draft-bg-stripe) 12px);
+    background: repeating-linear-gradient(
+        135deg,
+        $bg-color,
+        $bg-color 10px,
+        var(--color-draft-bg-stripe) 12px,
+        var(--color-draft-bg-stripe) 12px
+    );
 }

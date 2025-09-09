@@ -3,11 +3,10 @@
 //  / _  / // / __/ __/ _ \/ _ \(_-<
 // /____/\_,_/\__/\__/\___/_//_/___/
 
-@use '../variables' as *;
-@use '../colors' as *;
-@use '../mixins' as *;
-@use '../animations' as *;
-
+@use "../variables" as *;
+@use "../colors" as *;
+@use "../mixins" as *;
+@use "../animations" as *;
 
 .btn {
     @include btn-base;
@@ -29,6 +28,12 @@ a.no-underline:hover {
     .re-underline {
         text-decoration: underline;
     }
+}
+#scroll-button-mobile {
+    width: max-content;
+    margin: 0 auto;
+    display: none;
+    justify-content: center;
 }
 
 #scroll-button {
@@ -54,25 +59,21 @@ a.no-underline:hover {
         animation: bounce-up 1.2s infinite;
     }
 
-    @include breakpoint('tablet-down') {
+    @include breakpoint("tablet-down") {
         display: none;
         opacity: 0 !important;
     }
-
 
     &:focus-visible {
         outline: 2px solid var(--color-text);
         outline-offset: 2px;
     }
 
-
-
     // Ensure button doesn't overlap with footer content
     @media (max-height: 600px) {
         bottom: 10px;
         transform: scale(0.8);
     }
-
 
     @media (max-height: 500px) and (max-width: 380px) {
         display: none;

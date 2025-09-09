@@ -4,23 +4,17 @@ import { docReady } from "./utils.js";
 import ColorModeTransition from "./colorModeTransition.js";
 import { drawMusic, musicWithPlayback } from "./music.js";
 import { initCollapsibleAlerts } from "./blockquoteAlertsAnimations.js";
+import { initScrollButtons } from "./scrollButton.js";
 import "iconify-icon";
-// Make music functions globally available
+
+// Make functions globally available
 window.drawMusic = drawMusic;
 window.musicWithPlayback = musicWithPlayback;
+
 enableFloatingFootnotes();
 anchorizeHeadings();
-initCollapsibleAlerts();
 
-function scrollToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
-window.scrollToTop = scrollToTop;
-
-// automatically close dropdown links if the user scrolls
-docReady(() => {
+function initCloseDropdownOnScroll() {
     const menu = document.getElementById("right-links-details");
     // if 'menu' is null it will fail noisily
     menu.addEventListener("toggle", (_event) => {
@@ -34,40 +28,11 @@ docReady(() => {
             );
         }
     });
-    // show the scroll-to-top button when the user scrolls down 20px from the top
-    // and auto-hide when scrolling down to reduce occlusion
-    let button = document.getElementById("scroll-button");
-    let lastScrollTop = 0;
-    let scrollDirection = "up";
-
-    document.addEventListener("scroll", showScrollButton);
-
-    function showScrollButton() {
-        const currentScroll =
-            document.body.scrollTop || document.documentElement.scrollTop;
-
-        // Determine scroll direction
-        scrollDirection = currentScroll > lastScrollTop ? "down" : "up";
-        lastScrollTop = currentScroll;
-        const atBottom =
-            window.innerHeight + currentScroll >=
-            document.body.offsetHeight - 100;
-        const shouldShow =
-            currentScroll > 20 && (scrollDirection === "up" || atBottom);
-
-        if (shouldShow) {
-            button.style.opacity = "1";
-            button.style.pointerEvents = "auto";
-        } else {
-            button.style.opacity = "0";
-            button.style.pointerEvents = "none";
-        }
-    }
-});
+}
 
 // change the theme color based on whether the navbar is visible or not
 // (and therefore the fill around the dynamic island on iOS)
-docReady(() => {
+function initChangeThemeColorWithNav() {
     const nav = document.querySelector(".navbar nav");
     const metaTagLight = document.querySelector(
         'meta[name="theme-color"][data-tag=light]',
@@ -113,7 +78,9 @@ docReady(() => {
     floatingSheetBreakpoint.addEventListener("change", () => {
         updateThemeColors();
     });
+}
 
+function initDarkmodeLightmodeToggle() {
     // Light/Dark mode slider toggle logic
     const themeTransitions = new ColorModeTransition({
         duration: 700,
@@ -129,4 +96,12 @@ docReady(() => {
         const newTheme = toggle.checked ? "dark" : "light";
         themeTransitions.changeTheme(newTheme);
     });
+}
+
+docReady(() => {
+    initCollapsibleAlerts();
+    initDarkmodeLightmodeToggle();
+    initChangeThemeColorWithNav();
+    initCloseDropdownOnScroll();
+    initScrollButtons();
 });

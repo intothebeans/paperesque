@@ -3,7 +3,6 @@
 // / /__/ _ \/ / _ \/ __(_-<
 // \___/\___/_/\___/_/ /___/
 
-
 // Gruvbox 5ever
 :root {
     --dark0-hard: #1d2021;
@@ -101,9 +100,11 @@
       - main.js
   */
     --color-header-brand-primary: var(--neutral-aqua);
-    --color-header-brand-secondary-ddopacity: color-mix(in srgb,
-            var(--neutral-aqua) 87%,
-            transparent);
+    --color-header-brand-secondary-ddopacity: color-mix(
+        in srgb,
+        var(--neutral-aqua) 87%,
+        transparent
+    );
     --color-header-brand-secondary: var(--bright-purple);
 
     /* this color comes from reboot.css */
@@ -124,7 +125,7 @@
     --color-text-for-darkbg: var(--light0);
     --color-border-generic: var(--dark1);
 
-    --color-boxshadow: var(--dark0-hard);
+    --color-boxshadow: black;
     --color-quote-border: var(--bright-blue);
 
     /* I modified these but the lightmode ones come from chroma CSS */
@@ -151,9 +152,11 @@
         - main.js
     */
     --color-header-brand-primary: var(--bright-aqua);
-    --color-header-brand-secondary-ddopacity: color-mix(in srgb,
-            var(--bright-aqua) 87%,
-            transparent);
+    --color-header-brand-secondary-ddopacity: color-mix(
+        in srgb,
+        var(--bright-aqua) 87%,
+        transparent
+    );
     --color-header-brand-secondary: var(--bright-purple);
 
     --color-link-text: var(--bright-blue);
