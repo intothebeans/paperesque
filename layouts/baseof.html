@@ -40,13 +40,13 @@
         lang="{{ .Site.LanguageCode }}">
         <div class="navbar nav-bkg drop-shadow">
             <nav class="pagewide-bar-padding">
-                <iconify-icon
-                    icon="{{ .Site.Params.nav_icon | default "bx-home" }}"
-                    height="24"
-                    width="24"
-                    inline></iconify-icon>
-
-                <a href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a>
+                <a href="{{ .Site.Home.RelPermalink }}">
+                    <iconify-icon
+                        icon="{{ .Site.Params.nav_icon | default "bxs-home" }}"
+                        inline
+                        id="nav-icon"></iconify-icon>
+                    {{ .Site.Title }}
+                </a>
                 {{ block "breadcrumbs" . }}
                     {{- with .Parent -}}
                         {{- if not .IsHome -}}
@@ -62,8 +62,8 @@
                     {{- end -}}
                 {{ end }}
                 {{ partial "right-links" . }}
+                {{ partial "theme-toggle-button" . }}
             </nav>
-            {{ partial "theme-toggle-button" . }}
         </div>
         {{ block "content" . }}{{ end }}
         <iconify-icon

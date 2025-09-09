@@ -18,10 +18,7 @@
         text-decoration: none;
         padding: 0.25rem 0.5rem;
         position: relative;
-        font-family: Georgia,
-            'Times New Roman',
-            Times,
-            serif;
+        font-family: Georgia, "Times New Roman", Times, serif;
     }
 
     a,
@@ -31,9 +28,33 @@
     }
 }
 
+// Navbar container alignment
+.navbar {
+    display: flex;
+    align-items: baseline;
+    position: relative;
+}
+
 nav {
-    @include breakpoint('tablet-up') {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    flex: 1;
+
+    @include breakpoint("tablet-up") {
         font-size: 1.2em;
+    }
+
+    iconify-icon {
+        margin-right: 0.25rem;
+    }
+
+    // Breadcrumb dividers and links
+    .divider {
+        display: inline;
+        margin: 0 0.25rem;
     }
 }
 
@@ -53,12 +74,11 @@ nav {
     padding: $spacing-sm $spacing-md;
 }
 
-
 // Right-side navigation links
 details.right-links {
-    float: right;
+    margin-left: auto;
     text-align: right;
-    margin-top: 0.2em;
+    margin-top: 0;
 
     summary {
         list-style: none;
@@ -98,26 +118,29 @@ details.right-links {
 
 ul.right-links {
     display: none;
-    float: right;
-    margin-right: $spacing-lg;
+    margin: 0 $spacing-sm 0 auto;
 
     li {
         display: inline-block;
-        margin-right: $spacing-md;
+        margin-right: inherit;
     }
 }
 
 .theme-toggle {
-    display: inline-block;
-    position: absolute;
-    z-index: 1000;
-
+    display: inline-flex;
+    align-self: center;
+    margin-bottom: 0;
 }
 
 // Responsive navigation
-@include breakpoint('tablet-down') {
+@include breakpoint("tablet-down") {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
     details.right-links {
-        display: block;
+        order: 999;
+        margin-left: 1em;
     }
 
     ul.right-links {
@@ -125,24 +148,25 @@ ul.right-links {
     }
 
     .theme-toggle {
-        top: 0.3em;
-        right: 3em;
         font-size: 1.25em;
+        order: 998;
+        margin-left: auto;
     }
 }
 
-@include breakpoint('tablet-up') {
+@include breakpoint("tablet-up") {
     details.right-links {
         display: none;
     }
 
     ul.right-links {
-        display: block;
+        display: flex;
     }
 
     .theme-toggle {
-        font-size: 1.2em;
-        top: 0.4em;
-        right: 0.5em;
+        svg {
+            height: 32px;
+            width: 32px;
+        }
     }
 }
