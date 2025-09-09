@@ -3,6 +3,8 @@
 //  / __ |/ _  / /__/ // /\ \
 // /_/ |_/____/\___/\___/___/
 
+@use '../mixins' as *;
+
 .music-container>.abcjs-container {
     color: var(--dark0);
     background-color: var(--light0-hard);
@@ -16,6 +18,7 @@
 }
 
 .abcjs-download-midi {
+    @include btn-base;
     margin-left: auto;
 
     a {

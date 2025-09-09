@@ -49,7 +49,7 @@
     }
 }
 
-// Sheet styling (paper-like appearance)
+// Sheet styling
 @mixin sheet-style {
     @include card-style;
     margin-top: $spacing-md;
@@ -58,7 +58,6 @@
     background-color: var(--color-sheet-bg);
 }
 
-// Button base styling
 @mixin btn-base {
     border-radius: $border-radius;
     padding: $spacing-sm;
@@ -67,29 +66,7 @@
     transition: all 0.1s;
 }
 
-// Dashed button style
-@mixin btn-dashed {
-    @include btn-base;
-    border: dashed 1px var(--color-btn-border);
 
-    &:hover {
-        @include drop-shadow;
-        border-style: solid;
-        background-color: var(--color-btn-hover-bg);
-    }
-}
-
-// Vertical spacing utilities
-@mixin vertical-margins($size: $spacing-md) {
-    margin-top: $size;
-    margin-bottom: $size;
-}
-
-// Article spacing
-@mixin article-spacing {
-    padding-top: $spacing-md;
-    padding-bottom: $spacing-md;
-}
 
 // Reset margins/padding (squash utilities)
 @mixin squash($direction: 'both') {
@@ -104,54 +81,53 @@
 
 // Responsive breakpoint mixin
 @mixin breakpoint($size) {
-    @if $size =='mobile' {
+
+    // Mobile-first (min-width) breakpoints - for progressive enhancement
+    @if $size =='mobile-up' {
         @media (min-width: $bp-mobile) {
             @content;
         }
     }
 
-    @else if $size =='tablet' {
+    @else if $size =='tablet-up' {
         @media (min-width: $bp-tablet) {
             @content;
         }
     }
 
-    @else if $size =='desktop' {
+    @else if $size =='desktop-up' {
         @media (min-width: $bp-desktop) {
             @content;
         }
     }
-}
 
-// Nav/header link styling
-@mixin nav-link {
-    color: var(--color-nav-text);
-    text-decoration: underline;
-
-    &:hover,
-    &:visited {
-        color: var(--color-nav-text);
-    }
-}
-
-// Figure/media styling
-@mixin media-border {
-    &:not(.no-border) {
-
-        video,
-        img,
-        object {
-            @include card-style;
-            max-width: 100%;
-            background-color: var(--color-sheet-bg);
-            max-height: 85vh;
-        }
-
-        &.style-tables table {
-            @include card-style;
+    // Desktop-first (max-width) breakpoints - for graceful degradation
+    @else if $size =='mobile-only' {
+        @media (max-width: #{$bp-mobile - 1px}) {
+            @content;
         }
     }
+
+    @else if $size =='tablet-only' {
+        @media (min-width: $bp-mobile) and (max-width: #{$bp-tablet - 1px}) {
+            @content;
+        }
+    }
+
+    @else if $size =='tablet-down' {
+        @media (max-width: #{$bp-tablet - 1px}) {
+            @content;
+        }
+    }
+
+    @else if $size =='desktop-down' {
+        @media (max-width: #{$bp-desktop - 1px}) {
+            @content;
+        }
+    }
+
 }
+
 
 // Draft styling pattern
 @mixin draft-stripes($bg-color) {

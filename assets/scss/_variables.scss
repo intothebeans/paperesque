@@ -28,6 +28,12 @@ $content-padding-desktop: 2em;
 $border-radius: 4px;
 
 // Breakpoints
-$bp-mobile: 440px;
-$bp-tablet: 720px;
-$bp-desktop: 1170px;
+// These define the viewport widths where layouts change
+// Use with the breakpoint mixin for responsive design:
+//   - 'mobile-only': max-width 439px (phones only)
+//   - 'tablet-down': max-width 719px (phones + small tablets)
+//   - 'tablet-up': min-width 720px (tablets + desktop)
+//   - 'desktop-up': min-width 1170px (large screens only)
+$bp-mobile: 440px; // Small screens and up
+$bp-tablet: 720px; // Medium screens and up
+$bp-desktop: 1170px; // Large screens and up

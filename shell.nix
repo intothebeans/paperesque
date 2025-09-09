@@ -12,6 +12,7 @@ in
       eslint
       hugo
       nodejs
+      stylelint
       uv
       yarn
     ];

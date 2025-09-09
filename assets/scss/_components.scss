@@ -19,7 +19,21 @@ figure {
     display: table;
     text-align: center;
 
-    @include media-border;
+    &:not(.no-border) {
+
+        video,
+        img,
+        object {
+            @include card-style;
+            max-width: 100%;
+            background-color: var(--color-sheet-bg);
+            max-height: 85vh;
+        }
+
+        &.style-tables table {
+            @include card-style;
+        }
+    }
 
     &.smaller {
         max-width: 67%;
@@ -57,7 +71,6 @@ a.timestamp {
 
 
 // Ensure content doesn't get occluded by scroll button
-.article-body,
 footer {
 
     @media (max-width: $bp-mobile) {

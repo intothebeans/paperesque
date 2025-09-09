@@ -18,10 +18,6 @@ body {
 
     &.look-sheet-bkg {
         background-color: var(--color-sheet-bg);
-
-        @include breakpoint('tablet') {
-            background-color: var(--color-desktop-bg);
-        }
     }
 
     &.sticky-nav .navbar {
@@ -142,9 +138,9 @@ p {
 }
 
 // Responsive font sizing
-@include breakpoint('tablet') {
+@include breakpoint('tablet-down') {
     html {
-        font-size: $font-size-md; // Make everything 10% smaller
+        font-size: $font-size-sm;
     }
 }
 

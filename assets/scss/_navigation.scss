@@ -4,9 +4,9 @@
 // /_/|_/\_,_/|___/_/\_, /\_,_/\__/_/\___/_//_/
 //                  /___/
 
-@use 'variables' as *;
-@use 'colors' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "colors" as *;
+@use "mixins" as *;
 
 // Navigation background
 .nav-bkg {
@@ -14,7 +14,26 @@
     @include brand-gradient(80%);
 
     a {
-        @include nav-link;
+        color: var(--color-nav-text);
+        text-decoration: none;
+        padding: 0.25rem 0.5rem;
+        position: relative;
+        font-family: Georgia,
+            'Times New Roman',
+            Times,
+            serif;
+    }
+
+    a,
+    a:hover,
+    a:visited {
+        color: var(--color-nav-text);
+    }
+}
+
+nav {
+    @include breakpoint('tablet-up') {
+        font-size: 1.2em;
     }
 }
 
@@ -34,22 +53,6 @@
     padding: $spacing-sm $spacing-md;
 }
 
-// Nav links
-nav {
-
-    a,
-    a:hover,
-    a:visited {
-        @include breakpoint('tablet') {
-            font-size: $font-size-lg;
-
-        }
-
-        color: var(--color-nav-text);
-    }
-
-
-}
 
 // Right-side navigation links
 details.right-links {
@@ -61,7 +64,7 @@ details.right-links {
         list-style: none;
 
         &::after {
-            content: '…';
+            content: "…";
             color: var(--color-text);
             border-radius: 0.25rem;
             border: 1px solid var(--color-text);
@@ -107,15 +110,28 @@ ul.right-links {
 .theme-toggle {
     display: inline-block;
     position: absolute;
-    top: 0.3em;
-    right: 3em;
     z-index: 1000;
-    font-size: 1.25em;
+
 }
 
-
 // Responsive navigation
-@include breakpoint('mobile') {
+@include breakpoint('tablet-down') {
+    details.right-links {
+        display: block;
+    }
+
+    ul.right-links {
+        display: none;
+    }
+
+    .theme-toggle {
+        top: 0.3em;
+        right: 3em;
+        font-size: 1.25em;
+    }
+}
+
+@include breakpoint('tablet-up') {
     details.right-links {
         display: none;
     }
@@ -125,18 +141,8 @@ ul.right-links {
     }
 
     .theme-toggle {
-        display: inline-block;
-        position: absolute;
-        top: 0.5em;
+        font-size: 1.2em;
+        top: 0.4em;
         right: 0.5em;
-        z-index: 1000;
-        font-size: $font-size-md;
-    }
-}
-
-@include breakpoint('tablet') {
-    .theme-toggle {
-        font-size: $font-size-lg;
-        top: 0.25em;
     }
 }
