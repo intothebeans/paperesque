@@ -1,33 +1,37 @@
 {
-  "name": "paperesque",
-  "version": "0.1.0",
-  "description": "paperesque Hugo theme",
-  "main": "does-not-exist.js",
-  "author": "Fabian Tamp (@capnfabs)",
-  "license": "MIT",
-  "private": true,
-  "browserslist": "> 0.5%, not dead",
-  "dependencies": {
-    "@juggle/resize-observer": "3.x",
-    "abcjs": "^6.5.2",
-    "iconify-icon": "^3.0.0"
-  },
-  "devDependencies": {
-    "buffer": "^5.5.0||^6.0.0",
-    "crypto-browserify": "^3.12.0",
-    "events": "^3.1.0",
-    "parcel": "2.12.0",
-    "prettier": "^3.6.2",
-    "prettier-plugin-go-template": "^0.0.15",
-    "process": "^0.11.10",
-    "stream-browserify": "^3.0.0",
-    "vm-browserify": "^1.1.2"
-  },
-  "targets": {
-    "default": {
-      "source": "./js/main.js",
-      "distDir": "./assets/js"
+    "name": "paperesque",
+    "version": "0.1.0",
+    "description": "paperesque Hugo theme",
+    "main": "does-not-exist.js",
+    "author": "Fabian Tamp (@capnfabs)",
+    "license": "MIT",
+    "private": true,
+    "browserslist": "> 0.5%, not dead",
+    "dependencies": {
+        "@juggle/resize-observer": "3.x",
+        "abcjs": "^6.5.2",
+        "iconify-icon": "^3.0.0"
+    },
+    "devDependencies": {
+        "buffer": "^5.5.0||^6.0.0",
+        "crypto-browserify": "^3.12.0",
+        "events": "^3.1.0",
+        "parcel": "2.12.0",
+        "prettier": "^3.6.2",
+        "prettier-plugin-go-template": "^0.0.15",
+        "process": "^0.11.10",
+        "stream-browserify": "^3.0.0",
+        "vm-browserify": "^1.1.2"
+    },
+    "targets": {
+        "default": {
+            "source": "./js/main.js",
+            "distDir": "./assets/js"
+        }
+    },
+    "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447",
+    "scripts": {
+        "build": "npx parcel build --no-source-maps --no-optimize",
+        "watch": "npx parcel watch"
     }
-  },
-  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }

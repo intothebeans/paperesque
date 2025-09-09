@@ -28,5 +28,5 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/within.min.css" />
 
-{{- $js := resources.Get "js/main.js" | fingerprint }}
+{{- $js := resources.Get "js/main.js" | minify | fingerprint }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>

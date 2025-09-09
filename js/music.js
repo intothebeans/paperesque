@@ -5,6 +5,8 @@ const defaultAbcOpts = {
     add_classes: true,
 };
 
+var loaded = false;
+
 function musicWithPlayback(musicID, musicString, abcOpts = null) {
     // Merge provided options with defaults
     const mergedAbcOpts = { ...defaultAbcOpts, ...(abcOpts || {}) };
@@ -69,6 +71,7 @@ function musicWithPlayback(musicID, musicString, abcOpts = null) {
     }
     var cursorControl = new CursorControl();
     var synthControl;
+    var audioContext;
     var onClick = function clickListener(abcElem) {
         var lastClicked = abcElem.midiPitches;
         if (!lastClicked) return;
@@ -115,6 +118,30 @@ function musicWithPlayback(musicID, musicString, abcOpts = null) {
 
     synthControl.disable(true);
     var visualObj = ABCJS.renderAbc(musicID, musicString, abcOptions)[0];
+    window.addEventListener("scroll", function () {
+        if (!audioContext) audioContext = new AudioContext();
+        if (loaded) return;
+        initAudio(
+            musicID,
+            musicString,
+            abcOptions,
+            audioContext,
+            synthControl,
+            visualObj,
+        );
+        loaded = true;
+        synthControl.disable(false);
+    });
+}
+
+function initAudio(
+    musicID,
+    musicString,
+    abcOptions,
+    context,
+    synthControl,
+    visualObj,
+) {
     var midi = ABCJS.synth.getMidiFile(musicString, {
         downloadLabel: "Download MIDI",
     });
@@ -123,8 +150,13 @@ function musicWithPlayback(musicID, musicString, abcOpts = null) {
         midiButton.innerHTML = midi;
     }
     var midiBuffer = new ABCJS.synth.CreateSynth();
+    if (!context) {
+        console.error("AudioContext not initialized");
+    }
+    console.log("Loading audio...");
     midiBuffer
         .init({
+            audioContext: context,
             visualObj: visualObj,
             options: {
                 soundFontUrl:
