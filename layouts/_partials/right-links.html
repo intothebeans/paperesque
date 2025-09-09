@@ -1,9 +1,12 @@
 <ul class="list-unstyled right-links touch-screen">
     {{ range .Site.Params.TopMenu }}
         <li>
-            <a href="{{ .url | relURL }}">
-                <span class="post-title">{{ .name }}</span>
-            </a>
+            <div class="nav-menu-item">
+                <a href="{{ .url | relURL }}">
+                    <span class="post-title">{{ .name }}</span>
+                </a>
+                <span class="nav-link-underline"></span>
+            </div>
         </li>
     {{ end }}
 </ul>

@@ -40,18 +40,22 @@
         lang="{{ .Site.LanguageCode }}">
         <div class="navbar nav-bkg drop-shadow">
             <nav class="pagewide-bar-padding">
-                <a href="{{ .Site.Home.RelPermalink }}">
-                    <iconify-icon
-                        icon="{{ .Site.Params.nav_icon | default "bxs-home" }}"
-                        inline
-                        id="nav-icon"></iconify-icon>
-                    {{ .Site.Title }}
-                </a>
+                <div class="nav-menu-item">
+                    <a href="{{ .Site.Home.RelPermalink }}">
+                        <iconify-icon
+                            icon="{{ .Site.Params.nav_icon | default "bxs-home" }}"
+                            inline
+                            id="nav-icon"></iconify-icon>
+                        {{ .Site.Title }}
+                    </a>
+                    <span class="nav-link-underline"></span>
+                </div>
                 {{ block "breadcrumbs" . }}
                     {{- with .Parent -}}
                         {{- if not .IsHome -}}
                             <span class="divider">/ </span>
-                            <a href="{{ .RelPermalink }}">
+
+                            <a href="{{ .RelPermalink }}" class="breadcrumb">
                                 {{- with .Params.breadcrumb_label -}}
                                     {{- . -}}
                                 {{- else -}}
