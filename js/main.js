@@ -5,6 +5,7 @@ import ColorModeTransition from "./colorModeTransition.js";
 import { drawMusic, musicWithPlayback } from "./music.js";
 import { initCollapsibleAlerts } from "./blockquoteAlertsAnimations.js";
 import { initScrollButtons } from "./scrollButton.js";
+import { initRightLinksAnimation } from "./rightLinksAnimation.js";
 import "iconify-icon";
 
 // Make functions globally available
@@ -13,22 +14,6 @@ window.musicWithPlayback = musicWithPlayback;
 
 enableFloatingFootnotes();
 anchorizeHeadings();
-
-function initCloseDropdownOnScroll() {
-    const menu = document.getElementById("right-links-details");
-    // if 'menu' is null it will fail noisily
-    menu.addEventListener("toggle", (_event) => {
-        if (menu.open) {
-            document.addEventListener(
-                "scroll",
-                (_event) => {
-                    menu.open = false;
-                },
-                { once: true },
-            );
-        }
-    });
-}
 
 // change the theme color based on whether the navbar is visible or not
 // (and therefore the fill around the dynamic island on iOS)
@@ -102,6 +87,6 @@ docReady(() => {
     initCollapsibleAlerts();
     initDarkmodeLightmodeToggle();
     initChangeThemeColorWithNav();
-    initCloseDropdownOnScroll();
     initScrollButtons();
+    initRightLinksAnimation();
 });

@@ -1,15 +1,6 @@
-/**
- * Collapsible Alert Animations
- * Handles smooth opening/closing transitions for alert details elements
- */
-
-// Animation configuration
 const ANIMATION_DURATION = 300; // milliseconds
 const EASING = "cubic-bezier(0.4, 0.0, 0.2, 1)";
 
-/**
- * Animate the opening of a details element
- */
 function animateOpen(details, summary, content) {
     details.style.overflow = "hidden";
     details.open = true;
@@ -38,9 +29,6 @@ function animateOpen(details, summary, content) {
     }, ANIMATION_DURATION);
 }
 
-/**
- * Animate the closing of a details element
- */
 function animateClose(details, summary, content) {
     const startHeight = details.offsetHeight;
     const endHeight = summary.offsetHeight;
@@ -68,10 +56,7 @@ function animateClose(details, summary, content) {
     }, ANIMATION_DURATION);
 }
 
-/**
- * Setup collapsible alert animations
- */
-export function initCollapsibleAlerts() {
+function initCollapsibleAlerts() {
     const collapsibleAlerts = document.querySelectorAll(".alert-collapsible");
 
     collapsibleAlerts.forEach((details) => {
@@ -97,9 +82,4 @@ export function initCollapsibleAlerts() {
     });
 }
 
-// Auto-initialize when module is loaded
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initCollapsibleAlerts);
-} else {
-    initCollapsibleAlerts();
-}
+export { initCollapsibleAlerts };

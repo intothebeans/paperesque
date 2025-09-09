@@ -54201,15 +54201,9 @@ function $911822b688f155b3$export$399040a10d34fc4b(musicID, musicString, abcOpts
 }
 
 
-/**
- * Collapsible Alert Animations
- * Handles smooth opening/closing transitions for alert details elements
- */ // Animation configuration
 const $6951829771ceb5d6$var$ANIMATION_DURATION = 300; // milliseconds
 const $6951829771ceb5d6$var$EASING = "cubic-bezier(0.4, 0.0, 0.2, 1)";
-/**
- * Animate the opening of a details element
- */ function $6951829771ceb5d6$var$animateOpen(details, summary, content) {
+function $6951829771ceb5d6$var$animateOpen(details, summary, content) {
     details.style.overflow = "hidden";
     details.open = true;
     const startHeight = summary.offsetHeight;
@@ -54230,9 +54224,7 @@ const $6951829771ceb5d6$var$EASING = "cubic-bezier(0.4, 0.0, 0.2, 1)";
         content.style.transition = "";
     }, $6951829771ceb5d6$var$ANIMATION_DURATION);
 }
-/**
- * Animate the closing of a details element
- */ function $6951829771ceb5d6$var$animateClose(details, summary, content) {
+function $6951829771ceb5d6$var$animateClose(details, summary, content) {
     const startHeight = details.offsetHeight;
     const endHeight = summary.offsetHeight;
     details.style.overflow = "hidden";
@@ -54270,9 +54262,6 @@ function $6951829771ceb5d6$export$d158f80c13a7cde5() {
         }
     });
 }
-// Auto-initialize when module is loaded
-if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", $6951829771ceb5d6$export$d158f80c13a7cde5);
-else $6951829771ceb5d6$export$d158f80c13a7cde5();
 
 
 var $525e892283047b90$var$scrollDirection = "up";
@@ -54311,6 +54300,101 @@ function $525e892283047b90$var$showScrollButton() {
             $525e892283047b90$var$button.style.pointerEvents = "none";
         }
     }
+}
+
+
+const $8bf5e9573dc7c85b$var$ANIMATION_DURATION = 300; // milliseconds
+const $8bf5e9573dc7c85b$var$EASING = "cubic-bezier(0.4, 0.0, 0.2, 1)";
+function $8bf5e9573dc7c85b$var$animateMenuOpen(details, menu) {
+    details.style.overflow = "visible";
+    details.open = true;
+    menu.style.opacity = "0";
+    menu.style.transform = "translateY(-10px) scale(0.95)";
+    menu.style.transition = "";
+    details.offsetHeight;
+    menu.style.transition = `opacity ${$8bf5e9573dc7c85b$var$ANIMATION_DURATION}ms ${$8bf5e9573dc7c85b$var$EASING}, transform ${$8bf5e9573dc7c85b$var$ANIMATION_DURATION}ms ${$8bf5e9573dc7c85b$var$EASING}`;
+    requestAnimationFrame(()=>{
+        menu.style.opacity = "1";
+        menu.style.transform = "translateY(0) scale(1)";
+    });
+    const menuItems = menu.querySelectorAll("li");
+    menuItems.forEach((item, index)=>{
+        item.style.opacity = "0";
+        item.style.transform = "translateX(10px)";
+        item.style.transition = `opacity 200ms ${$8bf5e9573dc7c85b$var$EASING}, transform 200ms ${$8bf5e9573dc7c85b$var$EASING}`;
+        const delay = 100 + index * 50;
+        setTimeout(()=>{
+            item.style.opacity = "1";
+            item.style.transform = "translateX(0)";
+        }, delay);
+    });
+    setTimeout(()=>{
+        menu.style.transition = "";
+        menuItems.forEach((item)=>{
+            item.style.transition = "";
+        });
+    }, $8bf5e9573dc7c85b$var$ANIMATION_DURATION + menuItems.length * 50);
+}
+function $8bf5e9573dc7c85b$var$animateMenuClose(details, menu) {
+    const menuItems = menu.querySelectorAll("li");
+    menuItems.forEach((item, index)=>{
+        item.style.transition = `opacity 150ms ${$8bf5e9573dc7c85b$var$EASING}, transform 150ms ${$8bf5e9573dc7c85b$var$EASING}`;
+        setTimeout(()=>{
+            item.style.opacity = "0";
+            item.style.transform = "translateX(10px)";
+        }, index * 50);
+    });
+    menu.style.transition = `opacity 200ms ${$8bf5e9573dc7c85b$var$EASING}, transform 200ms ${$8bf5e9573dc7c85b$var$EASING}`;
+    menu.style.opacity = "0";
+    menu.style.transform = "translateY(-10px) scale(0.95)";
+    setTimeout(()=>{
+        details.open = false;
+        menu.style.opacity = "";
+        menu.style.transform = "";
+        menu.style.transition = "";
+        menuItems.forEach((item)=>{
+            item.style.opacity = "";
+            item.style.transform = "";
+            item.style.transition = "";
+        });
+    }, 200);
+}
+function $8bf5e9573dc7c85b$export$13076a8aacccaaa3() {
+    const details = document.getElementById("right-links-details");
+    if (!details) {
+        console.log("No details element found!");
+        return;
+    }
+    const summary = details.querySelector("summary");
+    const menu = details.querySelector("ul");
+    if (!summary || !menu) {
+        console.log("Missing summary or menu!");
+        return;
+    }
+    const menuItems = menu.querySelectorAll("li");
+    if (!details.open) menuItems.forEach((item)=>{
+        item.style.opacity = "0";
+        item.style.transform = "translateX(10px)";
+    });
+    // close dropdown on scroll
+    details.addEventListener("toggle", ()=>{
+        if (details.open) document.addEventListener("scroll", ()=>{
+            $8bf5e9573dc7c85b$var$animateMenuClose(details, menu);
+        }, {
+            once: true
+        });
+    });
+    summary.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (details.open) $8bf5e9573dc7c85b$var$animateMenuClose(details, menu);
+        else $8bf5e9573dc7c85b$var$animateMenuOpen(details, menu);
+    });
+    document.addEventListener("click", function(e) {
+        if (details.open && !details.contains(e.target)) $8bf5e9573dc7c85b$var$animateMenuClose(details, menu);
+    });
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && details.open) $8bf5e9573dc7c85b$var$animateMenuClose(details, menu);
+    });
 }
 
 
@@ -56182,17 +56266,6 @@ window.drawMusic = (0, $911822b688f155b3$export$399040a10d34fc4b);
 window.musicWithPlayback = (0, $911822b688f155b3$export$59efa96c68bfea69);
 (0, $d11cf5442779c37f$export$2e2bcd8739ae039)();
 (0, $d74e5379212ee2da$export$2e2bcd8739ae039)();
-function $e17e491bfc439aa2$var$initCloseDropdownOnScroll() {
-    const menu = document.getElementById("right-links-details");
-    // if 'menu' is null it will fail noisily
-    menu.addEventListener("toggle", (_event)=>{
-        if (menu.open) document.addEventListener("scroll", (_event)=>{
-            menu.open = false;
-        }, {
-            once: true
-        });
-    });
-}
 // change the theme color based on whether the navbar is visible or not
 // (and therefore the fill around the dynamic island on iOS)
 function $e17e491bfc439aa2$var$initChangeThemeColorWithNav() {
@@ -56248,8 +56321,8 @@ function $e17e491bfc439aa2$var$initDarkmodeLightmodeToggle() {
     (0, $6951829771ceb5d6$export$d158f80c13a7cde5)();
     $e17e491bfc439aa2$var$initDarkmodeLightmodeToggle();
     $e17e491bfc439aa2$var$initChangeThemeColorWithNav();
-    $e17e491bfc439aa2$var$initCloseDropdownOnScroll();
     (0, $525e892283047b90$export$353567b7e7ed9d0d)();
+    (0, $8bf5e9573dc7c85b$export$13076a8aacccaaa3)();
 });
 
 })();

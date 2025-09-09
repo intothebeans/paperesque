@@ -96,6 +96,7 @@ details.right-links {
         border: 1px solid var(--color-nav-text);
         font-weight: bold;
         padding: 2px 4px;
+        cursor: pointer;
 
         iconify-icon {
             display: flex;
@@ -103,6 +104,16 @@ details.right-links {
             font-size: 1.5em;
             height: 24px;
             width: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            background-color: color-mix(
+                in srgb,
+                var(--color-nav-text) 70%,
+                transparent
+            );
+            transform: scale(1.05);
         }
 
         &:active {
@@ -130,6 +141,15 @@ details.right-links {
         }
     }
 
+    // Animate icon rotation when details is open
+    &[open] summary iconify-icon {
+        transform: rotate(180deg);
+    }
+
+    summary iconify-icon {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     [open] & summary::after {
         background-color: var(--color-fg-darken);
     }
@@ -141,11 +161,36 @@ details.right-links {
         width: 100vw;
         position: absolute;
         right: 0;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        box-shadow:
+            0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+        // Smooth backdrop blur effect
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
     }
 
     li {
         list-style: none;
         padding: 4px;
+
+        a {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 0.25rem;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background-color: color-mix(
+                    in srgb,
+                    var(--color-nav-text) 20%,
+                    transparent
+                );
+                transform: translateX(4px);
+            }
+        }
     }
 }
 
