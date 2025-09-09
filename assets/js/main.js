@@ -56317,12 +56317,20 @@ function $e17e491bfc439aa2$var$initDarkmodeLightmodeToggle() {
         themeTransitions.changeTheme(newTheme);
     });
 }
+function $e17e491bfc439aa2$var$initSetStickyNavOnMobile() {
+    if (location.pathname === "/") return; // already set
+    document.addEventListener("scroll", ()=>{
+        if (window.innerWidth < 720) document.getElementsByTagName("body")[0].classList.add("sticky-nav");
+        else document.getElementsByTagName("body")[0].classList.remove("sticky-nav");
+    });
+}
 (0, $4e81c08971ef2b6d$export$4b1c754fc92202eb)(()=>{
     (0, $6951829771ceb5d6$export$d158f80c13a7cde5)();
     $e17e491bfc439aa2$var$initDarkmodeLightmodeToggle();
     $e17e491bfc439aa2$var$initChangeThemeColorWithNav();
     (0, $525e892283047b90$export$353567b7e7ed9d0d)();
     (0, $8bf5e9573dc7c85b$export$13076a8aacccaaa3)();
+    $e17e491bfc439aa2$var$initSetStickyNavOnMobile();
 });
 
 })();

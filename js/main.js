@@ -83,10 +83,28 @@ function initDarkmodeLightmodeToggle() {
     });
 }
 
+function initSetStickyNavOnMobile() {
+    if (location.pathname === "/") {
+        return; // already set
+    }
+    document.addEventListener("scroll", () => {
+        if (window.innerWidth < 720) {
+            document
+                .getElementsByTagName("body")[0]
+                .classList.add("sticky-nav");
+        } else {
+            document
+                .getElementsByTagName("body")[0]
+                .classList.remove("sticky-nav");
+        }
+    });
+}
+
 docReady(() => {
     initCollapsibleAlerts();
     initDarkmodeLightmodeToggle();
     initChangeThemeColorWithNav();
     initScrollButtons();
     initRightLinksAnimation();
+    initSetStickyNavOnMobile();
 });
