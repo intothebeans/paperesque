@@ -54269,8 +54269,15 @@ var $525e892283047b90$var$lastScrollTop = 0;
 var $525e892283047b90$var$button;
 var $525e892283047b90$var$buttonMobile;
 function $525e892283047b90$var$scrollToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    } else window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 function $525e892283047b90$export$353567b7e7ed9d0d() {
     $525e892283047b90$var$button = document.getElementById("scroll-button");

@@ -3,8 +3,20 @@ var lastScrollTop = 0;
 var button;
 var buttonMobile;
 function scrollToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    } else {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
 }
 
 function initScrollButtons() {
