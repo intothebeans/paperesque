@@ -153,3 +153,14 @@ h4 {
         display: none;
     }
 }
+
+// Fancy hr
+hr {
+    -webkit-mask: $hr center / contain no-repeat;
+    mask: $hr center / contain no-repeat;
+    background-color: var(--color-text);
+    border: none;
+    height: 30px;
+    width: 50%;
+    margin: 0.5rem auto;
+}
