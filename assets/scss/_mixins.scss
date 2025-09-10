@@ -66,11 +66,11 @@
     text-decoration: none;
     display: inline-block;
     transition: all 0.1s;
+    font-weight: bold;
     cursor: pointer;
 
     &:hover {
         background-color: var(--color-link-hover);
-        color: var(--color-text);
         text-decoration: none;
         @include drop-shadow;
         transform: scale(1.05);

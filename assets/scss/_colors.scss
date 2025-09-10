@@ -86,7 +86,7 @@
 
     --color-meta-text: #6a6a6a;
 
-    --color-kbd-bg: #333;
+    --color-kbd-bg: var(--dark0-soft);
     --color-hr: var(--faded-aqua);
     --color-caption-text: var(--dark3);
     --color-btn-border: var(--dark4);
@@ -108,8 +108,8 @@
     --color-header-brand-secondary: var(--bright-purple);
 
     /* this color comes from reboot.css */
-    --color-link-text: #4c754d;
-    --color-link-hover: var(--neutral-purple);
+    --color-link-text: var(--neutral-blue);
+    --color-link-hover: var(--faded-blue);
 
     --color-nav-text: var(--dark0);
     --color-timestamp-bkg-primary: var(--color-link-text);
