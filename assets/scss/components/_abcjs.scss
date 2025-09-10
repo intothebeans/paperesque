@@ -14,16 +14,14 @@
 .audio-controls {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
 }
 
-.abcjs-download-midi {
+.abcjs-download-midi > a {
     @include btn-base;
     margin-left: auto;
-
-    a {
-        font-weight: bold;
-    }
+    margin-top: 0.5em;
+    font-weight: bold;
 }
 
 .abcjs-inline-audio {
