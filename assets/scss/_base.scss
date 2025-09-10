@@ -18,6 +18,7 @@ body {
 
     &.look-sheet-bkg {
         background-color: var(--color-sheet-bg);
+        margin-bottom: 1rem;
     }
 
     &.sticky-nav .navbar {
@@ -25,40 +26,6 @@ body {
         z-index: 1000;
         top: 0;
     }
-}
-
-// Typography
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'Lora', serif;
-}
-
-h1#title {
-    // Reset UA stylesheets that put h1 to 1.5em when in an article
-    font-size: 2em;
-}
-
-// Article headings spacing
-.article-body {
-
-    h2,
-    h3 {
-        margin-top: $spacing-lg;
-        margin-bottom: $spacing-sm;
-    }
-}
-
-// Reset first child heading margins when nested
-h2:first-child,
-h3:first-child,
-h4:first-child,
-h5:first-child,
-h6:first-child {
-    margin-top: $spacing-sm;
 }
 
 // Code styling
