@@ -84,14 +84,6 @@
             var(--color-desktop-bg) 20%
         );
     }
-    .touch-screen {
-        transition: all 0.2s;
-        transition-delay: 300ms;
-
-        &:active {
-            transition: none;
-        }
-    }
 }
 
 // Reset margins/padding (squash utilities)

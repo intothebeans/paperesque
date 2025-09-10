@@ -3,7 +3,7 @@
 //  / __ |/ _ \/ /  ' \/ _ `/ __/ / _ \/ _ \(_-<
 // /_/ |_/_//_/_/_/_/_/\_,_/\__/_/\___/_//_/___/
 
-
+@use "mixins" as *;
 //Theme transition styles - only active during theme changes
 // NOTE: color transitions don't work for draft backgrounds
 .color-mode-transitioning {
@@ -31,7 +31,6 @@
     textarea {
         transition: none !important;
     }
-
 }
 
 @keyframes bounce-up {
@@ -45,5 +44,25 @@
 
     100% {
         transform: translateY(0);
+    }
+}
+
+@include breakpoint("tablet-down") {
+    .btn {
+        transition: all 0.2s;
+        transition-delay: 300ms;
+
+        &:active {
+            transition: none;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
     }
 }
