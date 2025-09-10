@@ -4,16 +4,28 @@
 // /____/\_,_/___/\__/ /___/\__/\_, /_/\__/___/
 //                             /___/
 
-@use 'variables' as *;
-@use 'colors' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "colors" as *;
+@use "mixins" as *;
 
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     color: var(--color-text);
-    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        avenir next,
+        avenir,
+        helvetica neue,
+        helvetica,
+        ubuntu,
+        roboto,
+        noto,
+        segoe ui,
+        arial,
+        sans-serif;
     background-color: var(--color-desktop-bg);
 
     &.look-sheet-bkg {
@@ -105,7 +117,7 @@ p {
 }
 
 // Responsive font sizing
-@include breakpoint('tablet-down') {
+@include breakpoint("tablet-down") {
     html {
         font-size: $font-size-sm;
     }

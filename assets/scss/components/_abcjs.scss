@@ -3,9 +3,9 @@
 //  / __ |/ _  / /__/ // /\ \
 // /_/ |_/____/\___/\___/___/
 
-@use '../mixins' as *;
+@use "../mixins" as *;
 
-.music-container>.abcjs-container {
+.music-container > .abcjs-container {
     color: var(--dark0);
     background-color: var(--light0-hard);
     border: 1px solid var(--gray);
@@ -29,9 +29,17 @@
 .abcjs-inline-audio {
     background: none;
     margin: 10px 0;
-    --hover-bg: color-mix(in srgb, var(--color-header-brand-primary) 75%, transparent);
+    --hover-bg: color-mix(
+        in srgb,
+        var(--color-header-brand-primary) 75%,
+        transparent
+    );
     --main: var(--color-header-brand-primary);
-    --pushed-bg: color-mix(in srgb, var(--color-header-brand-primary) 75%, transparent);
+    --pushed-bg: color-mix(
+        in srgb,
+        var(--color-header-brand-primary) 75%,
+        transparent
+    );
 
     button.abcjs-btn {
         border: none;
@@ -82,7 +90,6 @@
                 fill: inherit;
                 stroke: inherit;
             }
-
         }
 
         &:hover g {
@@ -113,7 +120,7 @@
 }
 
 [data-theme="dark"] {
-    div.music-container>div.abcjs-container {
+    div.music-container > div.abcjs-container {
         background-color: var(--light0);
         border: none;
     }

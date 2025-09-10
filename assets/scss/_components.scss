@@ -4,14 +4,14 @@
 // \____/___/  \___/\___/_/_/_/ .__/\___/_//_/\__/_//_/\__/___/
 //                           /_/
 
-@use 'variables' as *;
-@use 'colors' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "colors" as *;
+@use "mixins" as *;
 
-@use 'components/alerts';
-@use 'components/lists';
-@use 'components/abcjs';
-@use 'components/buttons';
+@use "components/alerts";
+@use "components/lists";
+@use "components/abcjs";
+@use "components/buttons";
 
 // Figures and media
 figure {
@@ -20,7 +20,6 @@ figure {
     text-align: center;
 
     &:not(.no-border) {
-
         video,
         img,
         object {
@@ -62,26 +61,29 @@ figure {
 a.timestamp {
     border: solid 1px var(--color-timestamp-bkg-primary);
     background: var(--color-timestamp-bkg-primary);
-    background: linear-gradient(145deg, var(--color-timestamp-bkg-primary) 60%, var(--color-timestamp-bkg-secondary) 100%);
+    background: linear-gradient(
+        145deg,
+        var(--color-timestamp-bkg-primary) 60%,
+        var(--color-timestamp-bkg-secondary) 100%
+    );
     color: var(--color-timestamp-text);
     border-radius: $border-radius;
     padding: 2px;
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family:
+        SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
 }
-
 
 // Ensure content doesn't get occluded by scroll button
 footer {
-
     @media (max-width: $bp-mobile) {
         padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
     }
 
-    @include breakpoint('tablet') {
+    @include breakpoint("tablet") {
         padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 60px);
     }
 }
-
 
 // Footnotes
 .footnotes {
@@ -111,8 +113,6 @@ blockquote.twitter-tweet {
     }
 }
 
-
-
 // Header links (anchor links in content)
 .header-link {
     text-decoration: none;
@@ -136,7 +136,11 @@ blockquote.twitter-tweet {
 }
 
 aside .header-link {
-    background: linear-gradient(90deg, #00000000 0%, var(--color-desktop-bg) 20%);
+    background: linear-gradient(
+        90deg,
+        #00000000 0%,
+        var(--color-desktop-bg) 20%
+    );
 }
 
 // Keep selectors in sync with site.js
