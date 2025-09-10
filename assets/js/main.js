@@ -54296,16 +54296,12 @@ function $525e892283047b90$var$showScrollButton() {
     $525e892283047b90$var$lastScrollTop = currentScroll;
     const atBottom = window.innerHeight + currentScroll >= document.body.offsetHeight - 100;
     const shouldShow = currentScroll > 20 && ($525e892283047b90$var$scrollDirection === "up" || atBottom);
-    if (window.innerWidth <= 720) $525e892283047b90$var$buttonMobile.style.display = "flex";
-    else {
-        $525e892283047b90$var$buttonMobile.style.display = "none";
-        if (shouldShow) {
-            $525e892283047b90$var$button.style.opacity = "1";
-            $525e892283047b90$var$button.style.pointerEvents = "auto";
-        } else {
-            $525e892283047b90$var$button.style.opacity = "0";
-            $525e892283047b90$var$button.style.pointerEvents = "none";
-        }
+    if (shouldShow) {
+        $525e892283047b90$var$button.style.opacity = "1";
+        $525e892283047b90$var$button.style.pointerEvents = "auto";
+    } else {
+        $525e892283047b90$var$button.style.opacity = "0";
+        $525e892283047b90$var$button.style.pointerEvents = "none";
     }
 }
 

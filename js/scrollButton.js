@@ -45,17 +45,12 @@ function showScrollButton() {
     const shouldShow =
         currentScroll > 20 && (scrollDirection === "up" || atBottom);
 
-    if (window.innerWidth <= 720) {
-        buttonMobile.style.display = "flex";
+    if (shouldShow) {
+        button.style.opacity = "1";
+        button.style.pointerEvents = "auto";
     } else {
-        buttonMobile.style.display = "none";
-        if (shouldShow) {
-            button.style.opacity = "1";
-            button.style.pointerEvents = "auto";
-        } else {
-            button.style.opacity = "0";
-            button.style.pointerEvents = "none";
-        }
+        button.style.opacity = "0";
+        button.style.pointerEvents = "none";
     }
 }
 
