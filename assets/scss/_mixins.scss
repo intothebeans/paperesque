@@ -58,6 +58,7 @@
     background-color: var(--color-sheet-bg);
 }
 
+// Default button styling
 @mixin btn-base {
     border-radius: $border-radius;
     padding: $spacing-sm $spacing-md;
@@ -65,7 +66,7 @@
     color: var(--color-desktop-bg);
     text-decoration: none;
     display: inline-block;
-    transition: all 0.1s;
+    transition: all $animation-duration;
     font-weight: bold;
     cursor: pointer;
 

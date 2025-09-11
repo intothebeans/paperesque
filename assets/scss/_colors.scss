@@ -115,6 +115,8 @@
     --color-timestamp-bkg-primary: var(--color-link-text);
     --color-timestamp-bkg-secondary: var(--color-link-hover);
     --color-timestamp-text: var(--color-text-for-darkbg);
+
+    --color-theme-toggle-hover: var(--bright-yellow);
 }
 
 [data-theme="dark"] {
@@ -167,6 +169,12 @@
     --color-timestamp-bkg-primary: var(--neutral-purple);
     --color-timestamp-bkg-secondary: var(--color-link-text);
     --color-timestamp-text: var(--color-text-for-darkbg);
+
+    --color-theme-toggle-hover: color-mix(
+        in srgb,
+        var(--faded-purple) 75%,
+        var(--dark0)
+    );
 
     html {
         color-scheme: dark;

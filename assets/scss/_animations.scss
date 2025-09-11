@@ -47,6 +47,34 @@
     }
 }
 
+@keyframes nudge-next {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes nudge-prev {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
 @include breakpoint("tablet-down") {
     .btn {
         transition: all 0.2s;

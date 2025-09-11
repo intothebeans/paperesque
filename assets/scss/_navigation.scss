@@ -7,16 +7,13 @@
 @use "variables" as *;
 @use "colors" as *;
 @use "mixins" as *;
-@use "typography" as *;
-
+@use "animations" as *;
 // Navigation-specific variables
-$nav-link-padding: 0.25rem 0.5rem;
+$nav-link-padding: 0 0.5rem;
 $nav-button-padding: 2px 4px;
-$nav-transition-duration: 0.2s;
-$nav-transform-duration: 0.3s;
-$nav-blur-amount: 8px;
 
 // Navigation mixins
+
 @mixin nav-button-background($opacity: 60%) {
     background-color: color-mix(
         in srgb,
@@ -25,49 +22,15 @@ $nav-blur-amount: 8px;
     );
 }
 
-@mixin nav-backdrop-blur {
-    backdrop-filter: blur($nav-blur-amount);
-    -webkit-backdrop-filter: blur($nav-blur-amount);
-}
-
-@mixin nav-smooth-transition {
-    transition: all $nav-transition-duration ease;
-}
-
-@mixin border-underline {
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-link-hover);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.3s ease-out;
-    }
-
-    &:hover::after {
-        transform: scaleX(1);
-    }
-}
-
 // Navigation background
 .nav-bkg {
     color: var(--color-nav-text);
     @include brand-gradient(80%);
 
     a {
-        color: var(--color-nav-text);
         text-decoration: none;
         position: relative;
-        font-family: Georgia, "Times New Roman", Times, serif;
-        text-shadow: 0 2px 4px
-            color-mix(in srgb, var(--color-boxshadow) 20%, transparent);
-        &:visited {
-            color: var(--color-nav-text);
-        }
+        color: var(--color-nav-text);
     }
     .post-title {
         padding: $nav-link-padding;
@@ -89,39 +52,70 @@ nav {
     gap: $spacing-xs;
     flex: 1;
 
-    @include breakpoint("tablet-up") {
-        font-size: 1.2em;
-    }
+    a {
+        font-size: clamp($font-size-lg, 4vw, 1.7rem);
+        display: inline-flex;
+        font-weight: bold;
+        color: var(--color-nav-text);
+        font-family: "Journal", Georgia, "Times New Roman", Times, serif;
+        transition: all $animation-duration ease;
 
-    iconify-icon {
-        margin-right: $spacing-xs;
+        &:hover {
+            text-shadow: 0 6px 4px
+                color-mix(in srgb, var(--dark0) 50%, transparent);
+            transform: scale(1.05);
+            color: inherit;
+        }
     }
 
     .divider {
-        display: inline;
+        display: inline-flex;
         margin: 0 $spacing-xs;
+    }
+
+    .footer-nav-link {
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        max-width: 45%;
     }
 }
 
-.breadcrumb {
-    position: relative;
-    transition: color 0.3s ease-out;
+#previous-article-link {
+    text-align: left;
+    margin-left: $spacing-sm;
+    iconify-icon {
+        margin-right: $spacing-xs;
+    }
+    &:hover iconify-icon {
+        text-shadow: none;
+        animation: nudge-prev 1.2s infinite;
+    }
+}
 
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-link-hover);
-        transform: scaleX(0);
-        transform-origin: center;
-        transition: transform 0.3s ease-out;
+#next-article-link {
+    text-align: right;
+    margin-right: $spacing-sm;
+    iconify-icon {
+        margin-left: $spacing-xs;
+    }
+    &:hover iconify-icon {
+        text-shadow: none;
+        animation: nudge-next 1.2s infinite;
+    }
+}
+
+#nav-icon {
+    margin-right: $spacing-xs;
+    display: inline-flex;
+    font-size: clamp($font-size-lg, 4vw, 1.7rem);
+
+    svg {
+        height: 24px;
+        width: 24px;
     }
 
-    &:hover::after {
-        transform: scaleX(1);
+    &:hover {
+        text-shadow: none;
+        transform: none;
     }
 }
 
@@ -129,10 +123,10 @@ nav {
 .nav-menu-item {
     position: relative;
     display: inline-flex;
-
     .nav-link-underline {
+        transition: all 0.3s ease;
         position: absolute;
-        bottom: -10px;
+        bottom: -8px;
         left: 50%;
         height: 15px;
         width: 100px;
@@ -141,13 +135,13 @@ nav {
         mask: $underline center / contain no-repeat;
         transform: translateX(-50%) rotate(180deg) scaleX(0);
         transform-origin: center;
-        transition: transform 0.3s ease-out;
-        opacity: 0.8;
         z-index: 1;
     }
 
-    &:hover .nav-link-underline {
-        transform: translateX(-50%) rotate(180deg) scaleX(1);
+    &:hover {
+        .nav-link-underline {
+            transform: translateX(-50%) rotate(180deg) scaleX(1);
+        }
     }
 }
 
@@ -180,7 +174,7 @@ details.right-links {
         list-style: none;
         @include nav-button-background(60%);
         border-radius: 0.25em;
-        @include nav-smooth-transition;
+        transition: all $animation-duration ease;
         color: var(--color-nav-text);
         border: 1px solid var(--color-nav-text);
         font-weight: bold;
@@ -193,7 +187,7 @@ details.right-links {
             font-size: 1.5em;
             height: 24px;
             width: 20px;
-            transition: transform $nav-transform-duration ease;
+            transition: transform $animation-duration ease;
         }
 
         &:hover {
@@ -202,19 +196,8 @@ details.right-links {
         }
 
         &:active {
-            $active-color: color-mix(
-                in srgb,
-                var(--color-nav-text) 80%,
-                transparent
-            );
-            border: 1px solid $active-color;
-            transform: scale(0.95);
+            transform: scale(0.75);
             @include nav-button-background(50%);
-
-            svg {
-                fill: $active-color;
-                stroke: $active-color;
-            }
         }
 
         &::-webkit-details-marker {
@@ -227,8 +210,7 @@ details.right-links {
     }
 
     summary iconify-icon {
-        transition: transform $nav-transform-duration
-            cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform $animation-duration cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     [open] & summary::after {
@@ -243,11 +225,12 @@ details.right-links {
         position: absolute;
         right: 0;
         overflow: hidden;
-        border-radius: 0.5rem;
+        border-radius: 0 0 0.5rem 0.5rem;
         box-shadow:
             0 4px 6px -1px rgba(0, 0, 0, 0.1),
             0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        @include nav-backdrop-blur;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
     }
 
     li {
@@ -258,9 +241,11 @@ details.right-links {
             display: block;
             padding: $spacing-sm 12px;
             border-radius: 0.25rem;
-            @include nav-smooth-transition;
+            transition: all $animation-duration ease;
 
-            &:hover {
+            &:hover,
+            &:focus,
+            &:active {
                 @include nav-button-background(20%);
                 transform: translateX(4px);
             }
@@ -287,6 +272,25 @@ ul.right-links {
     display: inline-flex;
     align-self: center;
     margin-bottom: 0;
+    transition: all $animation-duration ease;
+    &:hover {
+        transform: scale(1.05);
+        svg {
+            transition: fill $animation-duration ease-out;
+            fill: var(--color-theme-toggle-hover);
+        }
+    }
+    &:active {
+        transform: scale(1);
+        svg {
+            fill: color-mix(
+                in srgb,
+                var(--color-theme-toggle-hover) 70%,
+                transparent
+            );
+        }
+    }
+
     svg {
         height: 32px;
         width: 32px;
