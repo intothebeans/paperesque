@@ -3,24 +3,50 @@
 //  / __ |/ / -_) __/ __(_-<
 // /_/ |_/_/\__/_/  \__/___/
 
-@use '../variables' as *;
-@use '../colors' as *;
-@use '../mixins' as *;
+@use "../variables" as *;
+@use "../colors" as *;
+@use "../mixins" as *;
 
-$alerts: (
-    note: "green",
-    tip: "blue",
-    important: "purple",
-    warning: "red",
-    caution: "yellow",
-    tldr: "blue"
+$alert-colors: (
+    blue: (
+        "note",
+        "info",
+        "todo",
+        "tldr",
+    ),
+    aqua: (
+        "abstract",
+        "tip",
+    ),
+    green: (
+        "success",
+    ),
+    orange: (
+        "question",
+    ),
+    yellow: (
+        "warning",
+    ),
+    red: (
+        "failure",
+        "danger",
+        "bug",
+    ),
+    purple: (
+        "example",
+        "quote",
+    ),
 );
 
-// base styles
-.alert {
+// Base styles
+%alert-base {
     padding: 1rem;
     border-radius: 0.25rem;
     margin: 1.5rem 0;
+}
+
+.alert {
+    @extend %alert-base;
 }
 
 .alert-heading {
@@ -31,112 +57,85 @@ $alerts: (
     gap: 0.5rem;
 }
 
+// Alert style mixin
 @mixin alert-style($color, $is-dark: false) {
-    $border-color: if($is-dark, var(--bright-#{$color}), var(--neutral-#{$color}));
-    $bg-color: if($is-dark, color-mix(in srgb, var(--dark0-hard) 75%, var(--faded-#{$color}) 25%), var(--faded-#{$color}));
+    $border-color: var(--bright-#{$color});
+    $bg-color: #{if(
+            $is-dark,
+            color-mix(in srgb, var(--dark0-hard) 60%, var(--bright-#{$color})),
+            var(--faded-#{$color})
+        )};
 
-    border-left: 4px solid $border-color;
-    background-color: $bg-color;
+    border-left: 4px solid var($border-color);
+    background-color: var($bg-color);
     color: var(--light0-hard);
 }
 
-// Mixin for collapsible alert components
-@mixin collapsible-alert-base($color, $is-dark: false) {
-    $border-color: if($is-dark, var(--bright-#{$color}), var(--neutral-#{$color}));
-    $bg-color: if($is-dark, color-mix(in srgb, var(--dark0-hard) 75%, var(--faded-#{$color}) 25%), var(--faded-#{$color}));
-
-    border-left: 4px solid $border-color;
-    background-color: $bg-color;
-    color: var(--light0-hard);
-}
-
-@each $name, $color in $alerts {
-
-    // Blockquote alerts
-    blockquote.alert-#{$name} {
-        @include alert-style($color);
-    }
-
-    // Collapsible alert summary
-    .alert-#{$name}.alert-collapsible summary {
-        @include collapsible-alert-base($color);
-        cursor: pointer;
-        padding: 1rem;
-        border-radius: 0.25rem;
-        list-style: none;
-        user-select: none;
-        margin: 0;
-    }
-
-    // Collapsible alert content
-    .alert-#{$name} .alert-content {
-        @include collapsible-alert-base($color);
-        margin: 0;
-    }
-}
-
-// Dark theme overrides
-[data-theme="dark"] {
-    @each $name, $color in $alerts {
-        blockquote.alert-#{$name} {
-            @include alert-style($color, true);
-        }
-
-        .alert-#{$name}.alert-collapsible summary {
-            @include collapsible-alert-base($color, true);
-            cursor: pointer;
-            padding: 1rem;
-            border-radius: 0.25rem;
-            list-style: none;
-            user-select: none;
-            margin: 0;
-        }
-
+// Generate alert styles
+@mixin alert-styles($color, $names, $is-dark: false) {
+    @each $name in $names {
+        blockquote.alert-#{$name},
+        .alert-#{$name}.alert-collapsible .alert-summary,
         .alert-#{$name} .alert-content {
-            @include collapsible-alert-base($color, true);
-            margin: 0;
+            @include alert-style($color, $is-dark);
         }
     }
 }
 
+// Light theme
+@each $color, $names in $alert-colors {
+    @include alert-styles($color, $names);
+}
 
-// Collapsible alert base styles
+// Dark theme
+[data-theme="dark"] {
+    @each $color, $names in $alert-colors {
+        @include alert-styles($color, $names, true);
+    }
+}
+
+// Collapsible alert styles
 .alert-collapsible {
     border: none;
     padding: 0;
     background: none;
+    margin: 1.5rem 0;
+}
+
+.alert-summary {
+    margin-bottom: 0 !important;
+    border-radius: 0.25rem !important;
+    cursor: pointer;
+    padding: 1rem;
+    list-style: none;
+    user-select: none;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    transition: none;
 
-    >summary {
-        margin-bottom: 0 !important;
-        border-radius: 0.25rem !important;
-
-        // Hide default marker and add custom arrow
-        &::-webkit-details-marker {
-            display: none;
-        }
-
-        &::after {
-            content: "▶";
-            float: right;
-            transition: transform 0.3s ease;
-            font-size: 0.8em;
-            margin-top: 0.1em;
-        }
+    .details-arrow {
+        margin-left: auto;
+        transform: rotate(0deg);
+        transition: transform 0.3s ease;
     }
+}
 
-    >.alert-content {
-        margin-top: 0 !important;
-        padding: 0 1rem 1rem 1rem;
-        border-radius: 0 0 0.25rem 0.25rem;
-        margin-top: 0;
-    }
+.alert-content {
+    margin-top: 0 !important;
+    padding: 0 1rem 1rem 1rem;
+    border-radius: 0 0 0.25rem 0.25rem;
+    margin-top: 0;
+}
 
-    // Open state styles
-    &[open] summary {
+// Open state
+.alert-collapsible[data-open="true"] {
+    .alert-summary {
         border-radius: 0.25rem 0.25rem 0 0 !important;
 
-        &::after {
+        .details-arrow {
             transform: rotate(90deg);
         }
     }

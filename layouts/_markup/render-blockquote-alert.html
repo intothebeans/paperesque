@@ -1,19 +1,29 @@
-{{ $emojis := dict
-    "caution" "mdi-sign-caution"
-    "important" "mdi-exclamation-thick"
-    "note" "mdi-information-outline"
-    "tip" "mdi-lightbulb-variant"
-    "warning" "mdi-alert-octagon"
-    "tldr" "mdi-run-fast"
+{{ $symbols := dict
+    "note" "bx-pencil"
+    "abstract" "bxs-book-open"
+    "info" "bx-info-circle"
+    "todo" "bx-check-circle"
+    "tip" "bx-bulb"
+    "success" "bx-check"
+    "question" "bx-help-circle"
+    "warning" "bx-error"
+    "failure" "bx-dizzy"
+    "danger" "bx-bolt"
+    "bug" "bx-bug-alt"
+    "example" "bx-list-ul"
+    "quote" "bxs-quote-left"
+    "tldr" "bxs-timer"
 }}
 
+{{ $symbol := index $symbols .AlertType | default "bx-info-circle" }}
+
 {{ if ne .AlertSign "" }}
-    <details
+    <div
         class="alert alert-{{ .AlertType }} alert-collapsible"
-        {{ if ne .AlertSign "-" }}open{{ end }}>
-        <summary class="alert-heading">
+        {{ if ne .AlertSign "-" }}data-open="true"{{ end }}>
+        <div class="alert-summary">
             <iconify-icon
-                icon="{{ index $emojis .AlertType }}"
+                icon="{{ $symbol }}"
                 height="24"
                 width="24"></iconify-icon>
             {{ with .AlertTitle }}
@@ -21,16 +31,21 @@
             {{ else }}
                 {{ or (i18n .AlertType) (title .AlertType) }}
             {{ end }}
-        </summary>
+            <iconify-icon
+                class="details-arrow"
+                icon="bxs:chevron-right"
+                width="20"
+                height="20"></iconify-icon>
+        </div>
         <div class="alert-content">
             {{ .Text }}
         </div>
-    </details>
+    </div>
 {{ else }}
     <blockquote class="alert alert-{{ .AlertType }}">
         <p class="alert-heading">
             <iconify-icon
-                icon="{{ index $emojis .AlertType }}"
+                icon="{{ $symbol }}"
                 height="24"
                 width="24"></iconify-icon>
             {{ with .AlertTitle }}

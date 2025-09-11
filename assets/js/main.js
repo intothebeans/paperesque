@@ -54201,65 +54201,123 @@ function $911822b688f155b3$export$399040a10d34fc4b(musicID, musicString, abcOpts
 }
 
 
-const $6951829771ceb5d6$var$ANIMATION_DURATION = 300; // milliseconds
+var $6951829771ceb5d6$var$ANIMATION_DURATION = 300; // milliseconds
 const $6951829771ceb5d6$var$EASING = "cubic-bezier(0.4, 0.0, 0.2, 1)";
-function $6951829771ceb5d6$var$animateOpen(details, summary, content) {
-    details.style.overflow = "hidden";
-    details.open = true;
-    const startHeight = summary.offsetHeight;
-    const endHeight = startHeight + content.offsetHeight;
-    details.style.height = startHeight + "px";
-    content.style.opacity = "0";
-    content.style.transform = "translateY(-10px)";
-    details.offsetHeight;
-    details.style.transition = `height ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}`;
-    content.style.transition = `opacity ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}, transform ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}`;
-    details.style.height = endHeight + "px";
-    content.style.opacity = "1";
-    content.style.transform = "translateY(0)";
-    setTimeout(()=>{
-        details.style.height = "";
-        details.style.overflow = "";
-        details.style.transition = "";
-        content.style.transition = "";
-    }, $6951829771ceb5d6$var$ANIMATION_DURATION);
+const $6951829771ceb5d6$var$HEIGHT_TRANSITION = `height ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}`;
+const $6951829771ceb5d6$var$CONTENT_TRANSITION = `opacity ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}, transform ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}`;
+const $6951829771ceb5d6$var$BORDER_RADIUS_TRANSITION = `border-radius ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}`;
+function $6951829771ceb5d6$var$applyStylesAndReflow(element, styles) {
+    Object.assign(element.style, styles);
+    return element.offsetHeight;
 }
-function $6951829771ceb5d6$var$animateClose(details, summary, content) {
-    const startHeight = details.offsetHeight;
-    const endHeight = summary.offsetHeight;
-    details.style.overflow = "hidden";
-    details.style.height = startHeight + "px";
-    details.offsetHeight;
-    details.style.transition = `height ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}`;
-    content.style.transition = `opacity ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}, transform ${$6951829771ceb5d6$var$ANIMATION_DURATION}ms ${$6951829771ceb5d6$var$EASING}`;
-    details.style.height = endHeight + "px";
-    content.style.opacity = "0";
-    content.style.transform = "translateY(-10px)";
+function $6951829771ceb5d6$var$resetStylesAfterAnimation(elements, duration) {
     setTimeout(()=>{
-        details.open = false;
-        details.style.height = "";
-        details.style.overflow = "";
-        details.style.transition = "";
-        content.style.transition = "";
-        content.style.opacity = "";
-        content.style.transform = "";
-    }, $6951829771ceb5d6$var$ANIMATION_DURATION);
+        elements.forEach(({ element: element, styles: styles })=>{
+            Object.keys(styles).forEach((prop)=>{
+                element.style[prop] = styles[prop];
+            });
+        });
+    }, duration);
+}
+function $6951829771ceb5d6$var$animateOpen(alert, summary, content) {
+    const startHeight = summary.offsetHeight;
+    $6951829771ceb5d6$var$applyStylesAndReflow(alert, {
+        overflow: "hidden",
+        height: `${startHeight}px`
+    });
+    Object.assign(content.style, {
+        display: "block",
+        opacity: "0",
+        transform: "translateY(-10px)"
+    });
+    content.offsetHeight;
+    const endHeight = startHeight + content.scrollHeight;
+    alert.setAttribute("data-open", "true");
+    alert.style.transition = $6951829771ceb5d6$var$HEIGHT_TRANSITION;
+    content.style.transition = $6951829771ceb5d6$var$CONTENT_TRANSITION;
+    requestAnimationFrame(()=>{
+        Object.assign(alert.style, {
+            height: `${endHeight}px`
+        });
+        Object.assign(content.style, {
+            opacity: "1",
+            transform: "translateY(0)"
+        });
+    });
+    $6951829771ceb5d6$var$resetStylesAfterAnimation([
+        {
+            element: alert,
+            styles: {
+                height: "",
+                overflow: "",
+                transition: ""
+            }
+        },
+        {
+            element: content,
+            styles: {
+                transition: ""
+            }
+        }
+    ], $6951829771ceb5d6$var$ANIMATION_DURATION);
+}
+function $6951829771ceb5d6$var$animateClose(alert, summary, content) {
+    const startHeight = alert.offsetHeight;
+    const endHeight = summary.offsetHeight;
+    $6951829771ceb5d6$var$applyStylesAndReflow(alert, {
+        overflow: "hidden",
+        height: `${startHeight}px`
+    });
+    alert.removeAttribute("data-open");
+    alert.style.transition = $6951829771ceb5d6$var$HEIGHT_TRANSITION;
+    content.style.transition = $6951829771ceb5d6$var$CONTENT_TRANSITION;
+    summary.style.transition = $6951829771ceb5d6$var$BORDER_RADIUS_TRANSITION;
+    Object.assign(alert.style, {
+        height: `${endHeight}px`
+    });
+    Object.assign(content.style, {
+        opacity: "0",
+        transform: "translateY(-10px)"
+    });
+    $6951829771ceb5d6$var$resetStylesAfterAnimation([
+        {
+            element: alert,
+            styles: {
+                height: "",
+                overflow: "",
+                transition: ""
+            }
+        },
+        {
+            element: content,
+            styles: {
+                display: "none",
+                transition: "",
+                opacity: "",
+                transform: ""
+            }
+        }
+    ], $6951829771ceb5d6$var$ANIMATION_DURATION);
 }
 function $6951829771ceb5d6$export$d158f80c13a7cde5() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) $6951829771ceb5d6$var$ANIMATION_DURATION = 0;
     const collapsibleAlerts = document.querySelectorAll(".alert-collapsible");
-    collapsibleAlerts.forEach((details)=>{
-        const summary = details.querySelector("summary");
-        const content = details.querySelector(".alert-content");
+    collapsibleAlerts.forEach((alert)=>{
+        const summary = alert.querySelector(".alert-summary");
+        const content = alert.querySelector(".alert-content");
         if (!summary || !content) return;
-        summary.addEventListener("click", function(e) {
-            e.preventDefault();
-            if (details.open) $6951829771ceb5d6$var$animateClose(details, summary, content);
-            else $6951829771ceb5d6$var$animateOpen(details, summary, content);
+        const isInitiallyOpen = alert.hasAttribute("data-open");
+        Object.assign(content.style, {
+            opacity: isInitiallyOpen ? "1" : "0",
+            display: isInitiallyOpen ? "block" : "none",
+            transform: isInitiallyOpen ? "translateY(0)" : "translateY(-10px)"
         });
-        if (!details.open) {
-            content.style.opacity = "0";
-            content.style.transform = "translateY(-10px)";
-        }
+        summary.addEventListener("click", (e)=>{
+            e.preventDefault();
+            const isOpen = alert.hasAttribute("data-open");
+            if (isOpen) $6951829771ceb5d6$var$animateClose(alert, summary, content);
+            else $6951829771ceb5d6$var$animateOpen(alert, summary, content);
+        });
     });
 }
 

@@ -154,23 +154,48 @@ Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the ses
 
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
 
-## Alerts
+## Supported Alerts
 
 > [!NOTE]
 > This is a note alert.
 
-> [!IMPORTANT]
-> This is an important alert.
+> [!ABSTRACT]
+> This is an abstract alert.
 
-> [!WARNING]
-> This is a warning alert.
+> [!INFO]
+> This is an info alert.
 
-> [!CAUTION]
-> This is a caution alert.
+> [!TODO]
+> This is a todo alert.
 
 > [!TIP]
 > This is a tip alert.
 
-> [!TLDR]+
+> [!WARNING]
+> This is a warning alert.
+
+> [!FAILURE]
+> This is an failure alert.
+
+> [!DANGER]
+> This is a danger alert.
+
+> [!BUG]
+> This is a bug alert.
+
+> [!EXAMPLE]
+> This is an example alert.
+
+> [!QUOTE]
+> This is a quote alert.
+
+> [!TLDR]
 > This is a tldr alert.
-> They also fold
+
+### Folding Alerts
+
+> [!TIP]- This is a collapsible tip alert. Click to expand.
+> Hello!
+
+> [!TIP]+ Collapsing Syntax
+> Postfixing the alert type with a `-` makes the alert collapsed by default, while postfixing it with a `+` makes it expanded by default.
