@@ -56,17 +56,21 @@
             }
         }
 
-        &:hover g {
-            fill: var(--hover-bg);
-            stroke: var(--hover-bg);
+        &:hover {
+            scale: (1.1);
+            cursor: pointer;
+            g {
+                fill: var(--hover-bg);
+                stroke: var(--hover-bg);
 
-            polygon,
-            rect,
-            path,
-            circle,
-            line {
-                fill: inherit;
-                stroke: inherit;
+                polygon,
+                rect,
+                path,
+                circle,
+                line {
+                    fill: inherit;
+                    stroke: inherit;
+                }
             }
         }
     }
