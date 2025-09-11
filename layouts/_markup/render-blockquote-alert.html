@@ -21,7 +21,7 @@
     <div
         class="alert alert-{{ .AlertType }} alert-collapsible"
         {{ if ne .AlertSign "-" }}data-open="true"{{ end }}>
-        <div class="alert-summary">
+        <div class="alert-summary" role="summary" tabindex="0">
             <iconify-icon
                 icon="{{ $symbol }}"
                 height="24"

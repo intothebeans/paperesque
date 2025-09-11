@@ -31,6 +31,16 @@ function initScrollButtons() {
 
     button.addEventListener("click", scrollToTop);
     buttonMobile.addEventListener("click", scrollToTop);
+    button.addEventListener("keypress", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            scrollToTop();
+        }
+    });
+    buttonMobile.addEventListener("keypress", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            scrollToTop();
+        }
+    });
     document.addEventListener("scroll", showScrollButton);
 }
 
@@ -45,12 +55,13 @@ function showScrollButton() {
     const shouldShow =
         currentScroll > 20 && (scrollDirection === "up" || atBottom);
 
-    if (shouldShow) {
+    if (window.innerHeight > 885 && shouldShow) {
         button.style.opacity = "1";
         button.style.pointerEvents = "auto";
     } else {
         button.style.opacity = "0";
         button.style.pointerEvents = "none";
+        button.style.display = "none";
     }
 }
 

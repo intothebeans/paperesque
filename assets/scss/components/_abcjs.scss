@@ -42,10 +42,6 @@
     button.abcjs-btn {
         border: none;
 
-        &:focus {
-            outline: none;
-        }
-
         g {
             fill: var(--main);
             stroke: var(--main);

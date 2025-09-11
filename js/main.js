@@ -73,6 +73,13 @@ function initDarkmodeLightmodeToggle() {
         respectReducedMotion: true,
     });
     const toggle = document.getElementById("theme-toggle");
+    const label = document.getElementById("theme-toggle-label");
+    label.addEventListener("keydown", (e) => {
+        if (e.key === " " || e.key === "Enter") {
+            e.preventDefault();
+            toggle.click();
+        }
+    });
 
     const currentTheme = themeTransitions.initTheme();
     toggle.checked = currentTheme === "dark";

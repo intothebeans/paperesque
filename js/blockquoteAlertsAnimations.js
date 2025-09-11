@@ -128,15 +128,20 @@ function initCollapsibleAlerts() {
             display: isInitiallyOpen ? "block" : "none",
             transform: isInitiallyOpen ? "translateY(0)" : "translateY(-10px)",
         });
-
-        summary.addEventListener("click", (e) => {
-            e.preventDefault();
+        function toggleAlert() {
             const isOpen = alert.hasAttribute("data-open");
 
             if (isOpen) {
                 animateClose(alert, summary, content);
             } else {
                 animateOpen(alert, summary, content);
+            }
+        }
+        summary.addEventListener("click", toggleAlert);
+        summary.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggleAlert();
             }
         });
     });

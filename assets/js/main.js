@@ -54312,11 +54312,17 @@ function $6951829771ceb5d6$export$d158f80c13a7cde5() {
             display: isInitiallyOpen ? "block" : "none",
             transform: isInitiallyOpen ? "translateY(0)" : "translateY(-10px)"
         });
-        summary.addEventListener("click", (e)=>{
-            e.preventDefault();
+        function toggleAlert() {
             const isOpen = alert.hasAttribute("data-open");
             if (isOpen) $6951829771ceb5d6$var$animateClose(alert, summary, content);
             else $6951829771ceb5d6$var$animateOpen(alert, summary, content);
+        }
+        summary.addEventListener("click", toggleAlert);
+        summary.addEventListener("keydown", (event)=>{
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggleAlert();
+            }
         });
     });
 }
@@ -54346,6 +54352,12 @@ function $525e892283047b90$export$353567b7e7ed9d0d() {
     }
     $525e892283047b90$var$button.addEventListener("click", $525e892283047b90$var$scrollToTop);
     $525e892283047b90$var$buttonMobile.addEventListener("click", $525e892283047b90$var$scrollToTop);
+    $525e892283047b90$var$button.addEventListener("keypress", (e)=>{
+        if (e.key === "Enter" || e.key === " ") $525e892283047b90$var$scrollToTop();
+    });
+    $525e892283047b90$var$buttonMobile.addEventListener("keypress", (e)=>{
+        if (e.key === "Enter" || e.key === " ") $525e892283047b90$var$scrollToTop();
+    });
     document.addEventListener("scroll", $525e892283047b90$var$showScrollButton);
 }
 function $525e892283047b90$var$showScrollButton() {
@@ -54354,12 +54366,13 @@ function $525e892283047b90$var$showScrollButton() {
     $525e892283047b90$var$lastScrollTop = currentScroll;
     const atBottom = window.innerHeight + currentScroll >= document.body.offsetHeight - 100;
     const shouldShow = currentScroll > 20 && ($525e892283047b90$var$scrollDirection === "up" || atBottom);
-    if (shouldShow) {
+    if (window.innerHeight > 885 && shouldShow) {
         $525e892283047b90$var$button.style.opacity = "1";
         $525e892283047b90$var$button.style.pointerEvents = "auto";
     } else {
         $525e892283047b90$var$button.style.opacity = "0";
         $525e892283047b90$var$button.style.pointerEvents = "none";
+        $525e892283047b90$var$button.style.display = "none";
     }
 }
 
@@ -56371,6 +56384,13 @@ function $e17e491bfc439aa2$var$initDarkmodeLightmodeToggle() {
         respectReducedMotion: true
     });
     const toggle = document.getElementById("theme-toggle");
+    const label = document.getElementById("theme-toggle-label");
+    label.addEventListener("keydown", (e)=>{
+        if (e.key === " " || e.key === "Enter") {
+            e.preventDefault();
+            toggle.click();
+        }
+    });
     const currentTheme = themeTransitions.initTheme();
     toggle.checked = currentTheme === "dark";
     toggle.addEventListener("change", function() {

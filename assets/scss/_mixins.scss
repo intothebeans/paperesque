@@ -128,7 +128,8 @@
     font-weight: bold;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: var(--color-link-hover);
         text-decoration: none;
         @include drop-shadow;

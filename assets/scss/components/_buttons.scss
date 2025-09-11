@@ -35,10 +35,10 @@ a.no-underline:hover {
     display: flex;
     justify-content: center;
     opacity: 0;
-    transition: opacity var(--animation-med) ease;
-
+    display: none;
     @media (max-width: 884px) {
         opacity: 1 !important;
+        display: block;
     }
 }
 
@@ -52,7 +52,7 @@ a.no-underline:hover {
     pointer-events: none;
     position: fixed;
     transition:
-        opacity var(--animation-md) ease,
+        opacity var(--animation-med) ease,
         transform var(--animation-short) ease;
     width: fit-content;
     z-index: 99;

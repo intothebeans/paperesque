@@ -60,7 +60,8 @@ nav {
         font-family: "Journal", Georgia, "Times New Roman", Times, serif;
         transition: all var(--animation-med) ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             text-shadow: 0 6px 4px
                 color-mix(in srgb, var(--dark0) 50%, transparent);
             transform: scale(1.05);
@@ -113,7 +114,8 @@ nav {
         width: 24px;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
         text-shadow: none;
         transform: none;
     }
@@ -138,10 +140,9 @@ nav {
         z-index: 1;
     }
 
-    &:hover {
-        .nav-link-underline {
-            transform: translateX(-50%) rotate(180deg) scaleX(1);
-        }
+    &:hover .nav-link-underline,
+    a:focus ~ .nav-link-underline {
+        transform: translateX(-50%) rotate(180deg) scaleX(1);
     }
 }
 

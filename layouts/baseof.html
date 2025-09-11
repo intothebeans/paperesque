@@ -48,8 +48,8 @@
                 <div class="nav-menu-item">
                     <a href="{{ .Site.Home.RelPermalink }}">
                         {{ .Site.Title }}
-                        <span class="nav-link-underline"></span>
                     </a>
+                    <span class="nav-link-underline"></span>
                 </div>
                 {{ block "breadcrumbs" . }}
                     {{- with .Parent -}}
@@ -77,7 +77,9 @@
             id="scroll-button"
             height="46"
             width="46"
-            role="button"></iconify-icon>
+            role="button"
+            tabindex="0"
+            aria-label="scroll to top button"></iconify-icon>
         {{ if not .Params.hide_footer }}
             {{ block "footer" . }}{{ end }}
         {{ end }}
