@@ -40,7 +40,10 @@
         lang="{{ .Site.LanguageCode }}">
         <div class="navbar nav-bkg drop-shadow">
             <nav class="pagewide-bar-padding">
-                <a href="{{ .Site.Home.RelPermalink }}" id="nav-icon">
+                <a
+                    href="{{ .Site.Home.RelPermalink }}"
+                    id="nav-icon"
+                    label="Home">
                     <iconify-icon
                         icon="{{ .Site.Params.nav_icon | default "bxs-home" }}"
                         inline></iconify-icon>

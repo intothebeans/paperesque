@@ -5,7 +5,7 @@
 {{ $abcOptions := .Get "abcoptions" | default "null" }}
 
 
-<div class="music-container">
+<div class="music-container" label="an ABCjs rendered music score">
     <div id="{{ $id }}" class="music"></div>
     {{ if $enablePlayback }}
         <div class="audio-controls">

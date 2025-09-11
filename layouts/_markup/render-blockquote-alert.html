@@ -25,7 +25,9 @@
             <iconify-icon
                 icon="{{ $symbol }}"
                 height="24"
-                width="24"></iconify-icon>
+                width="24"
+                aria-label="{{ .AlertType }} alert icon"
+                label="{{ .AlertType }} alert icon"></iconify-icon>
             {{ with .AlertTitle }}
                 {{ . }}
             {{ else }}
