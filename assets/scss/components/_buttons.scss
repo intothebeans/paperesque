@@ -4,7 +4,6 @@
 // /____/\_,_/\__/\__/\___/_//_/___/
 
 @use "../variables" as *;
-@use "../colors" as *;
 @use "../mixins" as *;
 @use "../animations" as *;
 
@@ -36,7 +35,7 @@ a.no-underline:hover {
     display: flex;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity var(--animation-med) ease;
 
     @media (max-width: 884px) {
         opacity: 1 !important;
@@ -53,18 +52,16 @@ a.no-underline:hover {
     pointer-events: none;
     position: fixed;
     transition:
-        opacity 0.4s ease,
-        transform 0.2s ease;
+        opacity var(--animation-md) ease,
+        transform var(--animation-short) ease;
     width: fit-content;
     z-index: 99;
 
-    // Dynamic sizing using clamp() - scales between min and max based on viewport
     padding: clamp(0.1em, 1vw, 1em);
     bottom: clamp(10px, 3vh, 40px);
     right: clamp(4px, 1vw, 45px);
 
-    --scale-factor: clamp(0.5rem, 1vw, 1rem);
-    font-size: var(--scale-factor);
+    font-size: clamp(0.5rem, 1vw, 1rem);
     transform: scale(1);
 
     &:hover {

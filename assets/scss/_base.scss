@@ -5,8 +5,8 @@
 //                             /___/
 
 @use "variables" as *;
-@use "colors" as *;
 @use "mixins" as *;
+@use "sass:map";
 
 body {
     -webkit-font-smoothing: antialiased;
@@ -14,6 +14,7 @@ body {
     text-rendering: optimizeLegibility;
     color: var(--color-text);
     font-family:
+        arial,
         -apple-system,
         BlinkMacSystemFont,
         avenir next,
@@ -24,7 +25,6 @@ body {
         roboto,
         noto,
         segoe ui,
-        arial,
         sans-serif;
     background-color: var(--color-desktop-bg);
 
@@ -70,7 +70,7 @@ pre {
 
 pre,
 code {
-    font-family: monocode, monospace;
+    font-family: "JetBrainsMono NF", monocode, monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -87,8 +87,8 @@ a {
 // Blockquotes
 blockquote {
     border-left: var(--color-quote-border) 0.25em solid;
-    padding: 0 1.25em;
-    margin: 2em 0 2em 1em;
+    padding: 0 var(--spacing-sm);
+    margin: var(--spacing-lg) 0 var(--spacing-lg) var(--spacing-md);
 }
 
 // Keyboard keys
@@ -96,7 +96,7 @@ kbd {
     background-color: var(--color-kbd-bg);
     color: var(--color-text-for-darkbg);
     padding: 2px 4px;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     font-size: 95%;
     white-space: nowrap;
 }
@@ -104,9 +104,13 @@ kbd {
 // Horizontal rules
 hr {
     padding: 0;
+    -webkit-mask: $hr center / contain no-repeat;
+    mask: $hr center / contain no-repeat;
+    background-color: var(--color-text);
     border: none;
-    border-top: 1px solid var(--color-hr);
-    margin: 2.5em 3em;
+    height: 30px;
+    width: 50%;
+    margin: var(--spacing-xs) auto;
 }
 
 // Paragraph settings
@@ -119,7 +123,7 @@ p {
 // Responsive font sizing
 @include breakpoint("tablet-down") {
     html {
-        font-size: $font-size-sm;
+        font-size: map.get($font-size, sm);
     }
 }
 
@@ -127,4 +131,9 @@ p {
 .embed.rich,
 img {
     max-width: 100%;
+}
+
+// Visibility
+.hidden {
+    display: none;
 }

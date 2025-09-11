@@ -9,20 +9,20 @@
 .color-mode-transitioning {
     * {
         transition:
-            color 0.3s ease,
-            background-color 0.3s ease,
-            border-color 0.3s ease,
-            box-shadow 0.3s ease,
-            fill 0.3s ease,
-            stroke 0.3s ease;
+            color var(--animation-med) ease,
+            background-color var(--animation-med) ease,
+            border-color var(--animation-med) ease,
+            box-shadow var(--animation-med) ease,
+            fill var(--animation-med) ease,
+            stroke var(--animation-med) ease;
     }
 
     .navbar,
     .nav-bkg {
         transition:
-            color 0.3s ease,
-            background 0.3s ease,
-            border-color 0.3s ease;
+            color var(--animation-med) ease,
+            background var(--animation-med) ease,
+            border-color var(--animation-med) ease;
     }
 
     input,
@@ -34,30 +34,24 @@
 }
 
 @keyframes bounce-up {
-    0% {
+    0%,
+    100% {
         transform: translateY(0);
     }
 
     50% {
         transform: translateY(-10px);
     }
-
-    100% {
-        transform: translateY(0);
-    }
 }
 
 @keyframes nudge-next {
-    0% {
+    0%,
+    100% {
         transform: translateX(0);
     }
 
     50% {
         transform: translateX(5px);
-    }
-
-    100% {
-        transform: translateX(0);
     }
 }
 

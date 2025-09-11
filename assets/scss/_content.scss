@@ -3,9 +3,9 @@
 // / /__/ _ \/ _ \/ __/ -_) _ \/ __/
 // \___/\___/_//_/\__/\__/_//_/\__/
 
-@use 'variables' as *;
-@use 'colors' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "colors" as *;
+@use "mixins" as *;
 
 // Post metadata
 .post-date {
@@ -22,10 +22,10 @@
 // Article asides
 aside.article-aside {
     background-color: var(--color-desktop-bg);
-    padding: 0 $spacing-md;
-    margin-top: $spacing-xl;
+    padding: 0 var(--spacing-sm);
+    margin-top: var(--spacing-lg);
 
-    >p:first-child {
+    > p:first-child {
         margin-top: 1rem;
     }
 }
@@ -33,14 +33,14 @@ aside.article-aside {
 // Content warnings
 aside.content-warning {
     font-style: italic;
-    margin-bottom: $spacing-lg;
+    margin-bottom: var(--spacing-lg);
     color: var(--color-meta-text);
     border-top: solid 1px var(--color-quote-border);
     border-bottom: solid 1px var(--color-quote-border);
-    padding: $spacing-xs $spacing-md;
+    padding: var(--spacing-xxs) var(--spacing-sm);
     display: inline-block;
 
-    >p:last-child {
+    > p:last-child {
         margin-bottom: 0;
     }
 }
@@ -50,14 +50,14 @@ h2,
 h3,
 h4,
 h5 {
-    +aside.article-aside {
-        margin-top: $spacing-sm;
+    + aside.article-aside {
+        margin-top: var(--spacing-xs);
     }
 }
 
 // Tables
 article table {
-    margin: 2.5em auto;
+    margin: var(--spacing-xl) auto;
     border-bottom: 1px solid var(--color-header-brand-primary);
 
     thead {
@@ -66,28 +66,28 @@ article table {
         }
 
         th {
-            padding-bottom: $spacing-sm;
-            font-family: 'Lora', serif;
+            padding-bottom: var(--spacing-xs);
+            font-family: "Lora", serif;
         }
     }
 
     tbody {
         tr:first-child td {
-            padding-top: 0.75em;
+            padding-top: var(--spacing-sm);
         }
 
         tr:last-child td {
-            padding-bottom: 0.75em;
+            padding-bottom: var(--spacing-sm);
         }
     }
 
     td,
     th {
-        padding: $spacing-xs $spacing-sm;
+        padding: var(--spacing-xxs) var(--spacing-xs);
         vertical-align: top;
 
         &:not(:first-child) {
-            padding-left: $spacing-lg;
+            padding-left: var(--spacing-lg);
         }
     }
 }
@@ -99,5 +99,5 @@ article table {
 
 // Footnote backref fix for Firefox emoji bug
 a.footnote-backref::before {
-    content: ' ';
+    content: " ";
 }

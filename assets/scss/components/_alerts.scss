@@ -1,12 +1,12 @@
 //    ___   __        __
 //   / _ | / /__ ____/ /____
-//  / __ |/ / -_) __/ __(_-<
+//  / __ |/ / -_/ __/ __(_-<
 // /_/ |_/_/\__/_/  \__/___/
 
-@use "../variables" as *;
-@use "../colors" as *;
 @use "../mixins" as *;
+@use "sass:map";
 
+// Color map
 $alert-colors: (
     blue: (
         "note",
@@ -38,11 +38,22 @@ $alert-colors: (
     ),
 );
 
+// Spacing and sizing variables
+$alert-border-radius: (
+    sm: 0.25rem,
+    lg: 1.5rem,
+);
+
+$alert-spacing: (
+    sm: 0.5rem,
+    md: 1rem,
+);
+
 // Base styles
 %alert-base {
-    padding: 1rem;
-    border-radius: 0.25rem;
-    margin: 1.5rem 0;
+    padding: var(--spacing-sm);
+    border-radius: map.get($alert-border-radius, sm);
+    margin: var(--spacing-md) 0;
 }
 
 .alert {
@@ -51,51 +62,49 @@ $alert-colors: (
 
 .alert-heading {
     font-weight: 600;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 map.get($alert-spacing, sm) 0;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: map.get($alert-spacing, sm);
 }
 
 // Alert style mixin
 @mixin alert-style($color, $is-dark: false) {
-    $border-color: #{if(
-            $is-dark,
-            var(--bright-#{$color}),
-            var(--faded-#{$color})
-        )};
-    $bg-color: #{if(
-            $is-dark,
-            color-mix(in srgb, var(--dark0-hard) 60%, var(--bright-#{$color})),
-            color-mix(in srgb, var(--light0-hard) 50%, var(--bright-#{$color}))
-        )};
+    $border-color: if(
+        $is-dark,
+        var(--bright-#{$color}),
+        var(--faded-#{$color})
+    );
+    $bg-color: if(
+        $is-dark,
+        color-mix(in srgb, var(--dark0-hard) 60%, var(--bright-#{$color})),
+        color-mix(in srgb, var(--light0-hard) 50%, var(--bright-#{$color}))
+    );
 
     border-left: 4px solid $border-color;
     background-color: $bg-color;
     color: var(--color-text);
 }
 
-// Generate alert styles
-@mixin alert-styles($color, $names, $is-dark: false) {
-    @each $name in $names {
-        blockquote.alert-#{$name},
-        .alert-#{$name}.alert-collapsible .alert-summary,
-        .alert-#{$name} .alert-content {
-            @include alert-style($color, $is-dark);
+// Generate alert styles for both themes
+@mixin generate-alert-styles($is-dark: false) {
+    @each $color, $names in $alert-colors {
+        @each $name in $names {
+            blockquote.alert-#{$name},
+            .alert-#{$name}.alert-collapsible .alert-summary,
+            .alert-#{$name} .alert-content {
+                @include alert-style($color, $is-dark);
+            }
         }
     }
 }
 
 // Light theme
-@each $color, $names in $alert-colors {
-    @include alert-styles($color, $names);
-}
+@include generate-alert-styles(false);
 
 // Dark theme
 [data-theme="dark"] {
-    @each $color, $names in $alert-colors {
-        @include alert-styles($color, $names, true);
-    }
+    @include generate-alert-styles(true);
 }
 
 // Collapsible alert styles
@@ -103,44 +112,45 @@ $alert-colors: (
     border: none;
     padding: 0;
     background: none;
-    margin: 1.5rem 0;
-}
+    margin: var(--spacing-md) 0;
 
-.alert-summary {
-    margin-bottom: 0 !important;
-    border-radius: 0.25rem !important;
-    cursor: pointer;
-    padding: 1rem;
-    list-style: none;
-    user-select: none;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    transition: none;
-
-    .details-arrow {
-        margin-left: auto;
-        transform: rotate(0deg);
-        transition: transform 0.3s ease;
-    }
-}
-
-.alert-content {
-    margin-top: 0 !important;
-    padding: 0 1rem 1rem 1rem;
-    border-radius: 0 0 0.25rem 0.25rem;
-    margin-top: 0;
-}
-
-// Open state
-.alert-collapsible[data-open="true"] {
     .alert-summary {
-        border-radius: 0.25rem 0.25rem 0 0 !important;
+        margin-bottom: 0 !important;
+        border-radius: map.get($alert-border-radius, sm) !important;
+        cursor: pointer;
+        padding: map.get($alert-spacing, md);
+        list-style: none;
+        user-select: none;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: map.get($alert-spacing, sm);
+        font-weight: 600;
+        transition: none;
 
         .details-arrow {
-            transform: rotate(90deg);
+            margin-left: auto;
+            transform: rotate(0deg);
+            transition: transform var(--animation-med) ease;
+        }
+    }
+
+    .alert-content {
+        margin-top: 0 !important;
+        padding: 0 map.get($alert-spacing, md) map.get($alert-spacing, md);
+        border-radius: 0 0 map.get($alert-border-radius, sm)
+            map.get($alert-border-radius, sm);
+    }
+
+    // Open state
+    &[data-open="true"] {
+        .alert-summary {
+            border-radius: map.get($alert-border-radius, sm)
+                map.get($alert-border-radius, sm) 0 0 !important;
+
+            .details-arrow {
+                transform: rotate(90deg);
+            }
         }
     }
 }

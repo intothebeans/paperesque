@@ -4,8 +4,8 @@
 // /____/\_,_/\_, /\___/\_,_/\__/
 //           /___/
 
-@use 'variables' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "mixins" as *;
 
 // Main content containers
 .content-container {
@@ -13,7 +13,7 @@
 }
 
 .content-container-narrow-pad {
-    @include content-container('narrow');
+    @include content-container("narrow");
 }
 
 // Vertical alignment
@@ -22,7 +22,7 @@
 }
 
 // Desktop-specific layout adjustments
-@include breakpoint('tablet-up') {
+@include breakpoint("tablet-up") {
     .bottom-links {
         @include card-style;
         border-bottom: 0px;
@@ -40,25 +40,25 @@
 
 // Spacing utilities
 .article-pad-v {
-    padding-top: $spacing-md;
-    padding-bottom: $spacing-md;
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
 }
 
 .margin-top-2em {
-    margin-top: $spacing-lg;
+    margin-top: var(--spacing-lg);
 }
 
 .vertical-margins {
-    margin-top: $spacing-md;
-    margin-bottom: $spacing-md;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
 }
 
 .squash-bottom {
-    @include squash('bottom');
+    @include squash("bottom");
 }
 
 .squash-top {
-    @include squash('top');
+    @include squash("top");
 }
 
 // Flexbox utilities
@@ -89,16 +89,16 @@
     }
 
     &.squash-bottom figure {
-        @include squash('bottom');
+        @include squash("bottom");
     }
 
     &.squash-top figure {
-        @include squash('top');
+        @include squash("top");
     }
 }
 
 // Sidebar pull layout for larger screens
-@include breakpoint('desktop-up') {
+@include breakpoint("desktop-up") {
     .sidepull-container {
         position: relative;
 
@@ -106,7 +106,7 @@
             position: absolute;
             position: sticky;
             width: 16em;
-            top: 3em;
+            top: var(--spacing-xl);
             margin-left: -18em; // width + margin
             float: left;
         }
@@ -117,8 +117,15 @@
     }
 }
 
+// Responsive visibility
+@include breakpoint("desktop") {
+    .sidepull-not-when-sidebar-shown {
+        display: none;
+    }
+}
+
 .sidepull-side {
-    margin-bottom: $spacing-xxl;
+    margin-bottom: var(--spacing-xxl);
 }
 
 // Content positioning
@@ -138,7 +145,7 @@
         display: none;
     }
 
-    li[role=doc-endnote] p:last-child {
+    li[role="doc-endnote"] p:last-child {
         margin-bottom: 0;
     }
 }

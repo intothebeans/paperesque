@@ -4,16 +4,11 @@
 // /_/  /_/_//_\_\/_/_//_/___/
 
 @use "variables" as *;
-@use "colors" as *;
+@use "sass:map";
 
 // Card/Panel styling (used throughout for borders + shadows)
 @mixin card-style($border-color: var(--color-border-generic)) {
     border: 1px solid $border-color;
-    box-shadow: 0 5px 5px -5px var(--color-boxshadow);
-}
-
-// Drop shadow only
-@mixin drop-shadow {
     box-shadow: 0 5px 5px -5px var(--color-boxshadow);
 }
 
@@ -26,64 +21,26 @@
     );
 }
 
-// Content container patterns
+// Content container styling
 @mixin content-container($type: "normal") {
     @if $type == "narrow" {
-        padding: $spacing-sm;
+        padding: var(--spacing-xs);
     } @else {
-        padding-left: $spacing-md;
-        padding-right: $spacing-md;
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
     }
 
-    @media (min-width: $bp-tablet) {
-        width: $content-width;
+    @media (min-width: map.get($bp, tablet)) {
+        width: var(--content-width);
         margin: 0 auto;
 
         @if $type == "narrow" {
-            padding-left: $spacing-sm;
-            padding-right: $spacing-sm;
+            padding-left: var(--spacing-xs);
+            padding-right: var(--spacing-xs);
         } @else {
-            padding-left: $content-padding-desktop;
-            padding-right: $content-padding-desktop;
+            padding-left: var(--content-padding-desktop);
+            padding-right: var(--content-padding-desktop);
         }
-    }
-}
-
-// Sheet styling
-@mixin sheet-style {
-    @include card-style;
-    margin-top: $spacing-md;
-    margin-bottom: $spacing-md;
-    min-height: 0px;
-    background-color: var(--color-sheet-bg);
-}
-
-// Default button styling
-@mixin btn-base {
-    border-radius: $border-radius;
-    padding: $spacing-sm $spacing-md;
-    background-color: var(--color-link-text);
-    color: var(--color-desktop-bg);
-    text-decoration: none;
-    display: inline-block;
-    transition: all $animation-duration;
-    font-weight: bold;
-    cursor: pointer;
-
-    &:hover {
-        background-color: var(--color-link-hover);
-        text-decoration: none;
-        @include drop-shadow;
-        transform: scale(1.05);
-    }
-
-    &:active {
-        transform: scale(0.95);
-        background-color: color-mix(
-            in srgb,
-            var(--color-link-text),
-            var(--color-desktop-bg) 20%
-        );
     }
 }
 
@@ -102,40 +59,40 @@
 @mixin breakpoint($size) {
     // Mobile-first (min-width) breakpoints - for progressive enhancement
     @if $size == "mobile-up" {
-        @media (min-width: $bp-mobile) {
+        @media (min-width: map.get($bp, mobile)) {
             @content;
         }
     } @else if $size == "tablet-up" {
-        @media (min-width: $bp-tablet) {
+        @media (min-width: map.get($bp, tablet)) {
             @content;
         }
     } @else if $size == "desktop-up" {
-        @media (min-width: $bp-desktop) {
+        @media (min-width: map.get($bp, desktop)) {
             @content;
         }
     }
 
     // Desktop-first (max-width) breakpoints - for graceful degradation
     @else if $size == "mobile-only" {
-        @media (max-width: #{$bp-mobile - 1px}) {
+        @media (max-width: #{map.get($bp, mobile) - 1px}) {
             @content;
         }
     } @else if $size == "tablet-only" {
-        @media (min-width: $bp-mobile) and (max-width: #{$bp-tablet - 1px}) {
+        @media (min-width: map.get($bp, mobile)) and (max-width: #{map.get($bp, tablet) - 1px}) {
             @content;
         }
     } @else if $size == "tablet-down" {
-        @media (max-width: #{$bp-tablet - 1px}) {
+        @media (max-width: #{map.get($bp, tablet) - 1px}) {
             @content;
         }
     } @else if $size == "desktop-down" {
-        @media (max-width: #{$bp-desktop - 1px}) {
+        @media (max-width: #{map.get($bp, desktop) - 1px}) {
             @content;
         }
     }
 }
 
-// Draft styling pattern
+// Draft styling
 @mixin draft-stripes($bg-color) {
     background: repeating-linear-gradient(
         135deg,
@@ -144,4 +101,46 @@
         var(--color-draft-bg-stripe) 12px,
         var(--color-draft-bg-stripe) 12px
     );
+}
+
+@mixin sheet-style {
+    @include card-style;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    min-height: 0px;
+    background-color: var(--color-sheet-bg);
+}
+
+// Drop shadow only
+@mixin drop-shadow {
+    box-shadow: 0 5px 5px -5px var(--color-boxshadow);
+}
+
+// Default button styling
+@mixin btn-base {
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--color-link-text);
+    color: var(--color-desktop-bg);
+    text-decoration: none;
+    display: inline-block;
+    transition: all var(--animation-short);
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--color-link-hover);
+        text-decoration: none;
+        @include drop-shadow;
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+        background-color: color-mix(
+            in srgb,
+            var(--color-link-text),
+            var(--color-desktop-bg) 20%
+        );
+    }
 }

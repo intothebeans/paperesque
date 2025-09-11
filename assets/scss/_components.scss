@@ -5,8 +5,8 @@
 //                           /_/
 
 @use "variables" as *;
-@use "colors" as *;
 @use "mixins" as *;
+@use "sass:map";
 
 @use "components/alerts";
 @use "components/lists";
@@ -15,7 +15,7 @@
 
 // Figures and media
 figure {
-    margin: $spacing-lg auto;
+    margin: var(--spacing-lg) auto;
     display: table;
     text-align: center;
 
@@ -39,10 +39,10 @@ figure {
     }
 
     figcaption {
-        margin-top: 0.75em;
+        margin-top: var(--spacing-sm);
         font-style: italic;
         text-align: center;
-        font-size: $font-size-xs;
+        font-size: map.get($font-size, xs);
         color: var(--color-caption-text);
 
         :last-child {
@@ -67,7 +67,7 @@ a.timestamp {
         var(--color-timestamp-bkg-secondary) 100%
     );
     color: var(--color-timestamp-text);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     padding: 2px;
     font-family:
         SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
@@ -76,7 +76,7 @@ a.timestamp {
 
 // Ensure content doesn't get occluded by scroll button
 footer {
-    @media (max-width: $bp-mobile) {
+    @media (max-width: map.get($bp, mobile)) {
         padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
     }
 
@@ -87,11 +87,11 @@ footer {
 
 // Footnotes
 .footnotes {
-    margin-top: $spacing-xxl;
+    margin-top: var(--spacing-xxl);
     font-size: 85%;
 
     hr {
-        margin-bottom: $spacing-md;
+        margin-bottom: var(--spacing-sm);
     }
 
     li {
@@ -102,7 +102,7 @@ footer {
 // Twitter widgets
 twitter-widget {
     // Important needed because twitter oembed puts styles in style attribute
-    margin: $spacing-lg auto !important;
+    margin: var(--spacing-lg) auto !important;
 }
 
 blockquote.twitter-tweet {
@@ -152,15 +152,4 @@ h4 {
     &:not(:hover) .header-link {
         display: none;
     }
-}
-
-// Fancy hr
-hr {
-    -webkit-mask: $hr center / contain no-repeat;
-    mask: $hr center / contain no-repeat;
-    background-color: var(--color-text);
-    border: none;
-    height: 30px;
-    width: 50%;
-    margin: 0.5rem auto;
 }

@@ -5,15 +5,15 @@
 //                  /___/
 
 @use "variables" as *;
-@use "colors" as *;
 @use "mixins" as *;
 @use "animations" as *;
+@use "sass:map";
+
 // Navigation-specific variables
 $nav-link-padding: 0 0.5rem;
 $nav-button-padding: 2px 4px;
 
 // Navigation mixins
-
 @mixin nav-button-background($opacity: 60%) {
     background-color: color-mix(
         in srgb,
@@ -49,16 +49,16 @@ nav {
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    gap: $spacing-xs;
+    gap: var(--spacing-xxs);
     flex: 1;
 
     a {
-        font-size: clamp($font-size-lg, 4vw, 1.7rem);
+        font-size: clamp(map.get($font-size, lg), 4vw, 1.7rem);
         display: inline-flex;
         font-weight: bold;
         color: var(--color-nav-text);
         font-family: "Journal", Georgia, "Times New Roman", Times, serif;
-        transition: all $animation-duration ease;
+        transition: all var(--animation-med) ease;
 
         &:hover {
             text-shadow: 0 6px 4px
@@ -70,7 +70,7 @@ nav {
 
     .divider {
         display: inline-flex;
-        margin: 0 $spacing-xs;
+        margin: 0 var(--spacing-xxs);
     }
 
     .footer-nav-link {
@@ -81,9 +81,9 @@ nav {
 
 #previous-article-link {
     text-align: left;
-    margin-left: $spacing-sm;
+    margin-left: var(--spacing-xs);
     iconify-icon {
-        margin-right: $spacing-xs;
+        margin-right: var(--spacing-xxs);
     }
     &:hover iconify-icon {
         text-shadow: none;
@@ -93,9 +93,9 @@ nav {
 
 #next-article-link {
     text-align: right;
-    margin-right: $spacing-sm;
+    margin-right: var(--spacing-xxs);
     iconify-icon {
-        margin-left: $spacing-xs;
+        margin-left: var(--spacing-xxs);
     }
     &:hover iconify-icon {
         text-shadow: none;
@@ -104,9 +104,9 @@ nav {
 }
 
 #nav-icon {
-    margin-right: $spacing-xs;
+    margin-right: var(--spacing-xxs);
     display: inline-flex;
-    font-size: clamp($font-size-lg, 4vw, 1.7rem);
+    font-size: clamp(map.get($font-size, lg), 4vw, 1.7rem);
 
     svg {
         height: 24px;
@@ -124,7 +124,7 @@ nav {
     position: relative;
     display: inline-flex;
     .nav-link-underline {
-        transition: all 0.3s ease;
+        transition: all var(--animation-med) ease;
         position: absolute;
         bottom: -8px;
         left: 50%;
@@ -158,7 +158,7 @@ nav {
 
 // Page-wide bar styling
 .pagewide-bar-padding {
-    padding: $spacing-sm $spacing-md;
+    padding: var(--spacing-xs) var(--spacing-sm);
 }
 
 // Right-side dropdown menu
@@ -174,7 +174,7 @@ details.right-links {
         list-style: none;
         @include nav-button-background(60%);
         border-radius: 0.25em;
-        transition: all $animation-duration ease;
+        transition: all var(--animation-med) ease;
         color: var(--color-nav-text);
         border: 1px solid var(--color-nav-text);
         font-weight: bold;
@@ -184,10 +184,10 @@ details.right-links {
         iconify-icon {
             display: flex;
             margin-right: 0;
-            font-size: 1.5em;
+            font-size: map.get($font-size, lg);
             height: 24px;
             width: 20px;
-            transition: transform $animation-duration ease;
+            transition: transform var(--animation-med) ease;
         }
 
         &:hover {
@@ -210,7 +210,7 @@ details.right-links {
     }
 
     summary iconify-icon {
-        transition: transform $animation-duration cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform var(--animation-med) cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     [open] & summary::after {
@@ -219,8 +219,8 @@ details.right-links {
 
     ul {
         background: var(--color-header-brand-secondary-ddopacity);
-        margin-top: $spacing-sm;
-        padding: $spacing-sm $spacing-md;
+        margin-top: var(--spacing-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
         width: 100vw;
         position: absolute;
         right: 0;
@@ -239,9 +239,9 @@ details.right-links {
 
         a {
             display: block;
-            padding: $spacing-sm 12px;
+            padding: var(--spacing-xs) 12px;
             border-radius: 0.25rem;
-            transition: all $animation-duration ease;
+            transition: all var(--animation-med) ease;
 
             &:hover,
             &:focus,
@@ -255,7 +255,7 @@ details.right-links {
 
 ul.right-links {
     display: flex;
-    margin: 0 $spacing-lg 0 auto;
+    margin: 0 var(--spacing-lg) 0 auto;
 
     li {
         display: inline-block;
@@ -272,11 +272,11 @@ ul.right-links {
     display: inline-flex;
     align-self: center;
     margin-bottom: 0;
-    transition: all $animation-duration ease;
+    transition: all var(--animation-med) ease;
     &:hover {
         transform: scale(1.05);
         svg {
-            transition: fill $animation-duration ease-out;
+            transition: fill var(--animation-med) ease-out;
             fill: var(--color-theme-toggle-hover);
         }
     }
@@ -305,7 +305,7 @@ ul.right-links {
 
     details.right-links {
         order: 999;
-        margin-left: $spacing-md;
+        margin-left: var(--spacing-sm);
         display: flex;
     }
 
@@ -314,7 +314,7 @@ ul.right-links {
     }
 
     .theme-toggle {
-        font-size: 1.25em;
+        font-size: map.get($font-size, md);
         order: 998;
         margin-left: auto;
     }

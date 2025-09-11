@@ -5,8 +5,8 @@
 //     /___/_/        /___/        /_/        /___/
 
 @use "variables" as *;
-@use "colors" as *;
 @use "mixins" as *;
+@use "sass:map";
 
 @font-face {
     font-family: "Linux Libertine";
@@ -29,6 +29,18 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "JetBrainsMono NF";
+    src:
+        local("JetBrainsMono NF Regular"),
+        local("JetBrainsMonoNF-Regular"),
+        url("/fonts/jetbrainsmono.woff2") format("woff2"),
+        url("/fonts/jetbrainsmono.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 h1,
 h2,
 h3,
@@ -40,15 +52,15 @@ h6 {
 
 h1#title {
     // Reset UA stylesheets that put h1 to 1.5em when in an article
-    font-size: 2em;
+    font-size: map.get($font-size, xl);
 }
 
 // Article headings spacing
 .article-body {
     h2,
     h3 {
-        margin-top: $spacing-lg;
-        margin-bottom: $spacing-sm;
+        margin-top: var(--spacing-lg);
+        margin-bottom: var(--spacing-xs);
     }
 }
 
@@ -58,5 +70,5 @@ h3:first-child,
 h4:first-child,
 h5:first-child,
 h6:first-child {
-    margin-top: $spacing-sm;
+    margin-top: var(--spacing-xs);
 }
