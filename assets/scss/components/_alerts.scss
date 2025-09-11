@@ -59,16 +59,20 @@ $alert-colors: (
 
 // Alert style mixin
 @mixin alert-style($color, $is-dark: false) {
-    $border-color: var(--bright-#{$color});
+    $border-color: #{if(
+            $is-dark,
+            var(--bright-#{$color}),
+            var(--faded-#{$color})
+        )};
     $bg-color: #{if(
             $is-dark,
             color-mix(in srgb, var(--dark0-hard) 60%, var(--bright-#{$color})),
-            var(--faded-#{$color})
+            color-mix(in srgb, var(--light0-hard) 50%, var(--bright-#{$color}))
         )};
 
-    border-left: 4px solid var($border-color);
-    background-color: var($bg-color);
-    color: var(--light0-hard);
+    border-left: 4px solid $border-color;
+    background-color: $bg-color;
+    color: var(--color-text);
 }
 
 // Generate alert styles
