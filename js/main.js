@@ -6,7 +6,9 @@ import { drawMusic, musicWithPlayback } from "./music.js";
 import { initCollapsibleAlerts } from "./blockquoteAlertsAnimations.js";
 import { initScrollButtons } from "./scrollButton.js";
 import { initRightLinksAnimation } from "./rightLinksAnimation.js";
+import "./copyCodeButton.js";
 import "iconify-icon";
+import initCopyCodeButtons from "./copyCodeButton.js";
 
 // Make functions globally available
 window.drawMusic = drawMusic;
@@ -114,4 +116,5 @@ docReady(() => {
     initScrollButtons();
     initRightLinksAnimation();
     initSetStickyNavOnMobile();
+    initCopyCodeButtons();
 });

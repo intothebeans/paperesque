@@ -54474,6 +54474,76 @@ function $8bf5e9573dc7c85b$export$13076a8aacccaaa3() {
 }
 
 
+// This code was lifted and adapted from Michael Rosen's Minimal Mistakes theme
+function $9b71a01d8d2f9ef6$var$copyTextDefault(text) {
+    if (!navigator.clipboard) {
+        console.warn("Clipboard API not supported");
+        throw new Error("Clipboard API not supported");
+    }
+    navigator.clipboard.writeText(text).then(()=>true, ()=>console.error("Failed to copy text" + text));
+}
+function $9b71a01d8d2f9ef6$var$copyTextHacky(text) {
+    const isRTL = document.documentElement.getAttribute("dir") === "rtl";
+    var textArea = document.createElement("textarea");
+    textArea.className = "cliboard-hacky";
+    textArea.style[isRTL ? "right" : "left"] = "-100%";
+    const yScroll = window.pageYOffset || document.documentElement.scrollTop;
+    textArea.style.top = yScroll + "px";
+    textArea.setAttribute("readonly", "");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    try {
+        textArea.select();
+        textArea.setSelectionRange(0, text.length);
+        document.execCommand("copy");
+    } catch (err) {
+        console.error("Failed to copy text" + text, err);
+        throw err;
+    }
+    document.body.removeChild(textArea);
+}
+function $9b71a01d8d2f9ef6$var$swapIcon(parentNode) {
+    var copyIcon = parentNode.querySelector(".copy-code-icon");
+    var checkIcon = parentNode.querySelector(".copy-code-success");
+    copyIcon.style.opacity = 0;
+    copyIcon.style.scale = 0.2;
+    checkIcon.style.opacity = 1;
+    setTimeout(()=>{
+        copyIcon.style.opacity = 1;
+        copyIcon.style.scale = 1;
+        checkIcon.style.opacity = 0;
+    }, 1500);
+}
+function $9b71a01d8d2f9ef6$var$initCopyCodeButtons() {
+    var buttons = document.querySelectorAll(".copy-code-button");
+    buttons.forEach((button)=>{
+        button.addEventListener("click", ()=>{
+            var textJSON = button.parentNode.getElementsByClassName("meta-code-text")[0].getAttribute("content");
+            var text;
+            try {
+                text = JSON.parse(textJSON);
+            } catch (e) {
+                console.warn("Parsing JSON failed, using raw text", e);
+                text = textJSON;
+            }
+            try {
+                $9b71a01d8d2f9ef6$var$copyTextDefault(text);
+                $9b71a01d8d2f9ef6$var$swapIcon(button);
+            } catch (err) {
+                console.warn("Falling back to hacky copy method" + err);
+                try {
+                    $9b71a01d8d2f9ef6$var$copyTextHacky(text);
+                    $9b71a01d8d2f9ef6$var$swapIcon(button);
+                } catch (err) {
+                    console.error("Both copy methods failed" + err);
+                }
+            }
+        });
+    });
+}
+var $9b71a01d8d2f9ef6$export$2e2bcd8739ae039 = $9b71a01d8d2f9ef6$var$initCopyCodeButtons;
+
+
 /**
 * (c) Iconify
 *
@@ -56414,6 +56484,7 @@ function $e17e491bfc439aa2$var$initSetStickyNavOnMobile() {
     (0, $525e892283047b90$export$353567b7e7ed9d0d)();
     (0, $8bf5e9573dc7c85b$export$13076a8aacccaaa3)();
     $e17e491bfc439aa2$var$initSetStickyNavOnMobile();
+    (0, $9b71a01d8d2f9ef6$export$2e2bcd8739ae039)();
 });
 
 })();
