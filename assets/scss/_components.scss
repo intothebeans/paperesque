@@ -167,10 +167,14 @@ h4 {
     width: 100%;
     height: 8px;
     background: var(--gray);
+    @include drop-shadow;
+    @include breakpoint("mobile-only") {
+        height: 6px;
+    }
 }
 
 .progress-bar {
-    height: 8px;
+    height: 100%;
     width: 0%;
     background: linear-gradient(
         90deg,

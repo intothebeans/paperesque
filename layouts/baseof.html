@@ -38,49 +38,53 @@
     <body
         class="{{ block "body-classes" . }}{{ end }}"
         lang="{{ .Site.LanguageCode }}">
-        <div class="navbar nav-bkg drop-shadow">
-            <nav class="pagewide-bar-padding">
-                <a
-                    href="{{ .Site.Home.RelPermalink }}"
-                    id="nav-icon"
-                    label="Home">
-                    <iconify-icon
-                        icon="{{ .Site.Params.nav_icon | default "bxs-home" }}"
-                        inline></iconify-icon>
-                </a>
-                <div class="nav-menu-item">
-                    <a href="{{ .Site.Home.RelPermalink }}">
-                        {{ .Site.Title }}
+        <div class="top-of-page" id="top-of-page">
+            <div class="navbar nav-bkg drop-shadow">
+                <nav class="pagewide-bar-padding">
+                    <a
+                        href="{{ .Site.Home.RelPermalink }}"
+                        id="nav-icon"
+                        label="Home">
+                        <iconify-icon
+                            icon="{{ .Site.Params.nav_icon | default "bxs-home" }}"
+                            inline></iconify-icon>
                     </a>
-                    <span class="nav-link-underline"></span>
-                </div>
-                {{ block "breadcrumbs" . }}
-                    {{- with .Parent -}}
-                        {{- if not .IsHome -}}
-                            <span class="divider">/ </span>
+                    <div class="nav-menu-item">
+                        <a href="{{ .Site.Home.RelPermalink }}">
+                            {{ .Site.Title }}
+                        </a>
+                        <span class="nav-link-underline"></span>
+                    </div>
+                    {{ block "breadcrumbs" . }}
+                        {{- with .Parent -}}
+                            {{- if not .IsHome -}}
+                                <span class="divider">/ </span>
 
-                            <a href="{{ .RelPermalink }}" class="breadcrumb">
-                                {{- with .Params.breadcrumb_label -}}
-                                    {{- . -}}
-                                {{- else -}}
-                                    {{- .Title -}}
-                                {{- end -}}
-                            </a>
+                                <a
+                                    href="{{ .RelPermalink }}"
+                                    class="breadcrumb">
+                                    {{- with .Params.breadcrumb_label -}}
+                                        {{- . -}}
+                                    {{- else -}}
+                                        {{- .Title -}}
+                                    {{- end -}}
+                                </a>
+                            {{- end -}}
                         {{- end -}}
-                    {{- end -}}
-                {{ end }}
-                {{ partial "right-links" . }}
-                {{ partial "theme-toggle-button" . }}
-            </nav>
-        </div>
-        {{ $progressBar := .Page.Params.progressBar | default true -}}
-        {{ if and $progressBar (not .Site.Params.disableProgressBars) }}
-            <div id="progress-header">
-                <div id="progress-container">
-                    <div class="progress-bar" id="scroll-progress"></div>
-                </div>
+                    {{ end }}
+                    {{ partial "right-links" . }}
+                    {{ partial "theme-toggle-button" . }}
+                </nav>
             </div>
-        {{ end }}
+            {{ $progressBar := .Page.Params.progressBar | default true -}}
+            {{ if and $progressBar (not .Site.Params.disableProgressBars) }}
+                <div id="progress-header">
+                    <div id="progress-container">
+                        <div class="progress-bar" id="scroll-progress"></div>
+                    </div>
+                </div>
+            {{ end }}
+        </div>
         {{ block "content" . }}{{ end }}
         <iconify-icon
             icon="bxs-to-top"
