@@ -56477,6 +56477,18 @@ function $e17e491bfc439aa2$var$initSetStickyNavOnMobile() {
         else document.getElementsByTagName("body")[0].classList.remove("sticky-nav");
     });
 }
+function $e17e491bfc439aa2$var$initScrollProgressBar() {
+    document.addEventListener("scroll", ()=>{
+        var progressHeader = document.getElementById("progress-header");
+        if (!progressHeader) return;
+        var scroll = document.body.scrollTop || document.documentElement.scrollTop;
+        if (scroll > 60) progressHeader.style.opacity = "1";
+        else progressHeader.style.opacity = "0";
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = scroll / height * 100;
+        document.getElementById("scroll-progress").style.width = scrolled + "%";
+    });
+}
 (0, $4e81c08971ef2b6d$export$4b1c754fc92202eb)(()=>{
     (0, $6951829771ceb5d6$export$d158f80c13a7cde5)();
     $e17e491bfc439aa2$var$initDarkmodeLightmodeToggle();
@@ -56485,6 +56497,7 @@ function $e17e491bfc439aa2$var$initSetStickyNavOnMobile() {
     (0, $8bf5e9573dc7c85b$export$13076a8aacccaaa3)();
     $e17e491bfc439aa2$var$initSetStickyNavOnMobile();
     (0, $9b71a01d8d2f9ef6$export$2e2bcd8739ae039)();
+    $e17e491bfc439aa2$var$initScrollProgressBar();
 });
 
 })();

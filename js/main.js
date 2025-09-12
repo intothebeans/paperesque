@@ -109,6 +109,27 @@ function initSetStickyNavOnMobile() {
     });
 }
 
+function initScrollProgressBar() {
+    document.addEventListener("scroll", () => {
+        var progressHeader = document.getElementById("progress-header");
+        if (!progressHeader) {
+            return;
+        }
+        var scroll =
+            document.body.scrollTop || document.documentElement.scrollTop;
+        if (scroll > 60) {
+            progressHeader.style.opacity = "1";
+        } else {
+            progressHeader.style.opacity = "0";
+        }
+        let height =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+        let scrolled = (scroll / height) * 100;
+        document.getElementById("scroll-progress").style.width = scrolled + "%";
+    });
+}
+
 docReady(() => {
     initCollapsibleAlerts();
     initDarkmodeLightmodeToggle();
@@ -117,4 +138,5 @@ docReady(() => {
     initRightLinksAnimation();
     initSetStickyNavOnMobile();
     initCopyCodeButtons();
+    initScrollProgressBar();
 });

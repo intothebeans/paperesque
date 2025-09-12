@@ -73,6 +73,14 @@
                 {{ partial "theme-toggle-button" . }}
             </nav>
         </div>
+        {{ $progressBar := .Page.Params.progressBar | default true -}}
+        {{ if and $progressBar (not .Site.Params.disableProgressBars) }}
+            <div id="progress-header">
+                <div id="progress-container">
+                    <div class="progress-bar" id="scroll-progress"></div>
+                </div>
+            </div>
+        {{ end }}
         {{ block "content" . }}{{ end }}
         <iconify-icon
             icon="bxs-to-top"
