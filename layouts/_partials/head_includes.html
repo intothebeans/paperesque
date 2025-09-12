@@ -5,8 +5,7 @@
 }}
 {{ $scss := resources.Get "scss/main.scss" | toCSS $opts }}
 {{ $reboot := resources.Get "css/reboot.css" }}
-{{ $syntax := resources.Get "css/syntax.css" }}
-{{ $styles := slice $reboot $syntax $scss | resources.Concat "css/styles.css" | minify | fingerprint }}
+{{ $styles := slice $reboot $scss | resources.Concat "css/styles.css" | minify | fingerprint }}
 
 {{ $abcjs := resources.Get "css/abcjs-audio.css" | minify | fingerprint }}
 <link
