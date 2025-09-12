@@ -8,7 +8,7 @@
     {{ range $k, $v := .Attributes }}
         {{ printf " %s=%q" $k $v | safeHTMLAttr }}
     {{ end }}>
-    {{ if or (eq (index .Attributes "code-button") "true") $enableCopy }}
+    {{ if or (eq (index .Attributes "copy-button") "true") $enableCopy }}
         <button
             data-codebutton
             class="copy-code-button"
