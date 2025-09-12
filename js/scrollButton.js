@@ -55,13 +55,15 @@ function showScrollButton() {
     const shouldShow =
         currentScroll > 20 && (scrollDirection === "up" || atBottom);
 
-    if (window.innerHeight > 885 && shouldShow) {
+    buttonMobile.tabIndex = window.innerWidth <= 885 ? 0 : -1;
+    if (window.innerWidth > 885 && shouldShow) {
+        button.tabIndex = 0;
         button.style.opacity = "1";
         button.style.pointerEvents = "auto";
     } else {
         button.style.opacity = "0";
         button.style.pointerEvents = "none";
-        button.style.display = "none";
+        button.tabIndex = 0;
     }
 }
 

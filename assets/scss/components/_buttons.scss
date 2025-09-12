@@ -35,10 +35,9 @@ a.no-underline:hover {
     display: flex;
     justify-content: center;
     opacity: 0;
-    display: none;
+    transition: opacity var(--animation-med) ease;
     @media (max-width: 884px) {
         opacity: 1 !important;
-        display: block;
     }
 }
 
