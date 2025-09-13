@@ -11,6 +11,7 @@ in
       dart-sass
       eslint
       hugo
+      just
       nodejs
       stylelint
       uv

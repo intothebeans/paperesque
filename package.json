@@ -48,13 +48,5 @@
             "distDir": "./assets/js"
         }
     },
-    "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447",
-    "scripts": {
-        "copy-iconify": "yarn cpx 'node_modules/iconify-icon/dist/iconify-icon.min.js' 'assets/js/'",
-        "copy-abcjs": "yarn cpx 'node_modules/abcjs/dist/abcjs-basic-min.js' 'assets/js/' && yarn cpx 'node_modules/abcjs/abcjs-audio.css' 'assets/css/'",
-        "parcel-build": "yarn parcel build --no-source-maps",
-        "build": "yarn copy-abcjs && yarn copy-iconify && yarn parcel-build",
-        "watch": "yarn parcel watch",
-        "deploy": "surge ~/test-site"
-    }
+    "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }
