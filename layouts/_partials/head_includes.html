@@ -1,19 +1,27 @@
+{{/* SCSS */}}
 {{ $opts := dict
     "enableSourceMap" hugo.IsDevelopment
     "outputStyle" (cond hugo.IsDevelopment "expanded" "compressed")
     "transpiler" "dartsass"
 }}
 {{ $scss := resources.Get "scss/main.scss" | toCSS $opts }}
+
+{{/* CSS */}}
 {{ $reboot := resources.Get "css/reboot.css" }}
-{{ $styles := slice $reboot $scss | resources.Concat "css/styles.css" | minify | fingerprint }}
+{{ $abcCSS := resources.Get "css/abcjs-audio.css" }}
+{{ $styles := slice $reboot $abcCSS $scss | resources.Concat "css/styles.css" | minify | fingerprint }}
 
-{{ $abcjs := resources.Get "css/abcjs-audio.css" | minify | fingerprint }}
-<link
-    rel="stylesheet"
-    href="{{ $abcjs.RelPermalink }}"
-    integrity="{{ $abcjs.Data.Integrity }}"
-    crossorigin="anonymous" />
+{{/* JS */}}
+{{ $animations := resources.Get "js/animations.js" | fingerprint }}
+{{ $main := resources.Get "js/main.js" | fingerprint }}
+{{ $music := resources.Get "js/music.js" | fingerprint }}
+{{ $components := resources.Get "js/ui-components.js" | fingerprint }}
 
+{{/* Libraries */}}
+{{ $abcjs := resources.Get "js/abcjs-basic-min.js" | fingerprint }}
+{{ $iconify := resources.Get "js/iconify-icon.min.js" | fingerprint }}
+
+{{/* Load styles first */}}
 <link
     rel="stylesheet"
     href="{{ $styles.RelPermalink }}"
@@ -27,5 +35,11 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/within.min.css" />
 
-{{- $js := resources.Get "js/main.js" | minify | fingerprint }}
-<script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+{{/* Order matters here */}}
+{{ range slice $main $components $iconify $animations $abcjs $music }}
+    <script
+        type="text/javascript"
+        src="{{ .RelPermalink }}"
+        integrity="{{ .Data.Integrity }}"
+        crossorigin="anonymous"></script>
+{{ end }}

@@ -1,5 +1,3 @@
-import ABCJS from "abcjs";
-
 const defaultAbcOpts = {
     responsive: "resize",
     add_classes: true,
@@ -76,14 +74,15 @@ function musicWithPlayback(musicID, musicString, abcOpts = null) {
         var lastClicked = abcElem.midiPitches;
         if (!lastClicked) return;
 
+        var seekPosition;
         if (typeof abcElem.currentTrackMilliseconds === "object")
-            var seekPosition = abcElem.currentTrackMilliseconds[0] / 1000;
-        else var seekPosition = abcElem.currentTrackMilliseconds / 1000;
+            seekPosition = abcElem.currentTrackMilliseconds[0] / 1000;
+        else seekPosition = abcElem.currentTrackMilliseconds / 1000;
 
         synthControl.seek(seekPosition, "seconds");
 
         // If not playing, just play the individual note
-        ABCJS.synth
+        window.ABCJS.synth
             .playEvent(
                 lastClicked,
                 abcElem.midiGraceNotePitches,
@@ -102,8 +101,8 @@ function musicWithPlayback(musicID, musicString, abcOpts = null) {
         clickListener: onClick,
     };
 
-    if (ABCJS.synth.supportsAudio()) {
-        synthControl = new ABCJS.synth.SynthController();
+    if (window.ABCJS.synth.supportsAudio()) {
+        synthControl = new window.ABCJS.synth.SynthController();
         synthControl.load("#audio", cursorControl, {
             displayLoop: true,
             displayRestart: true,
@@ -117,7 +116,7 @@ function musicWithPlayback(musicID, musicString, abcOpts = null) {
     }
 
     synthControl.disable(true);
-    var visualObj = ABCJS.renderAbc(musicID, musicString, abcOptions)[0];
+    var visualObj = window.ABCJS.renderAbc(musicID, musicString, abcOptions)[0];
     window.addEventListener("scroll", function () {
         if (!audioContext) audioContext = new AudioContext();
         if (loaded) return;
@@ -142,14 +141,14 @@ function initAudio(
     synthControl,
     visualObj,
 ) {
-    var midi = ABCJS.synth.getMidiFile(musicString, {
+    var midi = window.ABCJS.synth.getMidiFile(musicString, {
         downloadLabel: "Download MIDI",
     });
     var midiButton = document.querySelector(".midi");
     if (midiButton) {
         midiButton.innerHTML = midi;
     }
-    var midiBuffer = new ABCJS.synth.CreateSynth();
+    var midiBuffer = new window.ABCJS.synth.CreateSynth();
     if (!context) {
         console.error("AudioContext not initialized");
     }
@@ -188,7 +187,8 @@ function initAudio(
 function drawMusic(musicID, musicString, abcOpts = null) {
     // Merge provided options with defaults
     const mergedAbcOpts = { ...defaultAbcOpts, ...(abcOpts || {}) };
-    return ABCJS.renderAbc(musicID, musicString, mergedAbcOpts)[0];
+    return window.ABCJS.renderAbc(musicID, musicString, mergedAbcOpts)[0];
 }
 
-export { drawMusic, musicWithPlayback };
+window.drawMusic = drawMusic;
+window.musicWithPlayback = musicWithPlayback;

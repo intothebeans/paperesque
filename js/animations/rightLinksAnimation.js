@@ -1,7 +1,12 @@
 const ANIMATION_DURATION = 300; // milliseconds
 const EASING = "cubic-bezier(0.4, 0.0, 0.2, 1)";
 
+let isAnimating = false;
+
 function animateMenuOpen(details, menu) {
+    if (isAnimating) return;
+    isAnimating = true;
+
     details.style.overflow = "visible";
     details.open = true;
 
@@ -38,12 +43,25 @@ function animateMenuOpen(details, menu) {
             menuItems.forEach((item) => {
                 item.style.transition = "";
             });
+            isAnimating = false;
         },
         ANIMATION_DURATION + menuItems.length * 50,
+    );
+
+    // Close dropdown on scroll
+    document.addEventListener(
+        "scroll",
+        () => {
+            animateMenuClose(details, menu);
+        },
+        { once: true },
     );
 }
 
 function animateMenuClose(details, menu) {
+    if (isAnimating) return;
+    isAnimating = true;
+
     const menuItems = menu.querySelectorAll("li");
 
     menuItems.forEach((item, index) => {
@@ -69,13 +87,15 @@ function animateMenuClose(details, menu) {
             item.style.transform = "";
             item.style.transition = "";
         });
+
+        isAnimating = false;
     }, 200);
 }
 
-export function initRightLinksAnimation() {
+function initRightLinksAnimation() {
     const details = document.getElementById("right-links-details");
     if (!details) {
-        console.log("No details element found!");
+        console.error("No details element found!");
         return;
     }
 
@@ -83,7 +103,7 @@ export function initRightLinksAnimation() {
     const menu = details.querySelector("ul");
 
     if (!summary || !menu) {
-        console.log("Missing summary or menu!");
+        console.error("Missing summary or menu!");
         return;
     }
     const menuItems = menu.querySelectorAll("li");
@@ -94,19 +114,6 @@ export function initRightLinksAnimation() {
             item.style.transform = "translateX(10px)";
         });
     }
-
-    // close dropdown on scroll
-    details.addEventListener("toggle", () => {
-        if (details.open) {
-            document.addEventListener(
-                "scroll",
-                () => {
-                    animateMenuClose(details, menu);
-                },
-                { once: true },
-            );
-        }
-    });
 
     summary.addEventListener("click", function (e) {
         e.preventDefault();
@@ -129,3 +136,5 @@ export function initRightLinksAnimation() {
         }
     });
 }
+
+export default initRightLinksAnimation;

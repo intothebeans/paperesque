@@ -1,18 +1,6 @@
-import anchorizeHeadings from "./anchorizeHeadings.js";
-import enableFloatingFootnotes from "./floatingFootnotes.js";
+import anchorizeHeadings from "./components/anchorizeHeadings.js";
+import enableFloatingFootnotes from "./components/floatingFootnotes.js";
 import { docReady } from "./utils.js";
-import ColorModeTransition from "./colorModeTransition.js";
-import { drawMusic, musicWithPlayback } from "./music.js";
-import { initCollapsibleAlerts } from "./blockquoteAlertsAnimations.js";
-import { initScrollButtons } from "./scrollButton.js";
-import { initRightLinksAnimation } from "./rightLinksAnimation.js";
-import "./copyCodeButton.js";
-import "iconify-icon";
-import initCopyCodeButtons from "./copyCodeButton.js";
-
-// Make functions globally available
-window.drawMusic = drawMusic;
-window.musicWithPlayback = musicWithPlayback;
 
 enableFloatingFootnotes();
 anchorizeHeadings();
@@ -67,76 +55,6 @@ function initChangeThemeColorWithNav() {
     });
 }
 
-function initDarkmodeLightmodeToggle() {
-    // Light/Dark mode slider toggle logic
-    const themeTransitions = new ColorModeTransition({
-        duration: 700,
-        easing: "ease",
-        respectReducedMotion: true,
-    });
-    const toggle = document.getElementById("theme-toggle");
-    const label = document.getElementById("theme-toggle-label");
-    label.addEventListener("keydown", (e) => {
-        if (e.key === " " || e.key === "Enter") {
-            e.preventDefault();
-            toggle.click();
-        }
-    });
-
-    const currentTheme = themeTransitions.initTheme();
-    toggle.checked = currentTheme === "dark";
-
-    toggle.addEventListener("change", function () {
-        const newTheme = toggle.checked ? "dark" : "light";
-        themeTransitions.changeTheme(newTheme);
-    });
-}
-
-function initSetStickyNavOnMobile() {
-    if (location.pathname === "/") {
-        return; // already set
-    }
-    document.addEventListener("scroll", () => {
-        if (window.innerWidth < 720) {
-            document
-                .getElementsByTagName("body")[0]
-                .classList.add("sticky-nav");
-        } else {
-            document
-                .getElementsByTagName("body")[0]
-                .classList.remove("sticky-nav");
-        }
-    });
-}
-
-function initScrollProgressBar() {
-    document.addEventListener("scroll", () => {
-        var progressHeader = document.getElementById("progress-header");
-        if (!progressHeader) {
-            return;
-        }
-        var scroll =
-            document.body.scrollTop || document.documentElement.scrollTop;
-        if (scroll > 60) {
-            progressHeader.style.opacity = "1";
-        } else {
-            progressHeader.style.opacity = "0";
-        }
-        let height =
-            document.documentElement.scrollHeight -
-            document.documentElement.clientHeight;
-        let scrolled = (scroll / height) * 100;
-        document.getElementById("scroll-progress").style.width = scrolled + "%";
-    });
-}
-
 docReady(() => {
-    initCollapsibleAlerts();
-    initDarkmodeLightmodeToggle();
     initChangeThemeColorWithNav();
-    initScrollButtons();
-    initRightLinksAnimation();
-    initSetStickyNavOnMobile();
-    initCopyCodeButtons();
-    initScrollProgressBar();
 });

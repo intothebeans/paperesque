@@ -4,10 +4,11 @@ function copyTextDefault(text) {
         console.warn("Clipboard API not supported");
         throw new Error("Clipboard API not supported");
     }
-    navigator.clipboard.writeText(text).then(
-        () => true,
-        () => console.error("Failed to copy text" + text),
-    );
+
+    return navigator.clipboard.writeText(text).catch((err) => {
+        console.error("Failed to copy text using api:", text, err);
+        throw err;
+    });
 }
 
 function copyTextHacky(text) {
@@ -25,7 +26,7 @@ function copyTextHacky(text) {
         textArea.setSelectionRange(0, text.length);
         document.execCommand("copy");
     } catch (err) {
-        console.error("Failed to copy text" + text, err);
+        console.error("Failed to copy text the hacky way" + text, err);
         throw err;
     }
     document.body.removeChild(textArea);
@@ -58,18 +59,19 @@ function initCopyCodeButtons() {
                 console.warn("Parsing JSON failed, using raw text", e);
                 text = textJSON;
             }
-            try {
-                copyTextDefault(text);
-                swapIcon(button);
-            } catch (err) {
-                console.warn("Falling back to hacky copy method" + err);
-                try {
-                    copyTextHacky(text);
+            copyTextDefault(text)
+                .then(() => {
                     swapIcon(button);
-                } catch (err) {
-                    console.error("Both copy methods failed" + err);
-                }
-            }
+                })
+                .catch((err) => {
+                    console.warn("Falling back to hacky copy method", err);
+                    try {
+                        copyTextHacky(text);
+                        swapIcon(button);
+                    } catch (err) {
+                        console.error("Both copy methods failed", err);
+                    }
+                });
         });
     });
 }

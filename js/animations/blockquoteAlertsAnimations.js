@@ -147,4 +147,4 @@ function initCollapsibleAlerts() {
     });
 }
 
-export { initCollapsibleAlerts };
+export default initCollapsibleAlerts;
