@@ -9,33 +9,10 @@
 @use "sass:map";
 
 @font-face {
-    font-family: "Linux Libertine";
-    src:
-        local("Linux Libertine Display"),
-        local("LinLibertineDisplay"),
-        url("/fonts/linux-libertine.woff2") format("woff2"),
-        url("/fonts/linux-libertine.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
     font-family: "Journal";
     src:
         url("/fonts/journal.woff2") format("woff2"),
         url("/fonts/journal.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "JetBrainsMono NF";
-    src:
-        local("JetBrainsMono NF Regular"),
-        local("JetBrainsMonoNF-Regular"),
-        url("/fonts/jetbrainsmono.woff2") format("woff2"),
-        url("/fonts/jetbrainsmono.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -47,7 +24,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Linux Libertine", Georgia, "Times New Roman", Times, serif;
+    font-family: "Lora", Georgia, "Times New Roman", Times, serif;
 }
 
 h1#title {
