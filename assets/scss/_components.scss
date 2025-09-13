@@ -74,20 +74,10 @@ a.timestamp {
         "Courier New", monospace;
 }
 
-// Ensure content doesn't get occluded by scroll button
-footer {
-    @media (max-width: map.get($bp, mobile)) {
-        padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
-    }
-
-    @include breakpoint("tablet") {
-        padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 60px);
-    }
-}
-
 // Footnotes
 .footnotes {
-    margin-top: var(--spacing-xxl);
+    margin: var(--spacing-xxl) var(--spacing-md) var(--spacing-md)
+        var(--spacing-md);
     font-size: 85%;
 
     hr {

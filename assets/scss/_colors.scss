@@ -102,7 +102,7 @@
     --color-header-brand-primary: var(--neutral-aqua);
     --color-header-brand-secondary-ddopacity: color-mix(
         in srgb,
-        var(--neutral-aqua) 87%,
+        var(--neutral-aqua) 75%,
         transparent
     );
     --color-header-brand-secondary: var(--bright-purple);
@@ -156,7 +156,7 @@
     --color-header-brand-primary: var(--bright-aqua);
     --color-header-brand-secondary-ddopacity: color-mix(
         in srgb,
-        var(--bright-aqua) 87%,
+        var(--bright-aqua) 75%,
         transparent
     );
     --color-header-brand-secondary: var(--bright-purple);
