@@ -8,19 +8,19 @@ default:
 
 # Serves the Hugo site at `http://localhost:1314` with live reload
 serve:
-    cd examples/2-with-homepage-sidebar-content && hugo server --themesDir ../../../ --disableFastRender -p 1314
+    cd examples/demo-site && hugo server --themesDir ../../../ --disableFastRender -p 1314
 
 # Serves with critical CSS generation first
 serve-critical:
     @just critical
-    cd examples/2-with-homepage-sidebar-content && hugo server --themesDir ../../../ --disableFastRender -p 1314
+    cd examples/demo-site && hugo server --themesDir ../../../ --disableFastRender -p 1314
 
 # Build Commands
 
 alias bh := build-hugo
 # Builds the Hugo site to the `test-site` folder
 build-hugo:
-    cd examples/2-with-homepage-sidebar-content && hugo --themesDir ../../../ -d ../../test-site --minify
+    cd examples/demo-site && hugo --themesDir ../../../ -d ../../test-site --minify
 
 alias bf := build-full
 # Builds the Hugo site with critical CSS to the `test-site` folder
@@ -48,18 +48,12 @@ watch-js:
 critical:
     #!/usr/bin/env bash
     if command -v node &> /dev/null; then
-        echo "🎨 Generating critical CSS with Node.js..."
+        echo "Generating critical CSS with Node.js..."
         node scripts/generate-critical-css.js
     else
-        echo "⚠️  Node.js not found, falling back to manual critical CSS extraction"
+        echo "Node.js not found, falling back to manual critical CSS extraction"
         just critical-manual
     fi
-
-# Generate critical CSS manually (no Node.js required)
-[group('performance')]
-critical-manual:
-    @echo "🎨 Extracting critical CSS manually..."
-    ./scripts/extract-critical-manual.sh
 
 # Deployment and Maintenance Commands
 
@@ -76,13 +70,15 @@ deploy:
     git pull origin mainline
 
     git checkout demo-site
-    # git pull origin demo-site
+    git pull origin demo-site
 
     git merge mainline --no-commit || true
 
     git reset HEAD themes/paperesque/ 2>/dev/null || true
 
     git checkout mainline -- "${THEME_FILES[@]}"
+
+    rm -rf themes/paperesque
 
     mkdir -p themes/paperesque
 
