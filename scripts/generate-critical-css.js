@@ -63,7 +63,6 @@ async function generateCriticalCSS() {
                 `critical-${page.name}.scss`,
             );
             const scssContent = `// Auto-generated critical CSS for ${page.name} page
-// Generated on: ${new Date().toISOString()}
 // Source: ${page.url}
 ${page.description ? `// ${page.description}` : ""}
 
