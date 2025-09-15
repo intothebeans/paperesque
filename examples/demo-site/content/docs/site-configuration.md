@@ -2,6 +2,7 @@
 title: "Site Configuration"
 date: 2025-09-15T13:49:02-04:00
 draft: false
+tags: [hugobasicsite, markdown, configuration]
 ---
 
 - [Setting Up the Homepage](#setting-up-the-homepage)

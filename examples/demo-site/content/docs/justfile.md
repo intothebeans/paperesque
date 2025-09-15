@@ -2,6 +2,7 @@
 title: "Justfile"
 date: 2025-09-15T16:49:05-04:00
 draft: false
+tags: [development]
 ---
 
 ## Quick Reference

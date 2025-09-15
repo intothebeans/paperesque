@@ -2,6 +2,7 @@
 title: "Webmanifest"
 date: 2025-09-15T17:21:21-04:00
 draft: false
+tags: [hugobasicsite, webmanifest, configuration]
 ---
 
 ## Configuration

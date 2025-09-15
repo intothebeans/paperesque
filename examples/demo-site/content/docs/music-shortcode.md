@@ -2,6 +2,7 @@
 title: "Music Shortcode"
 date: 2025-09-15T17:13:37-04:00
 draft: false
+tags: [shortcode, music, markdown]
 ---
 
 > [!NOTE]+
