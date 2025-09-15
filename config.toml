@@ -1,7 +1,18 @@
 [mediaTypes]
-  [mediaTypes."text/droplist"]
-    suffixes = ["droplist"]
+[mediaTypes."text/droplist"]
+suffixes = ["droplist"]
+[mediaTypes."application/manifest+json"]
+suffixes = ["webmanifest"]
 
 [outputFormats.droplist]
 mediatype = "text/droplist"
 isPlainText = true
+
+[outputFormats.webmanifest]
+mediatype = "application/manifest+json"
+baseName = "site"
+isPlainText = true
+notAlternative = true
+
+[outputs]
+home = ["HTML", "RSS", "webmanifest"]

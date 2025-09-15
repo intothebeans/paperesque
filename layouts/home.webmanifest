@@ -1,0 +1,71 @@
+{{- $manifest := dict -}}
+
+{{- /* Basic app info */ -}}
+{{- $manifest = merge $manifest (dict "name" .Site.Title) -}}
+{{- $manifest = merge $manifest (dict "short_name" (.Site.Params.shortname | default (.Site.Title | truncate 12 ""))) -}}
+{{- $manifest = merge $manifest (dict "description" (.Site.Params.description | default .Site.Params.subtitle | default "")) -}}
+
+{{- /* URLs */ -}}
+{{- $manifest = merge $manifest (dict "start_url" (.Site.BaseURL | relURL)) -}}
+{{- $manifest = merge $manifest (dict "scope" (.Site.BaseURL | relURL)) -}}
+
+{{- /* Display settings */ -}}
+{{- $manifest = merge $manifest (dict "display" (.Site.Params.webmanifest.display | default "minimal-ui")) -}}
+{{- $manifest = merge $manifest (dict "orientation" (.Site.Params.webmanifest.orientation | default "portrait")) -}}
+
+{{- /* Theme colors - using the same colors from meta.html */ -}}
+{{- $manifest = merge $manifest (dict "theme_color" (.Site.Params.webmanifest.theme_color | default "#689d6a")) -}}
+{{- $manifest = merge $manifest (dict "background_color" (.Site.Params.webmanifest.background_color | default "#ffffff")) -}}
+
+{{- /* Language */ -}}
+{{- $manifest = merge $manifest (dict "lang" .Site.LanguageCode) -}}
+
+{{- /* Icons - provide defaults that match the existing favicon setup */ -}}
+{{- $icons := slice -}}
+
+{{- /* Try to find icons in static folder or use defaults */ -}}
+{{- $iconSizes := slice "72" "96" "128" "144" "152" "192" "384" "512" -}}
+{{- range $iconSizes -}}
+  {{- $size := . -}}
+  {{- $iconPath := printf "/android-chrome-%sx%s.png" $size $size -}}
+  {{- if fileExists (printf "static%s" $iconPath) -}}
+    {{- $icon := dict "src" $iconPath "sizes" (printf "%sx%s" $size $size) "type" "image/png" -}}
+    {{- $icons = $icons | append $icon -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Fallback icons using apple-touch-icon if available */ -}}
+{{- if fileExists "static/apple-touch-icon.png" -}}
+  {{- if eq (len $icons) 0 -}}
+    {{- $icon := dict "src" "/apple-touch-icon.png" "sizes" "180x180" "type" "image/png" -}}
+    {{- $icons = $icons | append $icon -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Add favicon as icon if no other icons found */ -}}
+{{- if fileExists "static/favicon-32x32.png" -}}
+  {{- if eq (len $icons) 0 -}}
+    {{- $icon := dict "src" "/favicon-32x32.png" "sizes" "32x32" "type" "image/png" -}}
+    {{- $icons = $icons | append $icon -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if gt (len $icons) 0 -}}
+  {{- $manifest = merge $manifest (dict "icons" $icons) -}}
+{{- end -}}
+
+{{- /* Categories */ -}}
+{{- $categories := .Site.Params.webmanifest.categories | default (slice "lifestyle" "productivity") -}}
+{{- $manifest = merge $manifest (dict "categories" $categories) -}}
+
+{{- /* Additional PWA settings */ -}}
+{{- if .Site.Params.webmanifest.shortcuts -}}
+  {{- $manifest = merge $manifest (dict "shortcuts" .Site.Params.webmanifest.shortcuts) -}}
+{{- end -}}
+
+{{- if .Site.Params.webmanifest.related_applications -}}
+  {{- $manifest = merge $manifest (dict "related_applications" .Site.Params.webmanifest.related_applications) -}}
+{{- end -}}
+
+{{- /* Output the manifest as JSON */ -}}
+{{- $manifest | jsonify (dict "indent" "  ") -}}

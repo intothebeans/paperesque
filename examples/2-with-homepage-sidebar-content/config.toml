@@ -9,17 +9,17 @@ copyright = "© 2011-2025 Fabian Tamp"
 buildDrafts = true
 
 [markup]
-  # This is the default from Hugo 0.60.0 onwards, but we're setting config
-  # for it below, so make it explicit
-  defaultMarkdownHandler = "goldmark"
-  [markup.goldmark]
-    # Optional for your site. Enabled so that we can use {.list-unstyled} in _index.md
-    [markup.goldmark.parser.attribute]
-        block = true
+# This is the default from Hugo 0.60.0 onwards, but we're setting config
+# for it below, so make it explicit
+defaultMarkdownHandler = "goldmark"
+[markup.goldmark]
+# Optional for your site. Enabled so that we can use {.list-unstyled} in _index.md
+[markup.goldmark.parser.attribute]
+block = true
 
 # Required to render HTML tags in the hugoExampleSite examples.
 [markup.goldmark.renderer]
-  unsafe = true
+unsafe = true
 
 # I can't remember if this is required for syntax highlighting or not.
 pygmentsUseClasses = true
@@ -27,8 +27,9 @@ pygmentsUseClasses = true
 # Uncomment these lines for droplist / resource removal support! See the
 # README for more details
 
-# [outputs]
-# page = ["HTML", "droplist"]
+[outputs]
+home = ["HTML", "RSS", "webmanifest"]
+page = ["HTML", "droplist"]
 
 [params]
 # Turn this on if you want to disable margin notes everywhere!
@@ -43,9 +44,9 @@ pygmentsUseClasses = true
 # Customize your top-right menu links here.
 
 [[params.topmenu]]
-  name = "my favourite bird"
-  url = "posts/kookaburra/"
+name = "my favourite bird"
+url = "posts/kookaburra/"
 
 [[params.topmenu]]
-  name = "rss"
-  url = "posts/index.xml"
+name = "rss"
+url = "posts/index.xml"
