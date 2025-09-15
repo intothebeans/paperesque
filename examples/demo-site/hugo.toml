@@ -1,18 +1,15 @@
-baseURL = "http://example.com/"
+baseURL = "https://paperesque.pages.dev/"
 languageCode = "en-us"
 title = "Paperesque theme example"
 theme = "paperesque"
-copyright = "© 2011-2025 Fabian Tamp"
+copyright = "© 2025 Aiden Benton"
 
 # We're building drafts in config so that you can see them in the example on
 # Hugo Themes; you almost certainly don't want this on your production site
 buildDrafts = true
 
-[markup]
-# This is the default from Hugo 0.60.0 onwards, but we're setting config
-# for it below, so make it explicit
-defaultMarkdownHandler = "goldmark"
-[markup.goldmark]
+[markup.highlight]
+style = "onedark"
 # Optional for your site. Enabled so that we can use {.list-unstyled} in _index.md
 [markup.goldmark.parser.attribute]
 block = true
@@ -20,9 +17,6 @@ block = true
 # Required to render HTML tags in the hugoExampleSite examples.
 [markup.goldmark.renderer]
 unsafe = true
-
-# I can't remember if this is required for syntax highlighting or not.
-pygmentsUseClasses = true
 
 # Uncomment these lines for droplist / resource removal support! See the
 # README for more details
@@ -44,8 +38,8 @@ page = ["HTML", "droplist"]
 # Customize your top-right menu links here.
 
 [[params.topmenu]]
-name = "my favourite bird"
-url = "posts/kookaburra/"
+name = "documentation"
+url = "docs/"
 
 [[params.topmenu]]
 name = "rss"

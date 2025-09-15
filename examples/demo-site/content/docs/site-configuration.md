@@ -4,6 +4,18 @@ date: 2025-09-15T13:49:02-04:00
 draft: false
 ---
 
+- [Setting Up the Homepage](#setting-up-the-homepage)
+  - [1. A custom list of links](#1-a-custom-list-of-links)
+  - [2. A section of content plus a sidebar](#2-a-section-of-content-plus-a-sidebar)
+- [Running the example sites](#running-the-example-sites)
+- [Navigation Menu](#navigation-menu)
+- [Removing Original Images After Resizing](#removing-original-images-after-resizing)
+- [Floating Footnotes](#floating-footnotes)
+- [Semi-hide Pages](#semi-hide-pages)
+- [Code Blocks with Copy Button](#code-blocks-with-copy-button)
+- [Progress Bar](#progress-bar)
+- [Custom Alerts](#custom-alerts)
+
 ## Setting Up the Homepage
 
 There are two main options for the homepage:
@@ -72,7 +84,7 @@ page = ["HTML", "droplist"]
 Now, as part of your build process, run:
 
 ```sh
-./themes/paperesque/buildscripts/drop-resources.py [hugo-output-directory]
+./themes/paperesque/buildscripts/drop-resources.py ./test-site
 ```
 
 (the Hugo output directory is usually `./public`, but I use `./test-site` for dev purposes. Cause I'm quirky).
@@ -111,7 +123,7 @@ params:
 
 The default is to enable the copy button fo all code blocks.
 
-The copy button can be set per-block using the info string of the code block. For example:
+The copy button can be disabled per-block using the info string of the code block. For example:
 
     ```python{copy-button="false" style="gruvbox" lineNos=inline}
     print("Hello, world!")
