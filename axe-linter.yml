@@ -1,5 +1,0 @@
----
-rules:
-    # lang being handled by Hugo
-    html-lang-valid: false
-    valid-lang: false

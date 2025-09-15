@@ -1,4 +1,4 @@
-import { docReady } from "./utils";
+import { docReady } from "./utils/utils.js";
 import initCopyCodeButtons from "./components/copyCodeButton.js";
 import { initScrollButtons } from "./components/scrollTopButton.js";
 

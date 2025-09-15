@@ -1,4 +1,4 @@
-import { docReady } from "../utils.js";
+import { docReady } from "../utils/utils.js";
 
 // Borrowed from https://github.com/gohugoio/gohugoioTheme/blob/2e7250ca437d4666329d3ca96708dd3a4ff59818/assets/js/anchorforid.js
 function anchorForId(id) {

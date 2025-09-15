@@ -1,4 +1,4 @@
-import { docReady, onWindowResize } from "../utils.js";
+import { docReady, onWindowResize } from "../utils/utils.js";
 import { ResizeObserver } from "@juggle/resize-observer";
 
 const ARTICLE_CONTENT_SELECTOR = "article#main";

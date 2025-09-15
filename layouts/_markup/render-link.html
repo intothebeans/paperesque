@@ -1,0 +1,24 @@
+{{/* code courtesy of Hrishikesh https://discourse.gohugo.io/t/simple-way-to-open-in-a-new-tab/28677/3 */}}
+
+{{ $http := strings.HasPrefix .Destination "http" -}}
+{{ $mailto := strings.HasPrefix .Destination "mailto" -}}
+{{ $internal := or (strings.HasPrefix .Destination `#`) (strings.HasPrefix .Destination `/`) -}}
+<a
+    {{ if or $http $internal }}
+        href="{{ .Destination | safeURL }}"
+    {{ else if $mailto }}
+        href="mailto:{{ .Text }}"
+    {{ end }}
+
+    {{ with .Title }}
+        title="{{ . }}"
+    {{ end }}
+
+    {{ if and $http (not $internal) }}
+        target="_blank" rel="nofollow noopener noreferrer"
+    {{ else if $mailto }}
+        onClick="javascript:window.open('mailto:{{ .Text }}', 'mail');
+        event.preventDefault()"
+    {{ end }}>
+    {{ .Text }}
+</a>

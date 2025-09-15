@@ -1,0 +1,51 @@
+{{ .Page.Store.Set "codeblocks" true -}}
+{{ $result := transform.HighlightCodeBlock . -}}
+
+{{ $siteDisabled := .Page.Site.Params.disableCopyCodeButton | default false -}}
+{{ $pageDisabled := .Page.Params.disableCopyCodeButton | default false -}}
+{{ $blockEnabled := index .Attributes "copy-button" | default "true" -}}
+
+{{ $showCopyButton := and (not $siteDisabled) (not $pageDisabled) (or (eq $blockEnabled "true")) }}
+
+
+<div
+    data-codeblock
+    itemscope
+    itemtype="https://schema.org/SoftwareSourceCode"
+    {{ range $k, $v := .Attributes }}
+        {{ printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{ end }}>
+    {{ if $showCopyButton }}
+        <button
+            data-codebutton
+            class="copy-code-button"
+            title="{{ i18n "copy_code" }}">
+            <iconify-icon
+                icon="bx:copy-alt"
+                width="24"
+                height="24"
+                class="copy-code-icon"
+                inline></iconify-icon>
+            <iconify-icon
+                icon="bx:check"
+                width="24"
+                height="24"
+                class="copy-code-success"
+                inline></iconify-icon>
+        </button>
+    {{ end }}
+    <meta itemprop="codeSampleType" content="snippet" />
+    <meta
+        class="meta-code-text"
+        data-codetext
+        itemprop="text"
+        content="{{ .Inner | jsonify }}" />
+    {{ if .Type -}}
+        <meta itemprop="programmingLanguage" content="{{ .Type }}" />
+        <pre tabindex="0" class="chroma">
+<code class="language-{{ .Type }}" data-lang="{{ .Type }}">{{ $result.Inner }}</code>
+</pre>
+    {{ else -}}
+        {{ $result.Wrapped }}
+    {{ end -}}
+</div>

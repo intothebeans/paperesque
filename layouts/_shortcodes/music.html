@@ -1,0 +1,82 @@
+{{/* Options */}}
+{{ $id := .Get "id" | default (printf "score-%d" (now.UnixNano)) }}
+{{ $containerID := printf "container-%s" $id }}
+{{ $enablePlayback := .Get "audio" | default false }}
+{{ $includeDownload := .Get "download" | default false }}
+{{ $abcOptions := .Get "abcOptions" | default "null" }}
+{{ $lazy := .Get "lazy" | default true }}
+
+{{/* Resources */}}
+{{ $abcCSS := resources.Get "css/abcjs-audio.css" | minify | fingerprint }}
+{{ $music := resources.Get "js/music.js" | fingerprint }}
+{{ $abcjs := resources.Get "js/abcjs-basic-min.js" | fingerprint }}
+{{ $helperJS := resources.Get "js/lazyMusic.js" | fingerprint }}
+
+
+<div
+    class="music-container"
+    data-music-id="{{ $containerID }}"
+    label="an ABCjs rendered music score">
+    {{ if not $lazy }}
+        {{ range slice $abcjs $music }}
+            <script
+                type="text/javascript"
+                src="{{ .RelPermalink }}"
+                integrity="{{ .Data.Integrity }}"
+                crossorigin="anonymous"></script>
+        {{ end }}
+        <link
+            rel="stylesheet"
+            href="{{ $abcCSS.RelPermalink }}"
+            integrity="{{ $abcCSS.Data.Integrity }}"
+            crossorigin="anonymous" />
+    {{ end }}
+
+
+    <div
+        id="{{- $id -}}"
+        class="music"
+        {{ if $lazy }}data-abc-lazy="true"{{ end }}></div>
+
+    {{ if $enablePlayback }}
+        <div class="audio-controls">
+            <div id="audio-{{- $id -}}" class="audio"></div>
+            {{ if $includeDownload }}
+                <div class="midi">MIDI</div>
+            {{ end }}
+        </div>
+    {{ end }}
+    <script
+        type="text/javascript"
+        src="{{ $helperJS.RelPermalink }}"
+        integrity="{{ $helperJS.Data.Integrity }}"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        (function() {
+            const musicContainer = document.querySelector('[data-music-id="{{ $containerID }}"]');
+            const musicData = {
+                id: "{{ $id }}",
+                content: `{{ .Inner | safeJS }}`,
+                options: {{ $abcOptions | safeJS }},
+                enablePlayback: {{ $enablePlayback }},
+                includeDownload: {{ $includeDownload }},
+                lazy: {{ $lazy }},
+                resources: {
+                    css: "{{ $abcCSS.RelPermalink }}",
+                    cssIntegrity: "{{ $abcCSS.Data.Integrity }}",
+                    abcjs: "{{ $abcjs.RelPermalink }}",
+                    abcjsIntegrity: "{{ $abcjs.Data.Integrity }}",
+                    music: "{{ $music.RelPermalink }}",
+                    musicIntegrity: "{{ $music.Data.Integrity }}"
+                }
+            };
+            {{ if $lazy }}
+                window.intersectionHandler(musicContainer, musicData);
+            {{ else }}
+                window.addEventListener('DOMContentLoaded', function() {
+                    window.renderMusic(musicContainer, musicData);
+                });
+            {{ end }}
+        })();
+    </script>
+</div>
