@@ -1,6 +1,13 @@
 {{ .Page.Store.Set "codeblocks" true -}}
 {{ $result := transform.HighlightCodeBlock . -}}
-{{ $enableCopy := .Page.Site.Params.enableCopyCodeButton | default false -}}
+
+{{ $siteDisabled := .Page.Site.Params.disableCopyCodeButton | default false -}}
+{{ $pageDisabled := .Page.Params.disableCopyCodeButton | default false -}}
+{{ $blockEnabled := index .Attributes "copy-button" | default "false" -}}
+
+{{ $showCopyButton := and (not $siteDisabled) (not $pageDisabled) (or (eq $blockEnabled "true")) }}
+
+
 <div
     data-codeblock
     itemscope
@@ -8,7 +15,7 @@
     {{ range $k, $v := .Attributes }}
         {{ printf " %s=%q" $k $v | safeHTMLAttr }}
     {{ end }}>
-    {{ if or (eq (index .Attributes "copy-button") "true") $enableCopy }}
+    {{ if $showCopyButton }}
         <button
             data-codebutton
             class="copy-code-button"
