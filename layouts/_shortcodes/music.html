@@ -1,5 +1,5 @@
 {{/* Options */}}
-{{ $id := .Get "id" | default "score" }}
+{{ $id := .Get "id" | default (printf "score-%d" (now.UnixNano)) }}
 {{ $containerID := printf "container-%s" $id }}
 {{ $enablePlayback := .Get "audio" | default false }}
 {{ $includeDownload := .Get "download" | default false }}
@@ -52,29 +52,31 @@
         integrity="{{ $helperJS.Data.Integrity }}"
         crossorigin="anonymous"></script>
     <script type="text/javascript">
-        const musicContainer = document.querySelector('[data-music-id="{{ $containerID }}"]');
-        const musicData = {
-            id: "{{ $id }}",
-            content: `{{ .Inner | safeJS }}`,
-            options: {{ $abcOptions | safeJS }},
-            enablePlayback: {{ $enablePlayback }},
-            includeDownload: {{ $includeDownload }},
-            lazy: {{ $lazy }},
-            resources: {
-                css: "{{ $abcCSS.RelPermalink }}",
-                cssIntegrity: "{{ $abcCSS.Data.Integrity }}",
-                abcjs: "{{ $abcjs.RelPermalink }}",
-                abcjsIntegrity: "{{ $abcjs.Data.Integrity }}",
-                music: "{{ $music.RelPermalink }}",
-                musicIntegrity: "{{ $music.Data.Integrity }}"
-            }
-        };
-        {{ if $lazy }}
-            window.intersectionHandler(musicContainer, musicData);
-        {{ else }}
-            window.addEventListener('DOMContentLoaded', function() {
-                window.renderMusic(musicContainer, musicData);
-            });
-        {{ end }}
+        (function() {
+            const musicContainer = document.querySelector('[data-music-id="{{ $containerID }}"]');
+            const musicData = {
+                id: "{{ $id }}",
+                content: `{{ .Inner | safeJS }}`,
+                options: {{ $abcOptions | safeJS }},
+                enablePlayback: {{ $enablePlayback }},
+                includeDownload: {{ $includeDownload }},
+                lazy: {{ $lazy }},
+                resources: {
+                    css: "{{ $abcCSS.RelPermalink }}",
+                    cssIntegrity: "{{ $abcCSS.Data.Integrity }}",
+                    abcjs: "{{ $abcjs.RelPermalink }}",
+                    abcjsIntegrity: "{{ $abcjs.Data.Integrity }}",
+                    music: "{{ $music.RelPermalink }}",
+                    musicIntegrity: "{{ $music.Data.Integrity }}"
+                }
+            };
+            {{ if $lazy }}
+                window.intersectionHandler(musicContainer, musicData);
+            {{ else }}
+                window.addEventListener('DOMContentLoaded', function() {
+                    window.renderMusic(musicContainer, musicData);
+                });
+            {{ end }}
+        })();
     </script>
 </div>
