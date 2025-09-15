@@ -88,11 +88,8 @@ function musicWithPlayback(musicID, musicString, abcOpts = null) {
                 abcElem.midiGraceNotePitches,
                 synthControl.visualObj.millisecondsPerMeasure(),
             )
-            .then(function (response) {
-                console.log("note played", response);
-            })
             .catch(function (error) {
-                console.log("error playing note", error);
+                console.warn("error playing note", error);
             });
     };
 
@@ -103,44 +100,38 @@ function musicWithPlayback(musicID, musicString, abcOpts = null) {
 
     if (window.ABCJS.synth.supportsAudio()) {
         synthControl = new window.ABCJS.synth.SynthController();
-        synthControl.load("#audio", cursorControl, {
+        synthControl.load("#audio-" + musicID, cursorControl, {
             displayLoop: true,
             displayRestart: true,
             displayPlay: true,
             displayProgress: false,
             displayWarp: false,
         });
+        synthControl.disable(true);
     } else {
-        document.querySelector("#audio").innerHTML =
-            "<div class='audio-error'>Audio is not supported in this browser.</div>";
+        const audioElement = document.querySelector("#audio-" + musicID);
+        if (audioElement) {
+            audioElement.innerHTML =
+                "<div class='audio-error'>Audio is not supported in this browser.</div>";
+        }
+        console.warn("Audio is not supported in this browser");
+        return;
     }
 
-    synthControl.disable(true);
     var visualObj = window.ABCJS.renderAbc(musicID, musicString, abcOptions)[0];
-    window.addEventListener("scroll", function () {
-        if (!audioContext) audioContext = new AudioContext();
-        if (loaded) return;
-        initAudio(
-            musicID,
-            musicString,
-            abcOptions,
-            audioContext,
-            synthControl,
-            visualObj,
-        );
-        loaded = true;
-        synthControl.disable(false);
-    });
+
+    if (synthControl) {
+        window.addEventListener("scroll", function () {
+            if (!audioContext) audioContext = new AudioContext();
+            if (loaded) return;
+            initAudio(musicString, audioContext, synthControl, visualObj);
+            loaded = true;
+            synthControl.disable(false);
+        });
+    }
 }
 
-function initAudio(
-    musicID,
-    musicString,
-    abcOptions,
-    context,
-    synthControl,
-    visualObj,
-) {
+function initAudio(musicString, context, synthControl, visualObj) {
     var midi = window.ABCJS.synth.getMidiFile(musicString, {
         downloadLabel: "Download MIDI",
     });
@@ -190,5 +181,4 @@ function drawMusic(musicID, musicString, abcOpts = null) {
     return window.ABCJS.renderAbc(musicID, musicString, mergedAbcOpts)[0];
 }
 
-window.drawMusic = drawMusic;
-window.musicWithPlayback = musicWithPlayback;
+export { drawMusic, musicWithPlayback };

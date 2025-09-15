@@ -1,4 +1,4 @@
-import { docReady } from "./utils";
+import { docReady } from "./utils/utils";
 import initCollapsibleAlerts from "./animations/blockquoteAlertsAnimations";
 import initRightLinksAnimation from "./animations/rightLinksAnimation";
 import initColorTransitionStyles from "./animations/colorModeTransition";

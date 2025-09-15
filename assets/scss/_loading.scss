@@ -1,0 +1,89 @@
+//   _                    _ _
+//  | |    ___   __ _  __| (_)_ __   __ _
+//  | |   / _ \ / _` |/ _` | | '_ \ / _` |
+//  | |__| (_) | (_| | (_| | | | | | (_| |
+//  |_____\___/ \__,_|\__,_|_|_| |_|\__, |
+//                                  |___/
+
+@use "animations" as *;
+
+.music-container {
+    margin: var(--spacing-lg) 0;
+    position: relative;
+
+    .music[data-abc-lazy="true"] {
+        min-height: 200px;
+        background: var(--color-sheet-bg);
+        border: 1px dashed var(--color-border-generic);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &::before {
+            content: "♪ Loading music notation...";
+            color: var(--color-meta-text);
+            font-style: italic;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 2rem;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--color-hr);
+            border-radius: 50%;
+            animation: musicLoading 1s linear infinite;
+        }
+    }
+
+    .music:not([data-abc-lazy="true"]) {
+        min-height: auto;
+        background: transparent;
+        border: none;
+
+        &::before,
+        &::after {
+            display: none;
+        }
+    }
+
+    &.music-error {
+        .music {
+            border-color: var(--bright-red);
+            background: var(--color-sheet-bg);
+
+            &::before {
+                content: "⚠ Failed to load music notation";
+                color: var(--bright-red);
+            }
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    &.music-loaded {
+        .music {
+            animation: musicFadeIn 0.3s ease-in-out;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .music-container {
+        .music[data-abc-lazy="true"] {
+            min-height: 150px;
+            font-size: 0.9rem;
+
+            &::before {
+                content: "♪ Loading...";
+            }
+        }
+    }
+}

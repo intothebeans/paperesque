@@ -1,0 +1,83 @@
+//    ____      _ _   _           _
+//   / ___|_ __(_) |_(_) ___ __ _| |
+//  | |   | '__| | __| |/ __/ _` | |
+//  | |___| |  | | |_| | (_| (_| | |
+//   \____|_|  |_|\__|_|\___\__,_|_|
+
+@use "variables" as *;
+@use "mixins" as *;
+@use "colors" as *;
+@use "sass:map";
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color: var(--color-text);
+    font-family:
+        arial,
+        -apple-system,
+        BlinkMacSystemFont,
+        avenir next,
+        avenir,
+        helvetica neue,
+        helvetica,
+        ubuntu,
+        roboto,
+        noto,
+        segoe ui,
+        sans-serif;
+    background-color: var(--color-desktop-bg);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background: var(--color-nav-bg);
+    width: 100%;
+    position: relative;
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+}
+
+.top-of-page {
+    width: 100%;
+}
+
+:root {
+    --color-text: #3c3836;
+    --color-desktop-bg: #fbf1c7;
+    --color-sheet-bg: #f9f5d7;
+    --color-nav-bg: #f2e5bc;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: #ebdbb2;
+        --color-desktop-bg: #282828;
+        --color-sheet-bg: #32302f;
+        --color-nav-bg: #3c3836;
+    }
+
+    html {
+        color-scheme: dark;
+    }
+}
+
+.scroll-button,
+#progress-header {
+    opacity: 0;
+    visibility: hidden;
+}
+
+h1 {
+    font-size: map.get($font-size, xl);
+}

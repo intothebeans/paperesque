@@ -23,7 +23,7 @@ function initScrollButtons() {
     button = document.getElementById("scroll-button");
     buttonMobile = document.getElementById("scroll-button-mobile");
     if (!button || !buttonMobile) {
-        console.warn(
+        console.info(
             "No scroll button found, cannot initialize scroll button functionality.",
         );
         return;

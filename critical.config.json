@@ -1,0 +1,53 @@
+{
+    "critical": {
+        "base": "./test-site/",
+        "dimensions": [
+            {
+                "height": 900,
+                "width": 1300
+            },
+            {
+                "height": 900,
+                "width": 375
+            },
+            {
+                "height": 900,
+                "width": 768
+            }
+        ],
+        "ignore": {
+            "selectors": [
+                ".hover",
+                ".focus",
+                ".active",
+                ":hover",
+                ":focus",
+                ":active",
+                ".animation",
+                ".transition",
+                ".scroll-button",
+                "#progress-header"
+            ],
+            "atrules": ["@font-face", "@media print"]
+        },
+        "extract": true,
+        "inline": false
+    },
+    "pages": [
+        {
+            "url": "index.html",
+            "name": "home",
+            "description": "Homepage critical CSS"
+        },
+        {
+            "url": "birds/index.html",
+            "name": "list",
+            "description": "List page critical CSS"
+        },
+        {
+            "url": "about/index.html",
+            "name": "single",
+            "description": "Single page critical CSS"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 import anchorizeHeadings from "./components/anchorizeHeadings.js";
 import enableFloatingFootnotes from "./components/floatingFootnotes.js";
-import { docReady } from "./utils.js";
+import { docReady } from "./utils/utils.js";
 
 enableFloatingFootnotes();
 anchorizeHeadings();
