@@ -1,18 +1,46 @@
-[mediaTypes]
-[mediaTypes."text/droplist"]
-suffixes = ["droplist"]
-[mediaTypes."application/manifest+json"]
-suffixes = ["webmanifest"]
+baseURL = "https://paperesque.pages.dev/"
+languageCode = "en-us"
+title = "Paperesque theme example"
+theme = "paperesque"
+copyright = "© 2025 Aiden Benton"
 
-[outputFormats.droplist]
-mediatype = "text/droplist"
-isPlainText = true
+# We're building drafts in config so that you can see them in the example on
+# Hugo Themes; you almost certainly don't want this on your production site
+buildDrafts = true
 
-[outputFormats.webmanifest]
-mediatype = "application/manifest+json"
-baseName = "site"
-isPlainText = true
-notAlternative = true
+[markup.highlight]
+style = "onedark"
+# Optional for your site. Enabled so that we can use {.list-unstyled} in _index.md
+[markup.goldmark.parser.attribute]
+block = true
+
+# Required to render HTML tags in the hugoExampleSite examples.
+[markup.goldmark.renderer]
+unsafe = true
+
+# Uncomment these lines for droplist / resource removal support! See the
+# README for more details
 
 [outputs]
 home = ["HTML", "RSS", "webmanifest"]
+page = ["HTML", "droplist"]
+
+[params]
+# Turn this on if you want to disable margin notes everywhere!
+# disableMarginNotes = true
+
+# Ensure that there are *no* [[params.menu]] sections here so that the _index.md
+# file will be respected
+# [[params.menu]]
+#   name = "my favourite bird"
+#   url = "posts/kookaburra/"
+
+# Customize your top-right menu links here.
+
+[[params.topmenu]]
+name = "documentation"
+url = "docs/"
+
+[[params.topmenu]]
+name = "rss"
+url = "posts/index.xml"
