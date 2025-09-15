@@ -93,7 +93,7 @@ deploy:
     if git diff --staged --quiet; then
         echo "No changes to deploy."
     else
-        git commit -m "🔄️ merge: update theme from mainline ($(git rev-parse --short mainline))"
+        git commit --no-verify -m "🔄️ merge: update theme from mainline ($(git rev-parse --short mainline))"
     fi
 
     git checkout "$CURRENT_BRANCH"

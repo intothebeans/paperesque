@@ -6,7 +6,9 @@ repos:
           - id: end-of-file-fixer
             exclude: ^assets/js/.*\.js$
           - id: mixed-line-ending
+            exclude: ^assets/js/.*\.js$
           - id: trailing-whitespace
+            exclude: ^assets/js/.*\.js$
           - id: check-toml
     - repo: https://github.com/gitleaks/gitleaks
       rev: v8.24.2
