@@ -3,7 +3,7 @@
 
 {{ $siteDisabled := .Page.Site.Params.disableCopyCodeButton | default false -}}
 {{ $pageDisabled := .Page.Params.disableCopyCodeButton | default false -}}
-{{ $blockEnabled := index .Attributes "copy-button" | default "false" -}}
+{{ $blockEnabled := index .Attributes "copy-button" | default "true" -}}
 
 {{ $showCopyButton := and (not $siteDisabled) (not $pageDisabled) (or (eq $blockEnabled "true")) }}
 
