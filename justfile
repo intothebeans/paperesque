@@ -62,31 +62,15 @@ critical:
 deploy:
     #!/usr/bin/env bash
     set -euxo pipefail
-    CURRENT_BRANCH=$(git branch --show-current)
-    THEME_FILES=("layouts" "static" "assets" "theme.toml" "i18n" "README.md" "LICENSE.md" "CHANGELOG.md")
-
-    git fetch origin
-    git checkout mainline
-    git pull origin mainline
+    THEME_FILES=("layouts" "static" "assets" "hugo.toml" "theme.toml" "i18n" "README.md" "LICENSE.md" "CHANGELOG.md")
 
     git checkout demo-site
     git pull origin demo-site
 
-    git merge mainline --no-commit || true
-
-    git reset HEAD themes/paperesque/ 2>/dev/null || true
-
-    git checkout mainline -- "${THEME_FILES[@]}"
-
     rm -rf themes/paperesque
-
     mkdir -p themes/paperesque
 
-    for file in "${THEME_FILES[@]}"; do
-        if [ -e "$file" ]; then
-            mv "$file" "themes/paperesque/"
-        fi
-    done
+    git --work-tree themes/paperesque  checkout mainline -- "${THEME_FILES[@]}"
 
     git add .
 
@@ -96,7 +80,6 @@ deploy:
         git commit --no-verify -m "🔄️ merge: update theme from mainline ($(git rev-parse --short mainline))"
     fi
 
-    git checkout "$CURRENT_BRANCH"
 
 # Utility Commands
 
