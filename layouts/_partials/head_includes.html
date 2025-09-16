@@ -8,7 +8,8 @@
 
 {{/* CSS */}}
 {{ $reboot := resources.Get "css/reboot.css" }}
-{{ $styles := slice $reboot $scss | resources.Concat "css/styles.css" | minify | fingerprint }}
+{{ $colorOverrides := resources.Get "css/color-overrides.css" }}
+{{ $styles := slice $reboot $scss $colorOverrides | resources.Concat "css/styles.css" | minify | fingerprint }}
 
 {{/* Critical CSS */}}
 {{ $critical := "" }}
