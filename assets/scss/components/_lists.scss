@@ -8,10 +8,28 @@
 @use "sass:map";
 
 // Lists
-.list-unstyled {
+.list-unstyled ul {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+}
+
+.list-with-icons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+
+    li,
+    a {
+        display: flex;
+        margin-top: var(--spacing-xs);
+    }
+
+    iconify-icon {
+        display: flex;
+        margin-right: var(--spacing-xs);
+        align-self: center;
+    }
 }
 
 // List of titles/posts
