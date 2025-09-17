@@ -4,6 +4,7 @@
 // /_/ |_/____/\___/\___/___/
 
 @use "../mixins" as *;
+@use "../variables" as *;
 
 .music-container > .abcjs-container {
     color: var(--dark0);
@@ -141,6 +142,6 @@ details.abc-raw {
         margin: 0;
         padding: 0;
         white-space: pre-wrap;
-        font-family: monospace;
+        font-family: $mono-font;
     }
 }

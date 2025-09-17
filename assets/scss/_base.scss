@@ -13,19 +13,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     color: var(--color-text);
-    font-family:
-        arial,
-        -apple-system,
-        BlinkMacSystemFont,
-        avenir next,
-        avenir,
-        helvetica neue,
-        helvetica,
-        ubuntu,
-        roboto,
-        noto,
-        segoe ui,
-        sans-serif;
+    font-family: $body-font;
     background-color: var(--color-desktop-bg);
 
     &.look-sheet-bkg {
@@ -69,7 +57,7 @@ pre {
 
 pre,
 code {
-    font-family: monocode, monospace;
+    font-family: $mono-font;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

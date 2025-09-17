@@ -57,7 +57,7 @@ nav {
         display: inline-flex;
         font-weight: bold;
         color: var(--color-nav-text);
-        font-family: "Journal", Georgia, "Times New Roman", Times, serif;
+        font-family: $fancy-font;
         transition: all var(--animation-med) ease;
 
         &:hover,
