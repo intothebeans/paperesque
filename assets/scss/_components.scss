@@ -177,3 +177,46 @@ h4 {
         var(--bright-purple)
     );
 }
+
+#toc-heading {
+    border-bottom: 2px solid var(--color-border-generic);
+}
+
+#TableOfContents {
+    padding: var(--spacing-md);
+
+    ol {
+        list-style: decimal;
+        ol {
+            list-style: lower-roman;
+        }
+    }
+
+    ul {
+        list-style: disc;
+        ul {
+            list-style: circle;
+        }
+    }
+    ol,
+    ul {
+        li {
+            margin-bottom: var(--spacing-sm);
+
+            a {
+                font-family: $body-font;
+                color: var(--color-link-text);
+                text-decoration: none;
+                font-size: map.get($font-size, sm) !important;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            ol {
+                list-style: lower-alpha;
+            }
+        }
+    }
+}
