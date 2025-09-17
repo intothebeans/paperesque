@@ -38,9 +38,7 @@
     --faded-purple: #8f3f71;
     --faded-aqua: #427b58;
     --gray: #928374;
-}
 
-[data-theme="light"] {
     --color-text: var(--dark1);
     --color-fg-darken: color-mix(in srgb, var(--dark1) 13%, transparent);
     --color-code-inline-bg: var(--light3);
@@ -109,7 +107,7 @@
     --color-pre-text: #e6e6e0;
     --color-pre-bg: #272822;
 
-    --color-sheet-bg: var(--dark0);
+    --color-sheet-bg: var(--dark0-hard);
     --color-desktop-bg: var(--dark0);
 
     --color-meta-text: var(--light4);
