@@ -13,28 +13,30 @@
 
 {{/* Critical CSS */}}
 {{ $critical := "" }}
-{{ $pageType := "home" }}
-{{ if .IsHome }}
-    {{ $pageType = "home" }}
-{{ else if .IsPage }}
-    {{ $pageType = "single" }}
-{{ else }}
-    {{ $pageType = "list" }}
-{{ end }}
-
-{{ $autoPath := printf "scss/critical-%s.scss" $pageType }}
-{{ $auto := resources.Get $autoPath }}
-{{ if $auto }}
-    {{ $critical = $auto | toCSS $opts }}
-    {{ if hugo.IsDevelopment }}
-        <!-- Using auto-generated critical CSS for {{ $pageType }} -->
+{{ if not .Site.Params.disableCriticalCSS }}
+    {{ $pageType := "home" }}
+    {{ if .IsHome }}
+        {{ $pageType = "home" }}
+    {{ else if .IsPage }}
+        {{ $pageType = "single" }}
+    {{ else }}
+        {{ $pageType = "list" }}
     {{ end }}
-{{ else }}
-    {{ $manual := resources.Get "scss/critical.scss" }}
-    {{ if $manual }}
-        {{ $critical = $manual | toCSS $opts }}
+
+    {{ $autoPath := printf "scss/critical-%s.scss" $pageType }}
+    {{ $auto := resources.Get $autoPath }}
+    {{ if $auto }}
+        {{ $critical = $auto | toCSS $opts }}
         {{ if hugo.IsDevelopment }}
-            <!-- Using manual critical CSS -->
+            <!-- Using auto-generated critical CSS for {{ $pageType }} -->
+        {{ end }}
+    {{ else }}
+        {{ $manual := resources.Get "scss/critical.scss" }}
+        {{ if $manual }}
+            {{ $critical = $manual | toCSS $opts }}
+            {{ if hugo.IsDevelopment }}
+                <!-- Using manual critical CSS -->
+            {{ end }}
         {{ end }}
     {{ end }}
 {{ end }}
