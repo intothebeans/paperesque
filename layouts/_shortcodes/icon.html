@@ -1,0 +1,15 @@
+{{ $icon := .Get 0 | default "bx:question-mark" }}
+{{ $size := .Get "size" | default "24px" }}
+{{ $color := .Get "color" | default "currentColor" }}
+{{ $label := .Get "label" }}
+{{ $class := .Get "class" }}
+
+
+<iconify-icon
+    style="color: {{ $color }};"
+    {{ printf "icon=%s" $icon | safeHTMLAttr }}
+    width="{{ $size }}"
+    height="{{ $size }}"
+    {{ with $label }}label="{{ . }}"{{ end }}
+    {{ with $class }}class="{{ . }}"{{ end }}
+    inline></iconify-icon>
