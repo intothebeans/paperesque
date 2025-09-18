@@ -1,0 +1,44 @@
+{{ $pages := .pages }}
+{{ $showSummary := .showSummary | default false }}
+{{ $showTags := .showTags | default true }}
+{{ $showDate := .showDate | default true }}
+{{ $listId := .listId | default "" }}
+{{ $listClasses := .listClasses | default "list-unstyled list-of-titles" }}
+
+
+<ul {{ with $listId }}id="{{ . }}"{{ end }} class="{{ $listClasses }}">
+    {{ range $pages }}
+        {{- if .Param "mostlyHidden" -}}
+            {{- /* Skip hidden posts */ -}}
+        {{- else -}}
+            <li class="{{ if .Draft }}draft{{ end }} post-list-item">
+                <a href="{{ .RelPermalink }}">
+                    <span class="post-title">{{ .Title }}</span>
+                    <br />
+                    {{ if $showDate }}
+                        <span class="post-meta"
+                            >{{ .Date.Format "January 2, 2006" }}</span
+                        >
+                        <br />
+                    {{ end }}
+                    {{ if and $showTags .Params.tags }}
+                        <span class="post-meta">
+                            {{ range .Params.tags }}
+                                #{{ . }}&nbsp;
+                            {{ end }}
+                        </span>
+                        {{ if $showSummary }}<br />{{ end }}
+                    {{ end }}
+                    {{ if $showSummary }}
+                        <span class="post-summary">
+                            {{ .Summary }}
+                        </span>
+                        {{ if .Truncated }}
+                            <a href="{{ .RelPermalink }}">Read more...</a>
+                        {{ end }}
+                    {{ end }}
+                </a>
+            </li>
+        {{- end -}}
+    {{ end }}
+</ul>
