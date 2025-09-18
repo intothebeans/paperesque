@@ -91,6 +91,8 @@
     --color-timestamp-text: var(--color-text-for-darkbg);
 
     --color-theme-toggle-hover: var(--bright-yellow);
+
+    --color-card-alternate: var(--light1);
 }
 
 [data-theme="dark"] {
@@ -99,7 +101,7 @@
     --color-code-inline-bg: var(--dark2);
 
     --color-text-for-darkbg: var(--light0);
-    --color-border-generic: var(--dark1);
+    --color-border-generic: var(--dark2);
 
     --color-boxshadow: black;
     --color-quote-border: var(--bright-blue);
@@ -108,7 +110,7 @@
     --color-pre-text: #e6e6e0;
     --color-pre-bg: #272822;
 
-    --color-sheet-bg: var(--dark0-hard);
+    --color-sheet-bg: var(--dark1);
     --color-desktop-bg: var(--dark0);
 
     --color-meta-text: var(--light4);
@@ -149,6 +151,8 @@
         var(--faded-purple) 75%,
         var(--dark0)
     );
+
+    --color-card-alternate: var(--dark2);
 
     html {
         color-scheme: dark;
