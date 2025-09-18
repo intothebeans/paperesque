@@ -1,0 +1,31 @@
+{{ $page := . }}
+{{ $opts := dict
+    "indices" (slice "tags" "keywords")
+    "document" $page
+}}
+{{ with .Site.RegularPages.Related $opts | first 5 }}
+    <div id="related-posts">
+        <div
+            class="alert alert-collapsible"
+            aria-label="Related posts"
+            data-open="true">
+            <div class="alert-summary" role="summary" tabindex="0">
+                <iconify-icon
+                    icon="game-icons:read"
+                    aria-label="Related content icon"
+                    label="Related content icon"
+                    height="24"
+                    width="24"></iconify-icon>
+                You May Also Like
+                <iconify-icon
+                    class="details-arrow"
+                    icon="bxs:chevron-right"
+                    width="20"
+                    height="20"></iconify-icon>
+            </div>
+            <div class="alert-content">
+                {{ partial "post-list.html" (dict "pages" . "showSummary" true "listClasses" "list-of-titles list-unstyled") }}
+            </div>
+        </div>
+    </div>
+{{ end }}

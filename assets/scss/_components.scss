@@ -144,6 +144,7 @@ h4 {
     }
 }
 
+// Progress Bar
 #progress-header {
     position: fixed;
     top: 0;
@@ -178,6 +179,7 @@ h4 {
     );
 }
 
+// Table of Contents
 #toc-heading {
     border-bottom: 2px solid var(--color-border-generic);
 }
@@ -217,6 +219,35 @@ h4 {
             ol {
                 list-style: lower-alpha;
             }
+        }
+    }
+}
+
+#related-posts {
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    border-radius: var(--border-radius);
+
+    .alert {
+        background: none;
+    }
+
+    .alert-summary {
+        font-size: map.get($font-size, md);
+        font-family: $heading-font;
+        border-bottom: 1px solid var(--color-border-generic);
+    }
+
+    .alert-content {
+        border: 1px solid var(--color-border-generic);
+        border-top: none;
+    }
+
+    ul {
+        font-size: map.get($font-size, md);
+        padding-top: var(--spacing-sm);
+        li {
+            background-color: var(--color-card-alternate);
         }
     }
 }
