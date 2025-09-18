@@ -1,6 +1,7 @@
 {
     "critical": {
         "base": "./test-site/",
+        "css": "./test-site/css/*.css",
         "dimensions": [
             {
                 "height": 900,
@@ -16,7 +17,7 @@
             }
         ],
         "ignore": {
-            "selectors": [
+            "selector": [
                 ".hover",
                 ".focus",
                 ".active",
@@ -28,7 +29,7 @@
                 ".scroll-button",
                 "#progress-header"
             ],
-            "atrules": ["@font-face", "@media print"]
+            "atrule": ["@font-face", "@media print"]
         },
         "extract": true,
         "inline": false

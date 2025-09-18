@@ -39,7 +39,8 @@
     --faded-purple: #8f3f71;
     --faded-aqua: #427b58;
     --gray: #928374;
-
+}
+@mixin light-theme {
     --color-text: var(--dark1);
     --color-fg-darken: color-mix(in srgb, var(--dark1) 13%, transparent);
     --color-code-inline-bg: var(--light3);
@@ -93,9 +94,11 @@
     --color-theme-toggle-hover: var(--bright-yellow);
 
     --color-card-alternate: var(--light1);
+    html {
+        color-scheme: light;
+    }
 }
-
-[data-theme="dark"] {
+@mixin dark-theme {
     --color-text: var(--light1);
     --color-fg-darken: color-mix(in srgb, var(--light1) 13%, transparent);
     --color-code-inline-bg: var(--dark2);
@@ -157,4 +160,12 @@
     html {
         color-scheme: dark;
     }
+}
+
+[data-theme="dark"] {
+    @include dark-theme;
+}
+
+[data-theme="light"] {
+    @include light-theme;
 }

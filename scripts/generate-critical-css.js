@@ -62,11 +62,25 @@ async function generateCriticalCSS() {
                 criticalDir,
                 `critical-${page.name}.scss`,
             );
+
+            // Process the CSS to replace @media queries with proper theme handling
+            let processedCSS = result.css;
+
+            // Replace @media (prefers-color-scheme: dark) with proper data-theme handling
+            processedCSS = processedCSS.replace(
+                /@media\s*\(\s*prefers-color-scheme\s*:\s*dark\s*\)\s*\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g,
+                (match, content) => {
+                    // Extract the CSS rules inside the media query
+                    const rules = content.trim();
+                    return `[data-theme="dark"] {${rules}}`;
+                },
+            );
+
             const scssContent = `// Auto-generated critical CSS for ${page.name} page
 // Source: ${page.url}
 ${page.description ? `// ${page.description}` : ""}
 
-${result.css}
+${processedCSS}
 `;
 
             fs.writeFileSync(criticalPath, scssContent);
