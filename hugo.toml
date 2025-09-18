@@ -5,11 +5,11 @@ suffixes = ["droplist"]
 suffixes = ["webmanifest"]
 
 [outputFormats.droplist]
-mediatype = "text/droplist"
+mediaType = "text/droplist"
 isPlainText = true
 
 [outputFormats.webmanifest]
-mediatype = "application/manifest+json"
+mediaType = "application/manifest+json"
 baseName = "site"
 isPlainText = true
 notAlternative = true

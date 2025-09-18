@@ -1,9 +1,4 @@
-{{ $page := . }}
-{{ $opts := dict
-    "indices" (slice "tags" "keywords")
-    "document" $page
-}}
-{{ with .Site.RegularPages.Related $opts | first 5 }}
+{{ with .Site.RegularPages.Related . | first 5 }}
     <div id="related-posts">
         <div
             class="alert alert-collapsible"
