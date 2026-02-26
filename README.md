@@ -1,3 +1,6 @@
+>[!IMPORTANT]
+>I'm not planning on updating this theme. It was fun to work on and learn more about front end stuff!
+
 # Paperesque <!-- omit from toc -->
 
 A lightweight [Hugo](https://gohugo.io) theme with a couple of neat tricks.
