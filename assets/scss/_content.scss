@@ -34,7 +34,7 @@ aside.article-aside {
 aside.content-warning {
     font-style: italic;
     margin-bottom: var(--spacing-lg);
-    color: var(--color-meta-text);
+    color: color-mix(in srgb, var(--color-text), var(--neutral-red));
     border-top: solid 1px var(--neutral-red);
     border-bottom: solid 1px var(--neutral-red);
     padding: var(--spacing-xxs) var(--spacing-sm);
