@@ -2,7 +2,7 @@ baseURL = "https://paperesque.pages.dev/"
 languageCode = "en-us"
 title = "Paperesque theme example"
 theme = "paperesque"
-copyright = "© 2025 Aiden Benton"
+copyright = "© 2026 Aiden Benton"
 
 # We're building drafts in config so that you can see them in the example on
 # Hugo Themes; you almost certainly don't want this on your production site
