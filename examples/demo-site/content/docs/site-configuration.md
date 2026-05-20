@@ -160,12 +160,29 @@ disableProgressBars = true
 
 ## Custom Alerts
 
-The custom alert render hook allows you to create custom alerts as easily as possible. Dropdown alers also come with nice animations. The default types are taken from [Obsidian](https://help.obsidian.md/callouts).
+The custom alert render hook allows you to create custom alerts as easily as possible. Dropdown alerts also come with nice animations. The default types are taken from [Obsidian](https://help.obsidian.md/callouts).
 
 To add your own type:
 
-1. Add it to the `$symbols` map in [layouts/\_markup/render-blockquote-alert.html](layouts/_markup/render-blockquote-alert.html). It takes the alert name as the key and a hyphen delimited string for the [iconify](https://icon-sets.iconify.design/) icon. It won't work if you use a colon to separate the icon set and icon name.
-2. In [assets/scss/\_alerts.scss](assets/scss/_alerts.scss) add your alert to whichever color you'd like it to use in the `$alert-colors` map.
+1. Create a dictionary entry in your site parameters including the name of your alert and the icon you want to use for it. For example:
+
+    ```toml
+    [[params.customalerts]]
+    name = "birds"
+    icon = "mdi-bird"
+    ```
+
+2. Add your alert colors to an SCSS map in `assets/scss/_custom-alerts.scss`. For example:
+
+    ```scss
+    $custom-alert-colors: (
+    blue:  (
+        "birds"
+    )
+    );
+    ```
+
+    The available colors are `blue`, `aqua`, `green`, `orange`, `yellow`, `red`, and `purple`. You can add as many alerts to each color as you want.
 3. To change the way the title of the alert displays, add an entry in the corresponding language file in `i18n/`.
 
 See also the [Hugo documentation](https://gohugo.io/render-hooks/blockquotes/#alerts)

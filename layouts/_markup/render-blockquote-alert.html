@@ -16,7 +16,7 @@
 }}
 
 {{ $customSymbols := dict }}
-{{ range $.Page.Site.Params.CustomAlerts }}
+{{ range $.Page.Site.Params.customalerts }}
     {{ $customSymbols = merge $customSymbols (dict .name .icon) }}
 {{ end }}
 
