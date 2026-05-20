@@ -7,10 +7,12 @@ default:
 # Development Commands
 
 # Serves the Hugo site at `http://localhost:1314` with live reload
+[group('dev')]
 serve:
     cd examples/demo-site && hugo server --themesDir ../../../ --disableFastRender -p 1314
 
 # Serves with critical CSS generation first
+[group('dev')]
 serve-critical:
     @just critical
     cd examples/demo-site && hugo server --themesDir ../../../ --disableFastRender -p 1314
@@ -19,11 +21,13 @@ serve-critical:
 
 alias bh := build-hugo
 # Builds the Hugo site to the `test-site` folder
+[group('build')]
 build-hugo:
     cd examples/demo-site && hugo --themesDir ../../../ -d ../../test-site --minify
 
 alias bf := build-full
 # Builds the Hugo site with critical CSS to the `test-site` folder
+[group('build')]
 build-full:
     @just clean-build
     @just critical
@@ -33,26 +37,27 @@ build-full:
 
 alias bjs := build-js
 # Builds the JavaScript files with Parcel
+[group('js')]
 build-js: _copy-js-deps
     yarn parcel build --no-source-maps
 
 alias wjs := watch-js
 # Watches the JS files with Parcel for development
+[group('js')]
 watch-js:
     yarn parcel watch
 
 # Performance Optimization Commands
 
 # Generate critical CSS using Node.js (requires Node.js and npm/yarn)
-[group('performance')]
+[group('js')]
 critical:
     #!/usr/bin/env bash
     if command -v node &> /dev/null; then
         echo "Generating critical CSS with Node.js..."
         node scripts/generate-critical-css.js
     else
-        echo "Node.js not found, falling back to manual critical CSS extraction"
-        just critical-manual
+        echo "Node.js not found"
     fi
 
 # Deployment and Maintenance Commands
@@ -77,7 +82,7 @@ deploy:
     if git diff --staged --quiet; then
         echo "No changes to deploy."
     else
-        git commit --no-verify -m "🔄️ merge: update theme from mainline ($(git rev-parse --short mainline))"
+        git commit -n -m "🔄️ merge: update theme from mainline ($(git rev-parse --short mainline))"
     fi
 
 
