@@ -9,11 +9,9 @@ in
     packages = with pkgs; [
       alejandra
       dart-sass
-      eslint
       hugo
       just
       nodejs
-      stylelint
       uv
       yarn
     ];
