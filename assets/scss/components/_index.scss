@@ -4,14 +4,14 @@
 // \____/___/  \___/\___/_/_/_/ .__/\___/_//_/\__/_//_/\__/___/
 //                           /_/
 
+@forward "abcjs";
+@forward "alerts";
+@forward "buttons";
+@forward "lists";
+@forward "lists";
 @use "variables" as *;
 @use "mixins" as *;
 @use "sass:map";
-
-@use "components/alerts";
-@use "components/lists";
-@use "components/abcjs";
-@use "components/buttons";
 
 // Figures and media
 figure {
@@ -24,6 +24,7 @@ figure {
         img,
         object {
             @include card-style;
+
             max-width: 100%;
             background-color: var(--color-sheet-bg);
             max-height: 85vh;
@@ -109,7 +110,7 @@ blockquote.twitter-tweet {
     position: absolute;
     right: 0;
     top: 0;
-    background: linear-gradient(90deg, #00000000 0%, var(--color-sheet-bg) 20%);
+    background: linear-gradient(90deg, #0000 0%, var(--color-sheet-bg) 20%);
     color: var(--color-meta-text);
     fill: var(--color-meta-text);
 
@@ -126,11 +127,7 @@ blockquote.twitter-tweet {
 }
 
 aside .header-link {
-    background: linear-gradient(
-        90deg,
-        #00000000 0%,
-        var(--color-desktop-bg) 20%
-    );
+    background: linear-gradient(90deg, #0000 0%, var(--color-desktop-bg) 20%);
 }
 
 // Keep selectors in sync with site.js
@@ -158,7 +155,9 @@ h4 {
     width: 100%;
     height: 8px;
     background: var(--gray);
+
     @include drop-shadow;
+
     @include breakpoint("mobile-only") {
         height: 6px;
     }
@@ -189,6 +188,7 @@ h4 {
 
     ol {
         list-style: decimal;
+
         ol {
             list-style: lower-roman;
         }
@@ -196,10 +196,12 @@ h4 {
 
     ul {
         list-style: disc;
+
         ul {
             list-style: circle;
         }
     }
+
     ol,
     ul {
         li {
@@ -246,6 +248,7 @@ h4 {
     ul {
         font-size: map.get($font-size, md);
         padding-top: var(--spacing-sm);
+
         li {
             background-color: var(--color-card-alternate);
         }

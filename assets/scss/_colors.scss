@@ -1,3 +1,4 @@
+/* stylelint-disable custom-property-empty-line-before */
 //   _____     __
 //  / ___/__  / /__  _______
 // / /__/ _ \/ / _ \/ __(_-<
@@ -40,65 +41,8 @@
     --faded-aqua: #427b58;
     --gray: #928374;
 }
-@mixin light-theme {
-    --color-text: var(--dark1);
-    --color-fg-darken: color-mix(in srgb, var(--dark1) 13%, transparent);
-    --color-code-inline-bg: var(--light3);
 
-    --color-text-for-darkbg: var(--light0-hard);
-
-    --color-border-generic: var(--gray);
-
-    --color-boxshadow: var(--dark4);
-    --color-quote-border: var(--neutral-blue);
-
-    /* These two copied from chroma theme (syntax.css) */
-    --color-pre-text: #f8f8f2;
-    --color-pre-bg: #272822;
-
-    --color-sheet-bg: var(--light0-hard);
-    --color-desktop-bg: var(--light0);
-
-    --color-meta-text: #6a6a6a;
-
-    --color-kbd-bg: var(--dark0-soft);
-    --color-hr: var(--faded-aqua);
-    --color-caption-text: var(--dark3);
-    --color-btn-border: var(--dark4);
-    --color-btn-hover-bg: var(--bright-purple);
-
-    --color-draft-bg-stripe: var(--neutral-yellow);
-
-    /*
-    keep in sync with theme color in:
-      - layouts/partials/meta.html
-      - main.js
-  */
-    --color-header-brand-primary: var(--neutral-aqua);
-    --color-header-brand-secondary-ddopacity: color-mix(
-        in srgb,
-        var(--neutral-aqua) 75%,
-        transparent
-    );
-    --color-header-brand-secondary: var(--bright-purple);
-
-    /* this color comes from reboot.css */
-    --color-link-text: var(--neutral-blue);
-    --color-link-hover: var(--faded-blue);
-
-    --color-nav-text: var(--dark0);
-    --color-timestamp-bkg-primary: var(--color-link-text);
-    --color-timestamp-bkg-secondary: var(--color-link-hover);
-    --color-timestamp-text: var(--color-text-for-darkbg);
-
-    --color-theme-toggle-hover: var(--bright-yellow);
-
-    --color-card-alternate: var(--light1);
-    html {
-        color-scheme: light;
-    }
-}
-@mixin dark-theme {
+[data-theme="dark"] {
     --color-text: var(--light1);
     --color-fg-darken: color-mix(in srgb, var(--light1) 13%, transparent);
     --color-code-inline-bg: var(--dark2);
@@ -162,10 +106,62 @@
     }
 }
 
-[data-theme="dark"] {
-    @include dark-theme;
-}
-
 [data-theme="light"] {
-    @include light-theme;
+    --color-text: var(--dark1);
+    --color-fg-darken: color-mix(in srgb, var(--dark1) 13%, transparent);
+    --color-code-inline-bg: var(--light3);
+
+    --color-text-for-darkbg: var(--light0-hard);
+
+    --color-border-generic: var(--gray);
+
+    --color-boxshadow: var(--dark4);
+    --color-quote-border: var(--neutral-blue);
+
+    /* These two copied from chroma theme (syntax.css) */
+    --color-pre-text: #f8f8f2;
+    --color-pre-bg: #272822;
+
+    --color-sheet-bg: var(--light0-hard);
+    --color-desktop-bg: var(--light0);
+
+    --color-meta-text: #6a6a6a;
+
+    --color-kbd-bg: var(--dark0-soft);
+    --color-hr: var(--faded-aqua);
+    --color-caption-text: var(--dark3);
+    --color-btn-border: var(--dark4);
+    --color-btn-hover-bg: var(--bright-purple);
+
+    --color-draft-bg-stripe: var(--neutral-yellow);
+
+    /*
+    keep in sync with theme color in:
+      - layouts/partials/meta.html
+      - main.js
+  */
+    --color-header-brand-primary: var(--neutral-aqua);
+    --color-header-brand-secondary-ddopacity: color-mix(
+        in srgb,
+        var(--neutral-aqua) 75%,
+        transparent
+    );
+    --color-header-brand-secondary: var(--bright-purple);
+
+    /* this color comes from reboot.css */
+    --color-link-text: var(--neutral-blue);
+    --color-link-hover: var(--faded-blue);
+
+    --color-nav-text: var(--dark0);
+    --color-timestamp-bkg-primary: var(--color-link-text);
+    --color-timestamp-bkg-secondary: var(--color-link-hover);
+    --color-timestamp-text: var(--color-text-for-darkbg);
+
+    --color-theme-toggle-hover: var(--bright-yellow);
+
+    --color-card-alternate: var(--light1);
+
+    html {
+        color-scheme: light;
+    }
 }

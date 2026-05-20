@@ -20,6 +20,7 @@
 
 .abcjs-download-midi > a {
     @include btn-base;
+
     margin-left: auto;
     margin-top: 0.5em;
     font-weight: bold;
@@ -28,6 +29,7 @@
 .abcjs-inline-audio {
     background: none !important;
     margin: 10px 0;
+
     --hover-bg: color-mix(
         in srgb,
         var(--color-header-brand-primary) 75%,
@@ -60,6 +62,7 @@
         &:hover {
             scale: (1.1);
             cursor: pointer;
+
             g {
                 fill: var(--hover-bg);
                 stroke: var(--hover-bg);

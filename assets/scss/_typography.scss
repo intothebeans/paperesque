@@ -9,7 +9,7 @@
 @use "sass:map";
 
 @font-face {
-    font-family: "Journal";
+    font-family: Journal;
     src:
         url("/fonts/journal.woff2") format("woff2"),
         url("/fonts/journal.woff") format("woff");
@@ -24,8 +24,9 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lora", Georgia, "Times New Roman", Times, serif;
+    font-family: Lora, Georgia, "Times New Roman", Times, serif;
 }
+
 :where(h1),
 h1#title {
     // Reset UA stylesheets that put h1 to 1.5em when in an article
