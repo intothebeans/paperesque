@@ -10,6 +10,10 @@
     {{ printf "icon=%s" $icon | safeHTMLAttr }}
     width="{{ $size }}"
     height="{{ $size }}"
-    {{ with $label }}label="{{ . }}"{{ end }}
+    {{ if $label }}
+        label="{{ $label }}"
+    {{ else }}
+        label="{{ $icon }}"
+    {{ end }}
     {{ with $class }}class="{{ . }}"{{ end }}
     inline></iconify-icon>
