@@ -1,12 +1,19 @@
 name = "Paperesque"
 license = "MIT"
-licenselink = "https://github.com/capnfabs/paperesque/blob/mainline/LICENSE.md"
-description = "A lightweight theme for personal websites."
-homepage = "https://github.com/capnfabs/paperesque/"
-tags = ["blog", "personal", "light", "responsive", "minimal"]
-features = ["responsive", "margin notes", "resource processing", "draft highlighting"]
+licenselink = "https://github.com/intothebeans/paperesque/blob/mainline/LICENSE.md"
+description = "A unique theme for personal websites."
+homepage = "https://paperesque.pages.dev/"
+tags = ["blog", "personal", "light", "responsive", "dark"]
+features = [
+    "responsive",
+    "margin notes",
+    "resource processing",
+    "draft highlighting",
+    "abcjs support",
+    "custom alerts",
+]
 min_version = "0.147.3"
 
 [author]
-    name = "Fabian Tamp"
-    homepage = "https://capnfabs.net"
+name = "intothebeans"
+homepage = "https://github.com/intothebeans"
