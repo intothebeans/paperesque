@@ -90,20 +90,6 @@ a.timestamp {
     }
 }
 
-// Twitter widgets
-twitter-widget {
-    // Important needed because twitter oembed puts styles in style attribute
-    margin: var(--spacing-lg) auto !important;
-}
-
-blockquote.twitter-tweet {
-    color: var(--color-meta-text);
-
-    p {
-        color: var(--color-text) !important;
-    }
-}
-
 // Header links (anchor links in content)
 .header-link {
     text-decoration: none;
