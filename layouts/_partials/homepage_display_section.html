@@ -1,6 +1,7 @@
 {{ $section := index . "section"}}
 {{ $section_title := index . "section_title"}}
 {{ $content := index . "content"}}
+{{ $showPreviews := index . "showPreviews" | default false }}
 
 {{- if not (and $content $section) -}}
     {{ errorf "Partial used wrong, ensure that the arg has keys named section and content."}}
@@ -16,6 +17,6 @@
         {{ with $section_title }}
             <h1 class="sidepull-not-when-sidebar-shown" style="margin-bottom: 1em">{{.}}</h2>
         {{ end }}
-        {{ partial "post-list.html" (dict "pages" $section.Data.Pages.ByDate.Reverse "listId" "list" "showSummary" true) }}
+        {{ partial "post-list.html" (dict "pages" $section.Data.Pages.ByDate.Reverse "listId" "list" "showPreview" $showPreviews) }}
     </div>
 </div>

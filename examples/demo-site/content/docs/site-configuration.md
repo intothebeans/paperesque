@@ -36,6 +36,8 @@ To enable this functionality:
 - Ensure that there are no `[[params.menu]]` entries in your `hugo.toml` (which cause the list of links to be displayed, as per option 1 above).
 - Create a `/content/_index.md`. The content of that page will render as the homepage.
 - In the [frontmatter](https://gohugo.io/content-management/front-matter/) for the [`/content/_index.md`](content/_index.md), add a `display_section` key. The name of that section will be used to render a list of content.
+  - To display a title above the section content, add a `display_section_expanded_title` key with the title you want to show.
+- Post previews can be enabled by setting `showPreviews` to `true` in the frontmatter of your homepage. By default, this is set to `false`.
 
 Note that both the content and the `display_section` key are optional. If your `_index.md` only contains content, it will be centered in the page.
 

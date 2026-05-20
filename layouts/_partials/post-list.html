@@ -1,5 +1,5 @@
 {{ $pages := .pages }}
-{{ $showSummary := .showSummary | default false }}
+{{ $showPreview := .showPreview | default false }}
 {{ $showTags := .showTags | default true }}
 {{ $showDate := .showDate | default true }}
 {{ $listId := .listId | default "" }}
@@ -27,11 +27,12 @@
                                 #{{ . }}&nbsp;
                             {{ end }}
                         </span>
-                        {{ if $showSummary }}<br />{{ end }}
+                        {{ if $showPreview }}<br />{{ end }}
                     {{ end }}
-                    {{ if $showSummary }}
+                    {{ if $showPreview }}
                         <span class="post-summary">
-                            {{ .Summary }}
+                            {{ $preview := or (.Description ) (.Summary | plainify | truncate 200) }}
+                            {{ $preview }}
                         </span>
                         {{ if .Truncated }}
                             <a href="{{ .RelPermalink }}">Read more...</a>
