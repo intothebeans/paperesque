@@ -9,7 +9,7 @@ copyright = "© 2025 Aiden Benton"
 buildDrafts = true
 
 [markup.highlight]
-style = "onedark"
+style = "github-dark"
 # Optional for your site. Enabled so that we can use {.list-unstyled} in _index.md
 [markup.goldmark.parser.attribute]
 block = true
@@ -18,16 +18,28 @@ block = true
 [markup.goldmark.renderer]
 unsafe = true
 
-# Uncomment these lines for droplist / resource removal support! See the
-# README for more details
 
 [outputs]
 home = ["HTML", "RSS", "webmanifest"]
+# README for more details
+# Uncomment these lines for droplist / resource removal support! See the
 page = ["HTML", "droplist"]
 
 [params]
 # Turn this on if you want to disable margin notes everywhere!
 # disableMarginNotes = true
+
+# Customize the icon rendered in the top-left corner of the page here. By default, this is a paper airplane.
+nav_icon = "bxs-home" # defaults to bxs-home
+
+# Use this to disable all copy code buttons on the site.
+# disableCopyCodeButton = true
+
+# Use this to disable all progress bars
+# disableProgressBars = true
+
+# Use this to enable table of contents on posts by default
+# showToc = true
 
 # Ensure that there are *no* [[params.menu]] sections here so that the _index.md
 # file will be respected
@@ -40,6 +52,10 @@ page = ["HTML", "droplist"]
 [[params.topmenu]]
 name = "documentation"
 url = "docs/"
+
+[[params.topmenu]]
+name = "birds"
+url = "/birds"
 
 [[params.topmenu]]
 name = "rss"
