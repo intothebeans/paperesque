@@ -3,20 +3,12 @@ title: "Site Configuration"
 date: 2025-09-15T13:49:02-04:00
 draft: false
 tags: [hugobasicsite, markdown, configuration]
+toc: true
+disableCopyCodeButton: true
 ---
 
-- [Setting Up the Homepage](#setting-up-the-homepage)
-  - [1. A custom list of links](#1-a-custom-list-of-links)
-  - [2. A section of content plus a sidebar](#2-a-section-of-content-plus-a-sidebar)
-- [Running the example sites](#running-the-example-sites)
-- [Navigation Menu](#navigation-menu)
-- [Removing Original Images After Resizing](#removing-original-images-after-resizing)
-- [Floating Footnotes](#floating-footnotes)
-- [Semi-hide Pages](#semi-hide-pages)
-- [Code Blocks with Copy Button](#code-blocks-with-copy-button)
-- [Progress Bar](#progress-bar)
-- [Custom Alerts](#custom-alerts)
-
+This theme is highly configurable, and this page can be referenced for all the options. You can also use the [`hugo.toml`](https://github.com/intothebeans/paperesque/blob/mainline/examples/demo-site/hugo.toml) file for the demo site as reference
+<!-- more -->
 ## Setting Up the Homepage
 
 There are two main options for the homepage:
@@ -69,6 +61,13 @@ These are set in your `hugo.toml` under `[[params.menu]]` entries. For example:
   url = "posts/index.xml"
 ```
 
+The icon used next to the home link can be set with the `nav_icon` site parameter. It takes a valid iconify icon string separated with a hyphen. For example:
+
+```toml
+[params]
+nav_icon = "bxs-home"
+```
+
 ## Removing Original Images After Resizing
 
 The `fitfigure` shortcode is exactly the same as the `figure` shortcode, but it automatically resizes your images to fit the container, _and_ provides different resolutions for different DPIs (1x, 2x).
@@ -96,19 +95,6 @@ That's it! Resized resources will be removed.
 
 This is _off by default_ because it peppers your build output with `.droplist` files, and if you're not expecting them, it's going to be an unpleasant surprise.
 
-## Floating Footnotes
-
-This is _on by default_.
-
-You can switch it off site-wide by adding `disableMarginNotes = true` to your `params` in your `hugo.toml`, i.e.
-
-```toml
-[params]
-disableMarginNotes = true
-```
-
-Alternatively, you can turn it off per-page by adding the `disableMarginNotes = true` to your front-matter for the page.
-
 ## Semi-hide Pages
 
 You can prevent a page from being publicly visible (included in lists etc) by adding the following to your front-matter:
@@ -122,45 +108,9 @@ params:
 
 - Note that `sitemap.disable` is only available since [Hugo 0.125.0](https://github.com/gohugoio/hugo/releases/tag/v0.125.0), so ensure you're building with that if you're relying upon this feature.
 
-## Code Blocks with Copy Button
-
-The default is to enable the copy button fo all code blocks.
-
-The copy button can be disabled per-block using the info string of the code block. For example:
-
-    ```python{copy-button="false" style="gruvbox" lineNos=inline}
-    print("Hello, world!")
-    ```
-
-The custom render hook makes setting `lineNos=true` do nothing since it doesn't create a table. Use inline instead.
-
-Global behavior can be set in your `hugo.toml` or page wide in the frontmatter:
-
-```toml
-[params]
-# disable all copy buttons site-wide or per-page
-disableCopyCodeButton = false
-```
-
-## Progress Bar
-
-his is enabled for each page by default and can be disabled per-page in the front matter with:
-
-```toml
-[params]
-progressBar = false
-```
-
-It can also be disabled site-wide in `hugo.toml` with:
-
-```toml
-[params]
-disableProgressBars = true
-```
-
 ## Custom Alerts
 
-The custom alert render hook allows you to create custom alerts as easily as possible. Dropdown alerts also come with nice animations. The default types are taken from [Obsidian](https://help.obsidian.md/callouts).
+The custom alert render hook allows you to create custom alerts as easily as possible. Dropdown alerts also come with nice animations. The default types are taken from [Obsidian.](https://help.obsidian.md/callouts)
 
 To add your own type:
 
@@ -186,3 +136,7 @@ To add your own type:
 3. To change the way the title of the alert displays, add an entry in the corresponding language file in `i18n/`.
 
 See also the [Hugo documentation](https://gohugo.io/render-hooks/blockquotes/#alerts)
+
+## Custom Colors
+
+You can override color variables in the `assets/css/color-overrides.css` file. This allows you to override theme colors without needing to modify the theme directly.
