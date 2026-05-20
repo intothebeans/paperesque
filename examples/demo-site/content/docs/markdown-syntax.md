@@ -1,19 +1,19 @@
-+++
-author = "Hugo Authors"
-title = "Markdown Syntax Guide"
-date = "2019-03-11"
-description = "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
-tags = [
-    "hugoBasicSite",
-    "markdown",
-    "css",
-    "html",
+---
+author: Hugo Authors
+title: Markdown Syntax Guide
+date: 2019-03-11
+description: Sample article showcasing basic Markdown syntax and formatting for HTML elements.
+tags: [
+    hugobasicsite,
+    markdown,
+    css,
+    html,
 ]
-categories = [
-    "themes",
-    "syntax",
+categories: [
+    themes,
+    syntax,
 ]
-+++
+---
 
 This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.
 
@@ -59,7 +59,7 @@ The blockquote element represents content that is quoted from another source, op
 
 ## Tables
 
-Tables aren't part of the core Markdown spec, but Hugo supports supports them out-of-the-box.
+Tables aren't part of the core Markdown spec, but Hugo supports them out-of-the-box.
 
 | Name  | Age |
 | ----- | --- |
@@ -135,12 +135,12 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
 #### Nested list
 
 - Fruit
-    - Apple
-    - Orange
-    - Banana
+  - Apple
+  - Orange
+  - Banana
 - Dairy
-    - Milk
-    - Cheese
+  - Milk
+  - Cheese
 
 ## Other Elements — abbr, sub, sup, kbd, mark
 

@@ -13,12 +13,11 @@ Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-manageme
 
 ### figure
 
-This shortcode is slightly modifed by this theme. It adds `attrtarget` and `attrrel` parameters to the default Hugo figure shortcode, which allow you to specify the `target` and `rel` attributes of the link in the attribution.
- format when using the shortcodes in your content.
+This shortcode is slightly modified by this theme. It adds `attrtarget` and `attrrel` parameters to the default Hugo figure shortcode, which allow you to specify the `target` and `rel` attributes of the link in the attribution.
 
 ### cw
 
-This is a content warningshortcode with no arguments.
+This is a content warning shortcode with no arguments.
 
 Example:
 
@@ -60,7 +59,7 @@ See the dedicated [Music Shortcode documentation](/docsmusic-shortcode) for more
 
 ### svgfigure
 
-This shortcode is a copy paste of the [original figure code](https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/shortcodes/figure.html) from Hugo commit aba2647c152ffff927f42523b77ee6651630cd67, with the img tag replaced with an object tag, with type=svg. This allows for embedded SVGs to be animated with CSS in Safari 13.1. See also: <https://stackoverflow.com/q/60975613/996592>
+This shortcode is a copy-paste of the [original figure code](https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/shortcodes/figure.html) from Hugo commit `aba2647c152ffff927f42523b77ee6651630cd67`, with the `img` tag replaced with an `object` tag, with `type=svg`. This allows for embedded SVGs to be animated with CSS in Safari 13.1. See also: <https://stackoverflow.com/q/60975613/996592>
 
 ### twoup
 
@@ -107,10 +106,10 @@ This shortcode allows the use of a video element within a figure. It has all the
 
 ## Render Hooks
 
-Render hooks are how Hugo converts markdown syntax into HTML. This theme includes render hooks for alerts, code blocks, and links.
+Render hooks are how Hugo converts Markdown syntax into HTML. This theme includes render hooks for alerts, code blocks, and links.
 
 Custom alerts are described in more detail on the [site configuration page](/docs/site-configuration/#custom-alerts).
 
 Code blocks are custom rendered to support the copy code button alongside syntax highlighting.
 
-The link render hook is modified to open external links in a new tab and add `rel="noopener noreferrer nofollow"` for security reasons. An external link is defined as any link that does not start with the site's base URL or a relative path. Email links have custom javascript for opening the user's email client, and internal links are left unchanged.
+The link render hook is modified to open external links in a new tab and add `rel="noopener noreferrer nofollow"` for security reasons. An external link is defined as any link that does not start with the site's base URL or a relative path. Email links have custom JavaScript for opening the user's email client, and internal links are left unchanged.

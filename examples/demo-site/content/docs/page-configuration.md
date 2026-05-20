@@ -6,7 +6,7 @@ toc: true
 disableCopyCodeButton: true
 ---
 
-A number of options can be configures at the page level in the front matter.
+A number of options can be configured at the page level in the front matter.
 <!-- more -->
 
 ## Floating Footnotes
@@ -35,7 +35,7 @@ showToc = true
 
 ## Code Blocks with Copy Button
 
-The default is to enable the copy button fo all code blocks.
+The default is to enable the copy button for all code blocks.
 
 The copy button can be disabled per-block using the info string of the code block. For example:
 

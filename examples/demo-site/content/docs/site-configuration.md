@@ -7,7 +7,7 @@ toc: true
 disableCopyCodeButton: true
 ---
 
-This theme is highly configurable, and this page can be referenced for all the options. You can also use the [`hugo.toml`](https://github.com/intothebeans/paperesque/blob/mainline/examples/demo-site/hugo.toml) file for the demo site as reference
+This theme is highly configurable, and this page can be referenced for all the options. You can also use the [`hugo.toml`](https://github.com/intothebeans/paperesque/blob/mainline/examples/demo-site/hugo.toml) file for the demo site as reference.
 <!-- more -->
 ## Setting Up the Homepage
 
@@ -89,7 +89,7 @@ Now, as part of your build process, run:
 ./themes/paperesque/buildscripts/drop-resources.py ./test-site
 ```
 
-(the Hugo output directory is usually `./public`, but I use `./test-site` for dev purposes. Cause I'm quirky).
+(the Hugo output directory is usually `./public`, but I use `./test-site` for dev purposes. Because I'm quirky).
 
 That's it! Resized resources will be removed.
 

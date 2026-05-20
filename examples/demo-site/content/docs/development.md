@@ -112,5 +112,5 @@ This is the default `critical.config.json` file:
 
 ## Other Resources
 
-- The explanation for how a lot of this works is in [this blog post](https://capnfabs.net/posts/hugo-theme-exclude-processed-images/ "Blog post about excluding processed images"), so take a look there if you get stuck or want to borrow some of the ideas without grabbing all of them.
+- The explanation for how a lot of this works is in [this blog post](https://capnfabs.net/posts/hugo-theme-exclude-processed-images/ "Blog post about excluding processed images"), so take a look there if you get stuck or want to borrow some ideas without grabbing all of them.
 - You can see who else is using this theme by [searching Github for `paperesque filename:hugo.toml`](https://github.com/search?q=paperesque+filename%3Ahugo.toml&type=Code "Search github for paperesque in hugo.toml") or [`paperesque filename:config.toml`](https://github.com/search?q=paperesque+filename%3Aconfig.toml&type=Code "Search github for paperesque in config.toml")(requires login).
