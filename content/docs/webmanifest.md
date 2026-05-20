@@ -7,7 +7,7 @@ tags: [hugobasicsite, webmanifest, configuration]
 
 ## Configuration
 
-The Paperesque theme includes support for generating a Web App Manifest (PWA manifest) that allows your site to be installed as a web app on mobile devices and desktops.
+This theme includes support for generating a Web App Manifest (PWA manifest) that allows your site to be installed as a web app on mobile devices and desktops.
 
 Add the following parameters to your `config.toml` or `hugo.toml` under `[params]`:
 
