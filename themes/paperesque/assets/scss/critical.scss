@@ -12,21 +12,9 @@
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizelegibility;
     color: var(--color-text);
-    font-family:
-        arial,
-        -apple-system,
-        BlinkMacSystemFont,
-        avenir next,
-        avenir,
-        helvetica neue,
-        helvetica,
-        ubuntu,
-        roboto,
-        noto,
-        segoe ui,
-        sans-serif;
+    font-family: $body-font;
     background-color: var(--color-desktop-bg);
     margin: 0;
     padding: 0;
@@ -59,6 +47,7 @@ body {
     --spacing-sm: 1rem;
 }
 
+/* Respect system preference by default */
 @media (prefers-color-scheme: dark) {
     :root {
         --color-text: #ebdbb2;
@@ -70,6 +59,28 @@ body {
     html {
         color-scheme: dark;
     }
+}
+
+[data-theme="light"] {
+    --color-text: #3c3836;
+    --color-desktop-bg: #fbf1c7;
+    --color-sheet-bg: #f9f5d7;
+    --color-nav-bg: #f2e5bc;
+}
+
+[data-theme="light"] html {
+    color-scheme: light;
+}
+
+[data-theme="dark"] {
+    --color-text: #ebdbb2;
+    --color-desktop-bg: #282828;
+    --color-sheet-bg: #32302f;
+    --color-nav-bg: #3c3836;
+}
+
+[data-theme="dark"] html {
+    color-scheme: dark;
 }
 
 .scroll-button,

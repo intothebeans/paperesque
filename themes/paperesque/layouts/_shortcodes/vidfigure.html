@@ -1,4 +1,4 @@
-<figure {{ with .Get "class" }} class="{{ . }}" {{ end }}{{with .Get "id"}} id="{{ . }}" {{end}}>
+<figure {{ with .Get "class" }} class="{{ . }}" {{ end }}>
     {{- if .Get "link" -}}
         <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
     {{- end }}
@@ -13,7 +13,7 @@
           height="{{ . }}"
         {{ end -}}>
     {{- if .Get "captions"}}
-      <track kind="captions" src='{{ .Get "captions" }}' srclang="en" label="English" default>
+      <track kind="captions" src='{{ .Get "captions" }}' {{ with .Get "capsrclang" }}srclang="{{ . }}"{{ else }}srclang="en"{{ end }} {{ with .Get "caplabel" }}label="{{ . }}"{{ else }}label="English"{{ end }} default>
     {{end -}}
 
   </video>
@@ -25,9 +25,8 @@
             {{- end -}}
             {{- if or (.Get "caption") (.Get "attr") -}}<p>
                 {{- .Get "caption" | markdownify -}}
-                {{ $newtab := .Get "newtab" | default true}}
                 {{- with .Get "attrlink" }}
-                    <a href="{{ . }}" {{- if $newtab }} target="_blank" rel="nofollow noopener noreferrer"{{end}}>
+                    <a href="{{ .Get "attrlink" }}"{{ with .Get "attrtarget" }} target="{{ . }}"{{ end }}{{ with .Get "attrrel" }} rel="{{ . }}"{{ end }}>
                 {{- end -}}
                 {{- .Get "attr" | markdownify -}}
                 {{- if .Get "attrlink" }}</a>{{ end }}</p>

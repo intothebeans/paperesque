@@ -25,6 +25,7 @@ $nav-button-padding: 2px 4px;
 // Navigation background
 .nav-bkg {
     color: var(--color-nav-text);
+
     @include brand-gradient(80%);
 
     a {
@@ -32,6 +33,7 @@ $nav-button-padding: 2px 4px;
         position: relative;
         color: var(--color-nav-text);
     }
+
     .post-title {
         padding: $nav-link-padding;
     }
@@ -46,9 +48,8 @@ $nav-button-padding: 2px 4px;
 
 nav {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     gap: var(--spacing-xxs);
     flex: 1;
 
@@ -57,7 +58,7 @@ nav {
         display: inline-flex;
         font-weight: bold;
         color: var(--color-nav-text);
-        font-family: "Journal", Georgia, "Times New Roman", Times, serif;
+        font-family: $fancy-font;
         transition: all var(--animation-med) ease;
 
         &:hover,
@@ -83,9 +84,11 @@ nav {
 #previous-article-link {
     text-align: left;
     margin-left: var(--spacing-xs);
+
     iconify-icon {
         margin-right: var(--spacing-xxs);
     }
+
     &:hover iconify-icon {
         text-shadow: none;
         animation: nudge-prev 1.2s infinite;
@@ -95,9 +98,11 @@ nav {
 #next-article-link {
     text-align: right;
     margin-right: var(--spacing-xxs);
+
     iconify-icon {
         margin-left: var(--spacing-xxs);
     }
+
     &:hover iconify-icon {
         text-shadow: none;
         animation: nudge-next 1.2s infinite;
@@ -125,6 +130,7 @@ nav {
 .nav-menu-item {
     position: relative;
     display: inline-flex;
+
     .nav-link-underline {
         transition: all var(--animation-med) ease;
         position: absolute;
@@ -133,7 +139,6 @@ nav {
         height: 15px;
         width: 100px;
         background-color: var(--color-nav-text);
-        -webkit-mask: $underline center / contain no-repeat;
         mask: $underline center / contain no-repeat;
         transform: translateX(-50%) rotate(180deg) scaleX(0);
         transform-origin: center;
@@ -148,12 +153,14 @@ nav {
 
 .nav-bkg-50 {
     color: var(--color-nav-text);
+
     @include brand-gradient(50%);
 }
 
 // Drop shadow for nav
 .drop-shadow {
     @include drop-shadow;
+
     position: relative;
 }
 
@@ -173,7 +180,9 @@ details.right-links {
 
     summary {
         list-style: none;
+
         @include nav-button-background(60%);
+
         border-radius: 0.25em;
         transition: all var(--animation-med) ease;
         color: var(--color-nav-text);
@@ -193,11 +202,13 @@ details.right-links {
 
         &:hover {
             @include nav-button-background(70%);
+
             transform: scale(1.05);
         }
 
         &:active {
             transform: scale(0.75);
+
             @include nav-button-background(50%);
         }
 
@@ -228,10 +239,9 @@ details.right-links {
         overflow: hidden;
         border-radius: 0 0 0.5rem 0.5rem;
         box-shadow:
-            0 4px 6px -1px rgba(0, 0, 0, 0.1),
-            0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            0 4px 6px -1px rgb(0 0 0 / 10%),
+            0 2px 4px -1px rgb(0 0 0 / 6%);
         backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(2px);
     }
 
     li {
@@ -248,6 +258,7 @@ details.right-links {
             &:focus,
             &:active {
                 @include nav-button-background(20%);
+
                 transform: translateX(4px);
             }
         }
@@ -274,15 +285,19 @@ ul.right-links {
     align-self: center;
     margin-bottom: 0;
     transition: all var(--animation-med) ease;
+
     &:hover {
         transform: scale(1.05);
+
         svg {
             transition: fill var(--animation-med) ease-out;
             fill: var(--color-theme-toggle-hover);
         }
     }
+
     &:active {
         transform: scale(1);
+
         svg {
             fill: color-mix(
                 in srgb,

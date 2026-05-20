@@ -25,7 +25,8 @@
 @include breakpoint("tablet-up") {
     .bottom-links {
         @include card-style;
-        border-bottom: 0px;
+
+        border-bottom: 0;
     }
 
     .look-sheet {

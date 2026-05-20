@@ -54,8 +54,19 @@
         itemprop="articleBody"
         id="content"
         class="article-body margin-top-2em">
+        {{ if or .Params.toc .Site.Params.showToc }}
+            <h2 id="toc-heading">Table of Contents</h2>
+            {{ .TableOfContents }}
+            <hr />
+        {{ end }}
         {{ .Content }}
     </div>
-    <div title="Scroll to Top" class="btn touch-screen" id="scroll-button-mobile" tabindex="0">
-       Scroll to Top
+    {{- partial "related-posts" . -}}
+    <div
+        title="Scroll to Top"
+        class="btn touch-screen"
+        id="scroll-button-mobile"
+        tabindex="0">
+        Scroll to Top
+    </div>
 </article>

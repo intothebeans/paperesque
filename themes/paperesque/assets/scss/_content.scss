@@ -34,11 +34,17 @@ aside.article-aside {
 aside.content-warning {
     font-style: italic;
     margin-bottom: var(--spacing-lg);
-    color: var(--color-meta-text);
-    border-top: solid 1px var(--color-quote-border);
-    border-bottom: solid 1px var(--color-quote-border);
+    color: color-mix(in srgb, var(--color-text), var(--neutral-red));
+    border-top: solid 1px var(--neutral-red);
+    border-bottom: solid 1px var(--neutral-red);
     padding: var(--spacing-xxs) var(--spacing-sm);
     display: inline-block;
+
+    p {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xxs);
+    }
 
     > p:last-child {
         margin-bottom: 0;
@@ -67,7 +73,7 @@ article table {
 
         th {
             padding-bottom: var(--spacing-xs);
-            font-family: "Lora", serif;
+            font-family: $heading-font;
         }
     }
 

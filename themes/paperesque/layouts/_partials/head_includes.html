@@ -13,28 +13,30 @@
 
 {{/* Critical CSS */}}
 {{ $critical := "" }}
-{{ $pageType := "home" }}
-{{ if .IsHome }}
-    {{ $pageType = "home" }}
-{{ else if .IsPage }}
-    {{ $pageType = "single" }}
-{{ else }}
-    {{ $pageType = "list" }}
-{{ end }}
-
-{{ $autoPath := printf "scss/critical-%s.scss" $pageType }}
-{{ $auto := resources.Get $autoPath }}
-{{ if $auto }}
-    {{ $critical = $auto | toCSS $opts }}
-    {{ if hugo.IsDevelopment }}
-        <!-- Using auto-generated critical CSS for {{ $pageType }} -->
+{{ if not .Site.Params.disableCriticalCSS }}
+    {{ $pageType := "home" }}
+    {{ if .IsHome }}
+        {{ $pageType = "home" }}
+    {{ else if .IsPage }}
+        {{ $pageType = "single" }}
+    {{ else }}
+        {{ $pageType = "list" }}
     {{ end }}
-{{ else }}
-    {{ $manual := resources.Get "scss/critical.scss" }}
-    {{ if $manual }}
-        {{ $critical = $manual | toCSS $opts }}
+
+    {{ $autoPath := printf "scss/critical-%s.scss" $pageType }}
+    {{ $auto := resources.Get $autoPath }}
+    {{ if $auto }}
+        {{ $critical = $auto | toCSS $opts }}
         {{ if hugo.IsDevelopment }}
-            <!-- Using manual critical CSS -->
+            <!-- Using auto-generated critical CSS for {{ $pageType }} -->
+        {{ end }}
+    {{ else }}
+        {{ $manual := resources.Get "scss/critical.scss" }}
+        {{ if $manual }}
+            {{ $critical = $manual | toCSS $opts }}
+            {{ if hugo.IsDevelopment }}
+                <!-- Using manual critical CSS -->
+            {{ end }}
         {{ end }}
     {{ end }}
 {{ end }}
@@ -49,6 +51,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+{{/* Critical Theme Script - Must run before CSS to prevent flash */}}
+<script>
+    (function () {
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme) {
+            document.documentElement.setAttribute("data-theme", storedTheme);
+        } else {
+            const prefersDark = window.matchMedia(
+                "(prefers-color-scheme: dark)",
+            ).matches;
+            if (prefersDark) {
+                document.documentElement.setAttribute("data-theme", "dark");
+            } else {
+                document.documentElement.setAttribute("data-theme", "light");
+            }
+        }
+    })();
+</script>
 
 {{/* Inline critical CSS */}}
 {{ if $critical }}

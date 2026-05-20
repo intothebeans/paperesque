@@ -11,26 +11,14 @@
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizelegibility;
     color: var(--color-text);
-    font-family:
-        arial,
-        -apple-system,
-        BlinkMacSystemFont,
-        avenir next,
-        avenir,
-        helvetica neue,
-        helvetica,
-        ubuntu,
-        roboto,
-        noto,
-        segoe ui,
-        sans-serif;
+    font-family: $body-font;
     background-color: var(--color-desktop-bg);
 
     &.look-sheet-bkg {
-        background-color: var(--color-sheet-bg);
         margin-bottom: 1rem;
+        background-color: var(--color-desktop-bg);
     }
 
     &.sticky-nav .navbar {
@@ -46,9 +34,7 @@ code {
     font-size: 90%;
     background-color: var(--color-code-inline-bg);
     hyphens: none;
-    -webkit-hyphens: none;
-    -ms-hyphens: none;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 pre {
@@ -56,8 +42,10 @@ pre {
     padding: 9.5px;
     margin: 0 0 10px;
     line-height: 1.4;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
+
     @include card-style;
+
     max-width: 100%;
     color: var(--color-pre-text);
     background-color: var(--color-pre-bg);
@@ -70,7 +58,7 @@ pre {
 
 pre,
 code {
-    font-family: monocode, monospace;
+    font-family: $mono-font;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -104,7 +92,6 @@ kbd {
 // Horizontal rules
 hr {
     padding: 0;
-    -webkit-mask: $hr center / contain no-repeat;
     mask: $hr center / contain no-repeat;
     background-color: var(--color-text);
     border: none;
@@ -116,8 +103,6 @@ hr {
 // Paragraph settings
 p {
     hyphens: auto;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
 }
 
 // Responsive font sizing

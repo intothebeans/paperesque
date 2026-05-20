@@ -3,9 +3,9 @@
 //  / _  / // / __/ __/ _ \/ _ \(_-<
 // /____/\_,_/\__/\__/\___/_//_/___/
 
-@use "../variables" as *;
-@use "../mixins" as *;
-@use "../animations" as *;
+@use "variables" as *;
+@use "mixins" as *;
+@use "animations" as *;
 
 .btn {
     @include btn-base;
@@ -16,6 +16,7 @@ a.btn-dashed {
 
     &:hover {
         @include drop-shadow;
+
         border-style: solid;
         background-color: var(--color-btn-hover-bg);
     }
@@ -36,7 +37,8 @@ a.no-underline:hover {
     justify-content: center;
     opacity: 0;
     transition: opacity var(--animation-med) ease;
-    @media (max-width: 884px) {
+
+    @media (width <= 884px) {
         opacity: 1 !important;
     }
 }
@@ -44,7 +46,7 @@ a.no-underline:hover {
 #scroll-button {
     background-color: var(--bright-yellow);
     border-radius: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
     color: var(--dark0-hard);
     cursor: pointer;
     opacity: 0;
@@ -55,11 +57,9 @@ a.no-underline:hover {
         transform var(--animation-short) ease;
     width: fit-content;
     z-index: 99;
-
     padding: clamp(0.1em, 1vw, 1em);
     bottom: clamp(10px, 3vh, 40px);
     right: clamp(4px, 1vw, 45px);
-
     font-size: clamp(0.5rem, 1vw, 1rem);
     transform: scale(1);
 
@@ -67,7 +67,7 @@ a.no-underline:hover {
         animation: bounce-up 1.2s infinite;
     }
 
-    @media (max-width: 885px) {
+    @media (width <= 885px) {
         opacity: 0 !important;
     }
 
@@ -119,7 +119,9 @@ a.no-underline:hover {
     }
 
     .copy-code-success {
+        /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
         @extend .copy-code-icon;
+
         opacity: 0;
         color: var(--bright-green) !important;
         stroke: var(--neutral-green);

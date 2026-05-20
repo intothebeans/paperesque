@@ -27,10 +27,7 @@
             {{- end -}}
             {{- if or (.Get "caption") (.Get "attr") -}}<p>
                 {{- .Get "caption" | markdownify -}}
-                {{ $newtab := .Get "newtab" | default true}}
-                {{- with .Get "attrlink" }}
-                    <a href="{{ . }}" {{- if $newtab }} target="_blank" rel="nofollow noopener noreferrer"{{ end }}>
-                {{- end -}}
+                   <a href="{{ .Get "attrlink" }}"{{ with .Get "attrtarget" }} target="{{ . }}"{{ end }}{{ with .Get "attrrel" }} rel="{{ . }}"{{ end }}>
                 {{- .Get "attr" | markdownify -}}
                 {{- if .Get "attrlink" }}</a>{{ end }}</p>
             {{- end }}

@@ -1,6 +1,7 @@
+<!-- markdownlint-disable MD033-->
 # Paperesque <!-- omit from toc -->
 
-A lightweight [Hugo](https://gohugo.io) theme with a couple of neat tricks.
+A unique [Hugo](https://gohugo.io) theme with a couple of neat tricks.
 
 You can see it in action on the [demo site](https://paperesque.pages.dev).
 
@@ -9,15 +10,16 @@ Here's what makes it special:
 - Has a shortcode for resizing images to fit the page, _and_ tools for removing originals from the output
 - Footnotes turn into margin notes when there's enough space.
 - Tools for editing and controlling publication:
-    - Visual differentiation for drafts
-    - The ability to "mostly hide" pages so that they're only accessible by knowing the URL.
+  - Visual differentiation for drafts
+  - The ability to "mostly hide" pages so that they're only accessible by knowing the URL.
 - Support for ABC notation music sheets and playback via [abcjs](https://abcjs.net/)
 - Fun animations and transitions
 - Gruvbox, the best theme with dynamic light/dark modes
 - Copy button for markdown code blocks
 - Support for [iconify](https://icon-sets.iconify.design/) web components
 - Scroll progress bar
-- Custom alerts with animations
+- Custom callout alerts with animations
+- Critical CSS support for avoiding pesky flash of unstyled content
 
 ## Table of Contents <!-- omit from toc -->
 
@@ -36,7 +38,7 @@ Here's what makes it special:
 Copy the files into your repo using `git subtree` (this is way easier to use than submodules; [here's an explainer](https://www.atlassian.com/git/tutorials/git-subtree)):
 
 ```sh
-git subtree add --prefix themes/paperesque https://github.com/capnfabs/paperesque mainline --squash
+git subtree add --prefix themes/paperesque https://github.com/intothebeans/paperesque mainline --squash
 ```
 
 This will add a commit to your repo with everything ready to go. You'll probably want to modify parts of this theme for your own usage! Subtree makes that easy, because you've just copied the code into your repo ✨
@@ -46,7 +48,7 @@ This will add a commit to your repo with everything ready to go. You'll probably
 If you're sure you want to use git submodules:
 
 ```sh
-git submodule add -b mainline https://github.com/capnfabs/paperesque themes/paperesque
+git submodule add -b mainline https://github.com/intothebeans/paperesque themes/paperesque
 ```
 
 ### 1.3. <a name='Selectthethemeinyourconfig.toml'></a>Select the theme in your `config.toml`

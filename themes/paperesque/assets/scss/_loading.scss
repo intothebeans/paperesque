@@ -75,7 +75,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .music-container {
         .music[data-abc-lazy="true"] {
             min-height: 150px;

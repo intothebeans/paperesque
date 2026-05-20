@@ -1,3 +1,4 @@
+/* stylelint-disable custom-property-empty-line-before */
 //   _____     __
 //  / ___/__  / /__  _______
 // / /__/ _ \/ / _ \/ __(_-<
@@ -16,7 +17,6 @@
     --light0: #fbf1c7;
     --light0-soft: #f2e5bc;
     --light1: #ebdbb2;
-    --light2: #d5c4a1;
     --light3: #bdae93;
     --light4: #a89984;
 
@@ -34,35 +34,76 @@
     --neutral-blue: #458588;
     --neutral-purple: #b16286;
     --neutral-aqua: #689d6a;
-    --neutral-orange: #d65d0e;
 
-    --faded-red: #9d0006;
     --faded-green: #79740e;
-    --faded-yellow: #b57614;
     --faded-blue: #076678;
     --faded-purple: #8f3f71;
     --faded-aqua: #427b58;
-    --faded-orange: #af3a03;
-
-    --dark-red-hard: #792329;
-    --dark-red: #722529;
-    --dark-red-soft: #7b2c2f;
-    --light-red-hard: #fc9690;
-    --light-red: #fc9487;
-    --light-red-soft: #f78b7f;
-    --dark-green-hard: #5a633a;
-    --dark-green: #62693e;
-    --dark-green-soft: #686d43;
-    --light-green-hard: #d3d6a5;
-    --light-green: #d5d39b;
-    --light-green-soft: #cecb94;
-    --dark-aqua-hard: #3e4934;
-    --dark-aqua: #49503b;
-    --dark-aqua-soft: #525742;
-    --light-aqua-hard: #e6e9c1;
-    --light-aqua: #e8e5b5;
-    --light-aqua-soft: #e1dbac;
     --gray: #928374;
+}
+
+[data-theme="dark"] {
+    --color-text: var(--light1);
+    --color-fg-darken: color-mix(in srgb, var(--light1) 13%, transparent);
+    --color-code-inline-bg: var(--dark2);
+
+    --color-text-for-darkbg: var(--light0);
+    --color-border-generic: var(--dark2);
+
+    --color-boxshadow: black;
+    --color-quote-border: var(--bright-blue);
+
+    /* I modified these but the lightmode ones come from chroma CSS */
+    --color-pre-text: #e6e6e0;
+    --color-pre-bg: #272822;
+
+    --color-sheet-bg: var(--dark1);
+    --color-desktop-bg: var(--dark0);
+
+    --color-meta-text: var(--light4);
+    --color-caption-text: var(--gray);
+
+    --color-kbd-bg: var(--dark1);
+    --color-hr: var(--bright-aqua);
+
+    --color-btn-border: #777;
+    --color-btn-hover-bg: var(--bright-purple);
+
+    --color-draft-bg-stripe: #403629;
+
+    /*
+      keep in sync with theme color in:
+        - layouts/partials/meta.html
+        - main.js
+    */
+    --color-header-brand-primary: var(--bright-aqua);
+    --color-header-brand-secondary-ddopacity: color-mix(
+        in srgb,
+        var(--bright-aqua) 75%,
+        transparent
+    );
+    --color-header-brand-secondary: var(--bright-purple);
+
+    --color-link-text: var(--bright-blue);
+    --color-link-hover: var(--neutral-blue);
+
+    --color-nav-text: var(--dark0);
+
+    --color-timestamp-bkg-primary: var(--neutral-purple);
+    --color-timestamp-bkg-secondary: var(--color-link-text);
+    --color-timestamp-text: var(--color-text-for-darkbg);
+
+    --color-theme-toggle-hover: color-mix(
+        in srgb,
+        var(--faded-purple) 75%,
+        var(--dark0)
+    );
+
+    --color-card-alternate: var(--dark2);
+
+    html {
+        color-scheme: dark;
+    }
 }
 
 [data-theme="light"] {
@@ -117,66 +158,10 @@
     --color-timestamp-text: var(--color-text-for-darkbg);
 
     --color-theme-toggle-hover: var(--bright-yellow);
-}
 
-[data-theme="dark"] {
-    --color-text: var(--light1);
-    --color-fg-darken: color-mix(in srgb, var(--light1) 13%, transparent);
-    --color-code-inline-bg: var(--dark2);
-
-    --color-text-for-darkbg: var(--light0);
-    --color-border-generic: var(--dark1);
-
-    --color-boxshadow: black;
-    --color-quote-border: var(--bright-blue);
-
-    /* I modified these but the lightmode ones come from chroma CSS */
-    --color-pre-text: #e6e6e0;
-    --color-pre-bg: #272822;
-
-    --color-sheet-bg: var(--dark0);
-    --color-desktop-bg: var(--dark0);
-
-    --color-meta-text: var(--light4);
-    --color-caption-text: var(--gray);
-
-    --color-kbd-bg: var(--dark1);
-    --color-hr: var(--bright-aqua);
-
-    --color-btn-border: #777;
-    --color-btn-hover-bg: var(--bright-purple);
-
-    --color-draft-bg-stripe: #403629;
-
-    /*
-      keep in sync with theme color in:
-        - layouts/partials/meta.html
-        - main.js
-    */
-    --color-header-brand-primary: var(--bright-aqua);
-    --color-header-brand-secondary-ddopacity: color-mix(
-        in srgb,
-        var(--bright-aqua) 75%,
-        transparent
-    );
-    --color-header-brand-secondary: var(--bright-purple);
-
-    --color-link-text: var(--bright-blue);
-    --color-link-hover: var(--neutral-blue);
-
-    --color-nav-text: var(--dark0);
-
-    --color-timestamp-bkg-primary: var(--neutral-purple);
-    --color-timestamp-bkg-secondary: var(--color-link-text);
-    --color-timestamp-text: var(--color-text-for-darkbg);
-
-    --color-theme-toggle-hover: color-mix(
-        in srgb,
-        var(--faded-purple) 75%,
-        var(--dark0)
-    );
+    --color-card-alternate: var(--light1);
 
     html {
-        color-scheme: dark;
+        color-scheme: light;
     }
 }

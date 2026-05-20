@@ -1,4 +1,4 @@
-{{ $symbols := dict
+{{ $symbolsDefault := dict
     "note" "bx-pencil"
     "abstract" "bxs-book-open"
     "info" "bx-info-circle"
@@ -14,6 +14,13 @@
     "quote" "bxs-quote-left"
     "tldr" "bxs-timer"
 }}
+
+{{ $customSymbols := dict }}
+{{ range $.Page.Site.Params.customalerts }}
+    {{ $customSymbols = merge $customSymbols (dict .name .icon) }}
+{{ end }}
+
+{{ $symbols := merge $symbolsDefault $customSymbols }}
 
 {{ $symbol := index $symbols .AlertType | default "bx-info-circle" }}
 

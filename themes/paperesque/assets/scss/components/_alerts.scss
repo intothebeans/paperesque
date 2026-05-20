@@ -3,11 +3,13 @@
 //  / __ |/ / -_/ __/ __(_-<
 // /_/ |_/_/\__/_/  \__/___/
 
-@use "../mixins" as *;
+@use "mixins" as *;
+@use "custom-alerts" as *;
 @use "sass:map";
+@use "sass:list";
 
 // Color map
-$alert-colors: (
+$alert-colors-default: (
     blue: (
         "note",
         "info",
@@ -37,35 +39,16 @@ $alert-colors: (
         "quote",
     ),
 );
+$alert-colors: $alert-colors-default;
 
-// Spacing and sizing variables
-$alert-border-radius: (
-    sm: 0.25rem,
-    lg: 1.5rem,
-);
-
-$alert-spacing: (
-    sm: 0.5rem,
-    md: 1rem,
-);
-
-// Base styles
-%alert-base {
-    padding: var(--spacing-sm);
-    border-radius: map.get($alert-border-radius, sm);
-    margin: var(--spacing-md) 0;
-}
-
-.alert {
-    @extend %alert-base;
-}
-
-.alert-heading {
-    font-weight: 600;
-    margin: 0 0 map.get($alert-spacing, sm) 0;
-    display: flex;
-    align-items: center;
-    gap: map.get($alert-spacing, sm);
+@each $color, $names in $custom-alert-colors {
+    @if map.get($alert-colors-default, $color) {
+        $existing-names: map.get($alert-colors-default, $color);
+        $merged-names: list.append($existing-names, $names);
+        $alert-colors: map.set($alert-colors-default, $color, $merged-names);
+    } @else {
+        $alert-colors: map.set($alert-colors, $color, $names);
+    }
 }
 
 // Alert style mixin
@@ -99,6 +82,37 @@ $alert-spacing: (
     }
 }
 
+// Spacing and sizing variables
+$alert-border-radius: (
+    sm: 0.25rem,
+    lg: 1.5rem,
+);
+$alert-spacing: (
+    sm: 0.5rem,
+    md: 1rem,
+);
+
+// Base styles
+.alert {
+    padding: var(--spacing-sm);
+    border-radius: map.get($alert-border-radius, sm);
+    margin: var(--spacing-md) 0;
+
+    @include alert-style("blue", false);
+
+    [data-theme="dark"] & {
+        @include alert-style("blue", true);
+    }
+}
+
+.alert-heading {
+    font-weight: 600;
+    margin: 0 0 map.get($alert-spacing, sm) 0;
+    display: flex;
+    align-items: center;
+    gap: map.get($alert-spacing, sm);
+}
+
 // Light theme
 @include generate-alert-styles(false);
 
@@ -109,18 +123,16 @@ $alert-spacing: (
 
 // Collapsible alert styles
 .alert-collapsible {
-    border: none;
+    border: none !important;
     padding: 0;
     background: none;
     margin: var(--spacing-md) 0;
 
     .alert-summary {
-        margin-bottom: 0 !important;
         border-radius: map.get($alert-border-radius, sm) !important;
         cursor: pointer;
         padding: map.get($alert-spacing, md);
         list-style: none;
-        user-select: none;
         margin: 0;
         display: flex;
         align-items: center;

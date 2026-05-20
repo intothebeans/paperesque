@@ -105,9 +105,10 @@
 
 @mixin sheet-style {
     @include card-style;
+
     margin-top: var(--spacing-sm);
     margin-bottom: var(--spacing-sm);
-    min-height: 0px;
+    min-height: 0;
     background-color: var(--color-sheet-bg);
 }
 
@@ -132,7 +133,9 @@
     &:focus {
         background-color: var(--color-link-hover);
         text-decoration: none;
+
         @include drop-shadow;
+
         transform: scale(1.05);
     }
 
