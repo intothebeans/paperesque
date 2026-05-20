@@ -1,3 +1,105 @@
+## 1.1.0 (2026-05-20)
+
+### ✨ Features
+
+- add option to enable toc by default
+- add related posts section and enhance table of contents in article layout
+- add custom blockquote alerts with the site config and scss overrides
+- add support for hugo table of contents
+- add iconify shortcode
+- add web app manifest support and update example configurations
+
+### 🐛🚑️ Fixes
+
+- correct mediaType key in outputFormats and add related indices for tags and keywords
+- fix color flashes due to incorrect theme variables being inlined
+- fixed multiple scores causing variable collisions
+- fix issues in render hooks
+- adjusted some colors and spacing for mobile; fixed typos/missing properties
+- fixed progress bar for mobile with sticky nav
+
+### ♻️ Refactorings
+
+- update how attrlink target and ref are defined in figure shortcode
+- update how post previews are handled
+- post listing uses a dedicated partial for improved maintainability
+- improve logic for enabling and disabling copy code button
+- remove timestamp from auto-generated critical CSS comments
+- completely overhaul js to allow for more fine grained loading in the browser
+
+### 🌐♿️ Language & Accessibility
+
+- add default label to icon shortcode
+- add label to homepage icon
+
+### 🎨🏗️ Style & Architecture
+
+- clean up scss formatting
+- define font families as variables
+
+### 👇 squash
+
+- merge feat/optimization
+
+### 💄🚸 UI & UIX
+
+- update content warning text style
+- update color variables for better theme consistency and remove user-select from alert items
+- remove aside shortcode and update content warning styles
+- update background color for contrast with content sheet
+- add summaries to posts on homepage and update styles
+- update list styling
+- add color overrides option
+
+### 📌➕⬇️➖⬆️ Dependencies
+
+- upgrade deps
+
+### 📝💡 Documentation
+
+- update read me
+- document shortcodes and render hooks
+- add comments for all site options in hugo.toml
+- update developer docs
+- split config docs into per page and sitewide
+- update custom alert documentation
+- add tags to docs
+
+### 🔐🚧📈✏️💩👽️🍻💬🥚🌱🚩🥅🩺 Others
+
+- clean up typos and grammar errors in docs
+
+### 🔥⚰️ Clean up
+
+- eslint and stylelint installed via yarn
+- remove unused colors from css palette
+- reduce number of webfonts to speed up loading
+
+### 🔧🔨📦️ Configuration, Scripts, Packages
+
+- update theme metadata
+- update justfile groupings
+- tweak git settings
+
+### 🗑️ deprecation
+
+- remove references to twitter
+
+### 🙈 Ignore
+
+- stop tracking auto generated critical scss
+
+### 🚚🍱 Resources & Assets
+
+- move documentation to demo site
+- rename site config to hugo.toml
+- rename example 2 to demo-site
+
+### 🧑‍💻 Developer Experience
+
+- allow disabling inline critical css for testing
+- switch from package.json to just to handle tasks
+
 ## 1.0.0 (2025-09-12)
 
 ### ✨ Features

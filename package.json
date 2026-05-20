@@ -1,59 +1,59 @@
 {
-    "name": "paperesque",
-    "version": "1.0.0",
-    "description": "paperesque Hugo theme",
-    "author": "Fabian Tamp (@capnfabs)",
-    "contributors": [
-        "Aiden Benton (@intothebeans)"
-    ],
-    "license": "MIT",
-    "private": true,
-    "browserslist": "> 0.5%, not dead",
-    "dependencies": {
-        "@juggle/resize-observer": "3.x",
-        "abcjs": "^6.5.2",
-        "iconify-icon": "^3.0.0"
+  "name": "paperesque",
+  "version": "1.1.0",
+  "description": "paperesque Hugo theme",
+  "author": "Fabian Tamp (@capnfabs)",
+  "contributors": [
+    "Aiden Benton (@intothebeans)"
+  ],
+  "license": "MIT",
+  "private": true,
+  "browserslist": "> 0.5%, not dead",
+  "dependencies": {
+    "@juggle/resize-observer": "3.x",
+    "abcjs": "^6.5.2",
+    "iconify-icon": "^3.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "buffer": "^5.5.0||^6.0.0",
+    "cpx2": "^8.0.0",
+    "critical": "^7.2.1",
+    "crypto-browserify": "^3.12.0",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "events": "^3.1.0",
+    "parcel": "2.12.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-go-template": "^0.0.15",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "stylelint": "^17.11.1",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "surge": "^0.24.6",
+    "vm-browserify": "^1.1.2"
+  },
+  "targets": {
+    "default": {
+      "source": "./js/main.js",
+      "distDir": "./assets/js"
     },
-    "devDependencies": {
-        "@eslint/js": "^9.35.0",
-        "buffer": "^5.5.0||^6.0.0",
-        "cpx2": "^8.0.0",
-        "critical": "^7.2.1",
-        "crypto-browserify": "^3.12.0",
-        "eslint": "^9.35.0",
-        "eslint-config-prettier": "^10.1.8",
-        "events": "^3.1.0",
-        "parcel": "2.12.0",
-        "prettier": "^3.6.2",
-        "prettier-plugin-go-template": "^0.0.15",
-        "process": "^0.11.10",
-        "stream-browserify": "^3.0.0",
-        "stylelint": "^17.11.1",
-        "stylelint-config-standard-scss": "^17.0.0",
-        "surge": "^0.24.6",
-        "vm-browserify": "^1.1.2"
+    "music": {
+      "source": "./js/music.js",
+      "distDir": "./assets/js"
     },
-    "targets": {
-        "default": {
-            "source": "./js/main.js",
-            "distDir": "./assets/js"
-        },
-        "music": {
-            "source": "./js/music.js",
-            "distDir": "./assets/js"
-        },
-        "lazyMusic": {
-            "source": "./js/lazyMusic.js",
-            "distDir": "./assets/js"
-        },
-        "animations": {
-            "source": "./js/animations.js",
-            "distDir": "./assets/js"
-        },
-        "ui-components": {
-            "source": "./js/ui-components.js",
-            "distDir": "./assets/js"
-        }
+    "lazyMusic": {
+      "source": "./js/lazyMusic.js",
+      "distDir": "./assets/js"
     },
-    "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+    "animations": {
+      "source": "./js/animations.js",
+      "distDir": "./assets/js"
+    },
+    "ui-components": {
+      "source": "./js/ui-components.js",
+      "distDir": "./assets/js"
+    }
+  },
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }
